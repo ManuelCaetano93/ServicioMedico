@@ -6,7 +6,10 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "components/bootstrap": "^3.3",
+        "components/bootstrap-default": "^3.3",
         "components/font-awesome": "^4.7",
+        "components/jquery": "^3.1",
         "laravel/framework": "5.3.*",
         "spatie/laravel-permission": "^1.9"
     },
