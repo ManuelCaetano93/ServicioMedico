@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@admin.admin',
             'surname' => 'Sistema',
             'identification' => '123123',
-            'birthdate' => '12313',
+            'birthday' => '12313',
             'sex' => 'male',
             'phoneNumber' => '123123',
             'cellphoneNumber' => '123123',
