@@ -26,11 +26,11 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Apellido</label>
+                                <label for="surname" class="col-md-4 control-label">Apellido</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text" class="form-control" name="surname"
-                                           value="{{ old('surname') }}" required autofocus>
+                                           value="{{ old('surname') }}" required>
 
                                     @if ($errors->has('surname'))
                                         <span class="help-block">
@@ -45,7 +45,7 @@
 
                                 <div class="col-md-6">
                                     <input id="identification" type="text" class="form-control" name="identification"
-                                           value="{{ old('identification') }}" required autofocus>
+                                           value="{{ old('identification') }}" required>
 
                                     @if ($errors->has('identification'))
                                         <span class="help-block">
@@ -61,7 +61,7 @@
 
                                     <input id="birthday" type="text" class="form-control" name="birthday"
                                            value="{{ old('age') }}"
-                                           required autofocus>
+                                           required>
                                     @if ($errors->has('birthday'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('birthday') }}</strong>
@@ -75,7 +75,7 @@
 
                                 <div class="col-md-6">
                                     <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}"
-                                           required autofocus>
+                                           required>
 
                                     @if ($errors->has('age'))
                                         <span class="help-block">
@@ -106,16 +106,16 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
-                                <label for="phone_number" class="col-md-4 control-label">Telefono</label>
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label for="phone" class="col-md-4 control-label">Telefono</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone_number" type="text" class="form-control" name="phone_number"
-                                           value="{{ old('phone_number') }}" required autofocus>
+                                    <input id="phone" type="text" class="form-control" name="phone"
+                                           value="{{ old('phone') }}" required>
 
-                                    @if ($errors->has('phone_number'))
+                                    @if ($errors->has('phone'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('phone_number') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -126,7 +126,7 @@
 
                                 <div class="col-md-6">
                                     <input id="cellphone" type="text" class="form-control" name="cellphone"
-                                           value="{{ old('cellphone') }}" required autofocus>
+                                           value="{{ old('cellphone') }}" required>
 
                                     @if ($errors->has('cellphone'))
                                         <span class="help-block">
@@ -141,7 +141,7 @@
 
                                 <div class="col-md-6">
                                     <input id="residence" type="text" class="form-control" name="residence"
-                                           value="{{ old('residence') }}" required autofocus>
+                                           value="{{ old('residence') }}" required>
 
                                     @if ($errors->has('residence'))
                                         <span class="help-block">

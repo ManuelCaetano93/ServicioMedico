@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('identification')->unique();
             $table->string('birthday');
             $table->string('sex');
-            $table->string('phoneNumber');
-            $table->string('cellphoneNumber');
+            $table->string('phone');
+            $table->string('cellphone');
             $table->string('residence');
             $table->string('email')->unique();
             $table->string('password');
