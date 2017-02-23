@@ -13,8 +13,6 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Administrador',
-            'password' => bcrypt('123123'),
-            'email' => 'admin@admin.admin',
             'surname' => 'Sistema',
             'identification' => '123123',
             'birthday' => '12313',
@@ -22,8 +20,11 @@ class UsersTableSeeder extends Seeder
             'phoneNumber' => '123123',
             'cellphoneNumber' => '123123',
             'residence' => 'Caracas',
-            'created_at' => \Carbon\Carbon::now(),
+            'email' => 'admin@admin.admin',
+            'password' => bcrypt('123123'),
             'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+
         ]);
     }
 }

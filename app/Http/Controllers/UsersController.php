@@ -10,7 +10,6 @@ use Spatie\Permission\Models\Permission;
 use Validator;
 
 class UsersController extends Controller
-
 {
     /**
      * Create a new controller instance.
@@ -57,17 +56,14 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(),[
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'identification' => 'required|max:10',
-            'birthday' => 'required',
-            'age' => 'required|max:255',
-            'sex' => 'required',
-            'phone' => 'required|max:10',
-            'cellphone' => 'required|max:10',
-            'residence' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'nombre'=> 'required|max:255',
+            'apellido'=> 'required|max:255',
+            'cedula'=> 'required|max:8|unique:user',
+            'telefono'=> 'max:255',
+            'celular'=> 'max:255',
+            'email'=> 'required|email|max:255|unique:user',
+            'password'=> 'required|min:6|confirmed',
+            'role'=> 'required',
 
         ]);
 
@@ -79,16 +75,13 @@ class UsersController extends Controller
             \DB::BeginTransaction();
 
             $user = User::create([
-                'name'=>$request->input('name'),
-                'surname'=>$request->input('surname'),
-                'identification'=>$request->input('identification'),
-                'birthday'=>$request->input('birthday'),
-                'age'=>$request->input('age'),
-                'sex'=>$request->input('sex'),
-                'phone'=>$request->input('phone'),
-                'cellphone'=>$request->input('cellphone'),
-                'residence'=>$request->input('residence'),
+                'nombre'=>$request->input('nombre'),
+                'apellido'=>$request->input('apellido'),
+                'cedula'=>$request->input('cedula'),
+                'telefono'=>$request->input('telefono'),
+                'celular'=>$request->input('celular'),
                 'email'=>$request->input('email'),
+                'password'=>bcrypt($request->input('password')),
 
             ]);
 
@@ -139,17 +132,13 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'identification' => 'required|max:10',
-            'birthday' => 'required',
-            'age' => 'required|max:255',
-            'sex' => 'required',
-            'phone' => 'required|max:10',
-            'cellphone' => 'required|max:10',
-            'residence' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'nombre'=> 'required|max:255',
+            'apellido'=> 'required|max:255',
+            'cedula'=> 'required|max:8|unique:users,cedula,'.$id.',id',
+            'telefono'=> 'max:255',
+            'celular'=> 'max:255',
+            'email'=> 'required|email|max:255|unique:users, email,'.$id.'id',
+            'role'=> 'required',
 
         ]);
 
@@ -161,15 +150,11 @@ class UsersController extends Controller
             \DB::beginTransaction();
             $user = User::findOrFail($id);
             $user->update([
-                'name'=>$request->input('name'),
-                'surname'=>$request->input('surname'),
-                'identification'=>$request->input('identification'),
-                'birthday'=>$request->input('birthday'),
-                'age'=>$request->input('age'),
-                'sex'=>$request->input('sex'),
-                'phone'=>$request->input('phone'),
-                'cellphone'=>$request->input('cellphone'),
-                'residence'=>$request->input('residence'),
+                'nombre'=>$request->input('nombre'),
+                'apellido'=>$request->input('apellido'),
+                'cedula'=>$request->input('cedula'),
+                'telefono'=>$request->input('telefono'),
+                'celular'=>$request->input('celular'),
                 'email'=>$request->input('email'),
 
             ]);
@@ -188,7 +173,7 @@ class UsersController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/users')->with('mensaje', 'Usuario editado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'usuario editado satisfactoriamente');
     }
 
     /**
@@ -203,7 +188,7 @@ class UsersController extends Controller
             abort(403, 'Permiso Denegado');
 
         User::detroy($id);
-        return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'usuario eliminado satisfactoriamente');
     }
 
     public function permisos($id)
@@ -227,4 +212,3 @@ class UsersController extends Controller
         return redirect('/users')->with('mensaje','Permisos Asignados Satisfactoriamente');
     }
 }
-
