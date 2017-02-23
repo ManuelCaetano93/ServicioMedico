@@ -60,7 +60,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Staff Creation (CRUD)
+        // Staff Creation (CRUD) (Count = 3) (Total = 9)
 
         DB::table('permissions')->insert([
             'name' => 'CreateStaff',
@@ -80,7 +80,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Set Appointment and Appointment(CRUD)
+        // Set Appointment and Appointment(CRUD) (Count = 3) (Total = 12)
 
         DB::table('permissions')->insert([
             'name' => 'CreateAppointment',
@@ -100,7 +100,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Prescription (CRUD)
+        // Prescription (CRUD) (Count = 3) (Total = 15)
 
         DB::table('permissions')->insert([
             'name' => 'CreatePrescription',
@@ -120,7 +120,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Appointment Calendar
+        // Appointment Calendar (Count = 3) (Total = 18)
 
         DB::table('permissions')->insert([
             'name' => 'BlockDate',
@@ -140,7 +140,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Drug (CRUD)
+        // Drug (CRUD) (Count = 3) (Total = 21)
 
         DB::table('permissions')->insert([
             'name' => 'CreateDrug',
@@ -160,7 +160,7 @@ class PermissionsTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Change Roles
+        // Change Roles (Count = 2) (Total = 23)
 
         DB::table('permissions')->insert([
             'name' => 'AssignRole',
