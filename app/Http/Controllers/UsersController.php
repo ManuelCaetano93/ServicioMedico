@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use Validator;
 
 class UsersController extends Controller
+
 {
     /**
      * Create a new controller instance.
@@ -30,7 +31,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate();
-        return view('users.index', ['users'=>$users]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -44,52 +45,58 @@ class UsersController extends Controller
             abort(403, 'Acceso Prohibido');
 
         $roles = Role::all();
-        return view('user.create', ['roles'=>$roles]);
+        return view('user.create', ['roles' => $roles]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(),[
-            'nombre'=> 'required|max:255',
-            'apellido'=> 'required|max:255',
-            'cedula'=> 'required|max:8|unique:user',
-            'telefono'=> 'max:255',
-            'celular'=> 'max:255',
-            'email'=> 'required|email|max:255|unique:user',
-            'password'=> 'required|min:6|confirmed',
-            'role'=> 'required',
+        $v = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'identification' => 'required|max:10',
+            'birthday' => 'required',
+            'age' => 'required|max:255',
+            'sex' => 'required',
+            'phone' => 'required|max:10',
+            'cellphone' => 'required|max:10',
+            'residence' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
 
         ]);
 
-        if ($v ->fails()){
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
 
-        try{
+        try {
             \DB::BeginTransaction();
 
             $user = User::create([
-                'nombre'=>$request->input('nombre'),
-                'apellido'=>$request->input('apellido'),
-                'cedula'=>$request->input('cedula'),
-                'telefono'=>$request->input('telefono'),
-                'celular'=>$request->input('celular'),
-                'email'=>$request->input('email'),
-                'password'=>bcrypt($request->input('password')),
+                'name' => $request->input('name'),
+                'surname' => $request->input('surname'),
+                'identification' => $request->input('identification'),
+                'birthday' => $request->input('birthday'),
+                'age' => $request->input('age'),
+                'sex' => $request->input('sex'),
+                'phone' => $request->input('phone'),
+                'cellphone' => $request->input('cellphone'),
+                'residence' => $request->input('residence'),
+                'email' => $request->input('email'),
 
             ]);
 
             $user->assignRole($request->input('role'));
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
         return redirect('/users')->with('mensaje', 'Usuario ha sido creado con exito');
@@ -98,7 +105,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -109,36 +116,40 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Auth::user()->can('EditarUsuario'))
+        if (!Auth::user()->can('EditarUsuario'))
             abort(403);
 
         $roles = Role::all();
         $user = User::findOrFail($id);
-        return view('users.edit', ['user'=>$user, 'roles'=>$roles]);
+        return view('users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $v = Validator::make($request->all(), [
-            'nombre'=> 'required|max:255',
-            'apellido'=> 'required|max:255',
-            'cedula'=> 'required|max:8|unique:users,cedula,'.$id.',id',
-            'telefono'=> 'max:255',
-            'celular'=> 'max:255',
-            'email'=> 'required|email|max:255|unique:users, email,'.$id.'id',
-            'role'=> 'required',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'identification' => 'required|max:10',
+            'birthday' => 'required',
+            'age' => 'required|max:255',
+            'sex' => 'required',
+            'phone' => 'required|max:10',
+            'cellphone' => 'required|max:10',
+            'residence' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
 
         ]);
 
@@ -150,12 +161,16 @@ class UsersController extends Controller
             \DB::beginTransaction();
             $user = User::findOrFail($id);
             $user->update([
-                'nombre'=>$request->input('nombre'),
-                'apellido'=>$request->input('apellido'),
-                'cedula'=>$request->input('cedula'),
-                'telefono'=>$request->input('telefono'),
-                'celular'=>$request->input('celular'),
-                'email'=>$request->input('email'),
+                'name' => $request->input('name'),
+                'surname' => $request->input('surname'),
+                'identification' => $request->input('identification'),
+                'birthday' => $request->input('birthday'),
+                'age' => $request->input('age'),
+                'sex' => $request->input('sex'),
+                'phone' => $request->input('phone'),
+                'cellphone' => $request->input('cellphone'),
+                'residence' => $request->input('residence'),
+                'email' => $request->input('email'),
 
             ]);
             if ($request->input('password')) {
@@ -165,7 +180,7 @@ class UsersController extends Controller
                     ]);
             }
 
-            $user->syncRoles ($request->input('role'));
+            $user->syncRoles($request->input('role'));
 
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -173,42 +188,42 @@ class UsersController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/users')->with('mensaje', 'usuario editado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Usuario editado satisfactoriamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if(! Auth::user()->can('EliminarUsuario'))
+        if (!Auth::user()->can('EliminarUsuario'))
             abort(403, 'Permiso Denegado');
 
         User::detroy($id);
-        return redirect('/users')->with('mensaje', 'usuario eliminado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
 
-    public function permisos($id)
+    public function permissions($id)
     {
-        if (! Auth::user()->can('PermisosUsuario'))
+        if (!Auth::user()->can('permissionsUsuario'))
             abort(403, 'Permiso Denegado');
 
         $user = User::findOrFail($id);
-        $permisos = Permission::all();
-        return view('users.permisos',['user'=>$user, 'permisos'=>$permisos]);
+        $permissions = Permission::all();
+        return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
 
     }
 
-    public function asignarPermisos(Request $request, $id)
+    public function asignarpermissions(Request $request, $id)
     {
 
         $user = User::findOrFail($id);
         $user->revokePermissionTo(Permission::all());
-        if( $request->input('permisos'))
-            $user->givePermissionTo($request->input('permisos'));
-        return redirect('/users')->with('mensaje','Permisos Asignados Satisfactoriamente');
+        if ($request->input('permissions'))
+            $user->givePermissionTo($request->input('permissions'));
+        return redirect('/users')->with('mensaje', 'permissions Asignados Satisfactoriamente');
     }
 }
