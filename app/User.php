@@ -19,11 +19,16 @@ class User extends Authenticatable
         'name', 'surname', 'identification', 'birthday', 'sex', 'phone', 'cellphone', 'residence', 'email', 'password'
     ];
 
+    public function userAppointments(){
+        return $this->hasMany('App/Appointment', 'id', 'id_user_appointment');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
+
     protected $hidden = [
         'password', 'remember_token',
     ];

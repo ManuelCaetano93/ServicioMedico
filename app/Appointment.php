@@ -10,6 +10,10 @@ class Appointment extends Model
         'date', 'status_delete', 'status',
     ];
 
+    public function userAppointemnts(){
+        return $this->belongsTo('App/User', 'id_user_appointment');
+    }
+
 
 
 }

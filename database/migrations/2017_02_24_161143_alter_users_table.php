@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppointmentsTable extends Migration
+class AlterUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('date');
-            $table->string('statusDeleted');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->unsignedInteger('id_user_appointment');
+            $table->foreign('id_user_appointment')->references('id')->on('appointments')->update('cascade')->delete('cascade');
         });
     }
 
