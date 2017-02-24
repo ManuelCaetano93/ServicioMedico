@@ -43,13 +43,11 @@
                                            class="btn btn-warning">
                                             <i class="fa fa-id-card"></i>
                                         </a>
-
                                     </td>
                                     <td>
                                         <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
-
                                     </td>
                                     <td>
                                         <button class="btn btn-danger"
@@ -83,7 +81,7 @@
                 <div class="modal-body">
                     <p>¿Seguro que desea eliminar este
                         registro?</p>
-                    <p class="nombre"></p>
+                    <p class="name"></p>
                 </div>
                 <div class="modal-footer">
                     <form class="form-inline form-delete"
@@ -96,10 +94,10 @@
                                 class="btn btn-default"
                                 data-dismiss="modal">Cancelar
                         </button>
-                        <button id="delete-btn"
-                                class="btn btn-danger"
-                                title="Eliminar">Eliminar
-                        </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
                     </form>
                 </div>
             </div>

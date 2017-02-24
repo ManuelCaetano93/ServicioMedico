@@ -21,3 +21,5 @@ Route::resource('/users', 'UsersController');
 //Route::resource('/roles', 'RolesController');
 Auth::routes();
 
+Route::post('/users', 'UsersController@index');
+

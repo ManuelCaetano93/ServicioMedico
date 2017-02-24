@@ -72,21 +72,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                                <label for="age" class="col-md-4 control-label">Edad</label>
-
-                                <div class="col-md-6">
-                                    <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}"
-                                           required>
-
-                                    @if ($errors->has('age'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('age') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                                 <label for="sex" class="col-md-4 control-label">Sexo</label>
 
@@ -189,24 +174,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                                <label for="role" class="col-md-4 control-label">Role</label>
-
-                                <div class="col-md-6">
-                                    <select name="role" id="role" class="form-control">
-                                        <option value="">Seleccione</option>
-                                        @foreach($roles as $role)
-                                            <option value="{{ $role->name }}">{{$role->name}}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @if ($errors->has('role'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
