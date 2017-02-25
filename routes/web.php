@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::resource('/users', 'UsersController');
+Route::resource('/specializations', 'SpecializationController');
 //Route::resource('/roles', 'RolesController');
 Auth::routes();
 
