@@ -22,6 +22,8 @@ class CreateAppointmentsTable extends Migration
         });
     }
 
+	// TODO: Change Data Types to correct values
+	
     /**
      * Reverse the migrations.
      *
