@@ -13,11 +13,11 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
-            $table->unsignedInteger('id_user_appointment');
-            $table->foreign('id_user_appointment')->references('id')->on('appointments')->update('cascade')->delete('cascade');
-			$table->unsignedInteger('id_user_specialization');
-			$table->foreign('id_user_specialization')->references('id')->on('specialization')->update('cascade')->delete('cascade');
+        Schema::table('users', function (Blueprint $table) {
+            //$table->unsignedInteger('id_user_appointment');
+            //$table->foreign('id_user_appointment')->references('id')->on('appointments')->update('cascade')->delete('cascade');
+			//$table->unsignedInteger('id_user_specialization');
+			//$table->foreign('id_user_specialization')->references('id')->on('specialization')->update('cascade')->delete('cascade');
         });
     }
 
@@ -28,6 +28,6 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }
