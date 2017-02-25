@@ -14,9 +14,9 @@ class AlterAppointmentsTable extends Migration
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->unsignedInteger('id_user_patient');
+            $table->unsignedInteger('id_user_patient')->nullable();
             $table->foreign('id_user_patient')->references('id')->on('users')->update('cascade')->delete('cascade');
-            $table->unsignedInteger('id_user_doctor');
+            $table->unsignedInteger('id_user_doctor')->nullable();
             $table->foreign('id_user_doctor')->references('id')->on('users')->update('cascade')->delete('cascade');
         });
     }
