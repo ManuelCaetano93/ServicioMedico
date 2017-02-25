@@ -22,6 +22,10 @@ class User extends Authenticatable
     public function userAppointments(){
         return $this->hasMany('App/Appointment', 'id', 'id_user_appointment');
     }
+	
+	public function userSpecialization {
+		return $this->hasOne('App/Specialization', 'id', '');
+	}
 
     /**
      * The attributes that should be hidden for arrays.
