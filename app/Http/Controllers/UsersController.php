@@ -41,11 +41,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->can('CrearUsuario'))
-            abort(403, 'Acceso Prohibido');
-
-        $roles = Role::all();
-        return view('user.create', ['roles' => $roles]);
+        return view('users.create');
     }
 
     /**
@@ -56,40 +52,39 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'identification' => 'required|max:10',
-            'birthday' => 'required',
-            'age' => 'required|max:255',
-            'sex' => 'required',
-            'phone' => 'required|max:10',
-            'cellphone' => 'required|max:10',
-            'residence' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
 
-        ]);
+      $v = Validator::make($request->all(), [
+
+          'name' => 'required|max:255',
+          'surname' => 'required|max:255',
+          'identification' => 'required|max:10',
+          'birthday' => 'required',
+          'sex' => 'required',
+          'phone' => 'required|max:10',
+          'cellphone' => 'required|max:10',
+          'residence' => 'required|max:255',
+          'email' => 'required|email|max:255|unique:users',
+          'password' => 'required|min:6|confirmed',
+      ]);
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
 
         try {
-            \DB::BeginTransaction();
+            \DB::beginTransaction();
 
             $user = User::create([
                 'name' => $request->input('name'),
                 'surname' => $request->input('surname'),
                 'identification' => $request->input('identification'),
                 'birthday' => $request->input('birthday'),
-                'age' => $request->input('age'),
                 'sex' => $request->input('sex'),
                 'phone' => $request->input('phone'),
                 'cellphone' => $request->input('cellphone'),
                 'residence' => $request->input('residence'),
                 'email' => $request->input('email'),
-
+                'password' => bcrypt($request->input('password')),
             ]);
 
             $user->assignRole($request->input('role'));
@@ -99,7 +94,10 @@ class UsersController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/users')->with('mensaje', 'Usuario ha sido creado con exito');
+        return redirect('/users')->with('mensaje', 'Usuario creado satisfactoriamente');
+
+
+
     }
 
     /**
@@ -121,9 +119,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (!Auth::user()->can('EditarUsuario'))
-            abort(403);
-
         $roles = Role::all();
         $user = User::findOrFail($id);
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
@@ -138,49 +133,58 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $v = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'identification' => 'required|max:10',
-            'birthday' => 'required',
-            'age' => 'required|max:255',
-            'sex' => 'required',
-            'phone' => 'required|max:10',
-            'cellphone' => 'required|max:10',
-            'residence' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
 
-        ]);
+        $v = Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+                'surname' => 'required|max:255',
+                'identification' => 'required|max:8|unique:users,identification,' . $id . ',id',
+                'birthday' => 'required',
+                'sex' => 'required',
+                'phone' => 'required|max:10',
+                'cellphone' => 'required|max:10',
+                'residence' => 'required|max:255',
+            ]);
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
-
         try {
+            // Iniciamos un proceso de transaccion
             \DB::beginTransaction();
+
             $user = User::findOrFail($id);
+
             $user->update([
                 'name' => $request->input('name'),
                 'surname' => $request->input('surname'),
                 'identification' => $request->input('identification'),
                 'birthday' => $request->input('birthday'),
-                'age' => $request->input('age'),
                 'sex' => $request->input('sex'),
                 'phone' => $request->input('phone'),
                 'cellphone' => $request->input('cellphone'),
                 'residence' => $request->input('residence'),
                 'email' => $request->input('email'),
-
             ]);
+
             if ($request->input('password')) {
                 $v = Validator::make($request->all(),
                     [
-                        'password' => 'requider|min:6|confirmed',
+                        'password' => 'required|min:6|confirmed',
                     ]);
+
+                if ($v->fails()) {
+                    return redirect()->back()->withErrors($v)->withInput();
+                }
+                $user->update([
+                    'password' => bcrypt($request->input('password')),
+                ]);
             }
 
-            $user->syncRoles($request->input('role'));
+            // $user->removeRole(Role::all());
+            // $user->assignRole($request->input('role'));
+
+            // $user->syncRoles($request->input('role'));
 
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -188,8 +192,9 @@ class UsersController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/users')->with('mensaje', 'Usuario editado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Usuario actualizado satisfactoriamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -197,29 +202,24 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
-        if (!Auth::user()->can('EliminarUsuario'))
-            abort(403, 'Permiso Denegado');
-
-        User::detroy($id);
+        User::destroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
 
-    public function permissions($id)
+    public
+    function permissions($id)
     {
-        if (!Auth::user()->can('permissionsUsuario'))
-            abort(403, 'Permiso Denegado');
-
         $user = User::findOrFail($id);
         $permissions = Permission::all();
         return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
-
     }
 
-    public function asignarpermissions(Request $request, $id)
+    public
+    function asignarpermissions(Request $request, $id)
     {
-
         $user = User::findOrFail($id);
         $user->revokePermissionTo(Permission::all());
         if ($request->input('permissions'))
