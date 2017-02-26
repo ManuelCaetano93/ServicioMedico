@@ -20,6 +20,10 @@ Route::get('/home', 'HomeController@index');
 Route::resource('/users', 'UsersController');
 Route::resource('/roles', 'RolesController');
 Route::resource('/permissions', 'PermissionsController');
+Route::put('/roles/{id}/asignpermissions','RolesController@asignpermissions');
+Route::put('/users/{id}/asignpermissions','UsersController@asignpermissions');
+
+
 Auth::routes();
 
 Route::post('/users', 'UsersController@index');
