@@ -84,7 +84,7 @@ class UsersController extends Controller
                 'cellphone' => $request->input('cellphone'),
                 'residence' => $request->input('residence'),
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
+                'password' => $request->input('password'),
             ]);
 
             $user->assignRole($request->input('role'));
