@@ -66,31 +66,13 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea eliminar este
-                        registro?</p>
-                    <p class="name"></p>
-                </div>
-                <div class="modal-footer">
-                    <form class="form-inline form-delete"
-                          role="form"
-                          method="POST"
-                          action="">
-                        {!! method_field('DELETE') !!}
-                        {!! csrf_field() !!}
-                        <button type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal">Cancelar
-                        </button>
-                        <button id="delete-btn"
-                                class="btn btn-danger"
-                                title="Eliminar">Eliminar
-                        </button>
-                    </form>
-                </div>
+                <form method="POST" action="/specialization/{{ $specialization->id }}/delete">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </form>
             </div>
         </div>
     </div>

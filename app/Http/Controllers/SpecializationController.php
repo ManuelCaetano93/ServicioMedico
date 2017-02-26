@@ -144,7 +144,7 @@ class SpecializationController extends Controller
      */
     public function destroy($id)
     {
-        Specialization::detroy($id);
-        return redirect('/specializations')->with('mensaje', 'Especializacion eliminado satisfactoriamente');
+        Specialization::find($id)->delete();
+        return redirect('/specializations')->with('mensaje', 'Especializacion eliminada satisfactoriamente');
     }
 }

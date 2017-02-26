@@ -16,4 +16,6 @@ class Specialization extends Model
     public function userAppointemnts(){
         return $this->belongsTo('App/User', 'id_user_specialization');
     }
+	
+	protected $dates = ['deleted_at'];
 }
