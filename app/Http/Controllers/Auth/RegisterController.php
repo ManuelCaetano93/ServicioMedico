@@ -52,9 +52,8 @@ class RegisterController extends Controller
             'surname' => 'required|max:255',
             'identification' => 'required|max:10',
             'birthday' => 'required',
-            'age' => 'required|max:255',
             'sex' => 'required',
-            'phone_number' => 'required|max:10',
+            'phone' => 'required|max:10',
             'cellphone' => 'required|max:10',
             'residence' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -77,7 +76,7 @@ class RegisterController extends Controller
             'identification' => $data['identification'],
             'birthday' => $data['birthday'],
             'sex' => $data['sex'],
-            'phone_number' => $data['phone_number'],
+            'phone' => $data['phone'],
             'cellphone' => $data['cellphone'],
             'residence' => $data['residence'],
             'email' => $data['email'],
@@ -85,7 +84,5 @@ class RegisterController extends Controller
         ]);
 
         return $user;
-
     }
-
 }
