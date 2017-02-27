@@ -1,0 +1,6 @@
+Fix views to reflect specializations specifics:
+
+	- Create new Specializations.
+	- Delete specializations.
+	- Edit specializations.
+	- Associate specializations to users.
