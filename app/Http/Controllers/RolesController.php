@@ -142,6 +142,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
+        var_dump($data);
         try{
             \DB::beginTransaction();
             Role::destroy($id);

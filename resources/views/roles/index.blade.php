@@ -88,10 +88,10 @@
                                 class="btn btn-default"
                                 data-dismiss="modal">Cancelar
                         </button>
-                            <button id="delete-btn"
-                                    class="btn btn-danger"
-                                    title="Eliminar">Eliminar
-                            </button>
+                        <button id="delete-btn"
+                                class="btn btn-danger"
+                                title="Eliminar">Eliminar
+                        </button>
                     </form>
                 </div>
             </div>
