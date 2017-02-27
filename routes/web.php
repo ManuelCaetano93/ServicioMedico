@@ -25,6 +25,9 @@ Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
 Route::resource('/users', 'UsersController');
 Route::resource('/specializations', 'SpecializationController');
-//Route::resource('/roles', 'RolesController');
+Route::resource('/roles', 'RolesController');
+Route::resource('/permissions', 'PermissionsController');
 Auth::routes();
+
+Route::post('/users', 'UsersController@index');
 
