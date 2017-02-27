@@ -16,7 +16,7 @@ class PermissionsController extends Controller
     public function index()
     {
         $permissions = Permission::paginate(8);
-        return view('permissions.index', ['permissions'=>$permissions]);
+        return view('permissions.index', ['permissions' => $permissions]);
     }
 
     /**
@@ -32,7 +32,7 @@ class PermissionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,20 +41,20 @@ class PermissionsController extends Controller
             'name' => 'required|max:10|alpha',
         ]);
 
-        if($v->fails()){
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
 
-        try{
+        try {
             \DB::beginTransaction();
 
             Permission::create([
-                'name'=>$request->input('name'),
+                'name' => $request->input('name'),
             ]);
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
 
@@ -64,7 +64,7 @@ class PermissionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,20 +75,20 @@ class PermissionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $permission = Permission::findOrFail($id);
-        return view('permissions.edit', ['permission'=>$permission]);
+        return view('permissions.edit', ['permission' => $permission]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,21 +97,19 @@ class PermissionsController extends Controller
             'name' => 'required|max:50|alpha',
         ]);
 
-        if($v->fails()){
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
-
-        try{
+        try {
             \DB::beginTransaction();
 
             $permission = Permission::findOrFail($id);
             $permission->update([
-                'name'=>$request->input('name'),
+                'name' => $request->input('name'),
             ]);
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
 
@@ -121,17 +119,17 @@ class PermissionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try{
+        try {
             \DB::beginTransaction();
             Permission::destroy($id);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
         return redirect('/permissions')->with('mensaje', 'Permiso ha sido eliminado con exito');

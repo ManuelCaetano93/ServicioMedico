@@ -83,6 +83,10 @@ class UsersController extends Controller
                 'cellphone' => $request->input('cellphone'),
                 'residence' => $request->input('residence'),
                 'email' => $request->input('email'),
+<<<<<<< HEAD
+=======
+                'password' => $request->input('password'),
+>>>>>>> be3efb49290589b0b5a068ffb828f62ba0f99094
             ]);
 
             $user->assignRole($request->input('role'));

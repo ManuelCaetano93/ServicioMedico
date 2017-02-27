@@ -15,10 +15,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">permissions</div>
+                    <div class="panel-heading">Permisos</div>
 
                     <div class="panel-body">
-                        Listado de permissions
+                        Listado de Permisos
 
                         <a href="{{ url('/permissions/create') }}" class="btn btn-success">
                             <i class="fa fa-user"></i> Nuevo Permiso
@@ -29,18 +29,18 @@
                                 <th>Nombre</th>
                                 <th width="10%" colspan="2">Acciones</th>
                             </tr>
-                            @foreach($permissions as $per)
+                            @foreach($permissions as $permission)
                                 <tr>
-                                    <td>{{ $per->name }}</td>
+                                    <td>{{ $permission->name }}</td>
                                     <td>
-                                        <a href="{{ url('permissions/'.$per->id.'/edit') }}" class="btn btn-primary">
+                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger"
-                                                data-action="{{ url('/permissions/'.$per->id) }}"
-                                                data-name="{{ $per->name }}"
+                                                data-action="{{ url('/permissions/'.$permission->id) }}"
+                                                data-name="{{ $permission->name }}"
                                                 data-toggle="modal" data-target="#confirm-delete">
                                             <i class="fa fa-trash fa-1x"></i>
                                         </button>
@@ -69,7 +69,7 @@
                 <div class="modal-body">
                     <p>¿Seguro que desea eliminar este
                         registro?</p>
-                    <p class="nombre"></p>
+                    <p class="name"></p>
                 </div>
                 <div class="modal-footer">
                     <form class="form-inline form-delete"
