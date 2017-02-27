@@ -57,5 +57,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now(),
             'created_at' => \Carbon\Carbon::now(),
         ]);
+
     }
+
 }
