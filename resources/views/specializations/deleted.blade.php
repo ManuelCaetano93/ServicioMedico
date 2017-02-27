@@ -46,13 +46,13 @@
 
 									</td>
 									<td>
-										<button class="btn btn-success"
-												data-action="{{ url('/specializations/'.$specialization->id.'/restore') }}"
-												data-name="{{ $specialization->name }}"
-												data-toggle="modal" data-target="#confirm-restore">
-												<i class="fa fa-trash fa-1x"></i>
+										<form method="POST" action="/specialization/{{ $specialization->id }}/restore">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="_method" value="POST" />
+											<button type="submit" class="btn btn-success">
+												Restore
 											</button>
-										</td>
+										</form>
 									</tr>
 								@endif
                             @endforeach
@@ -67,19 +67,15 @@
             </div>
         </div>
     </div>
+	{{-- @if(Session::has('specializations'))
     <div class="modal fade" id="confirm-restore" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="/specialization/{{ $specialization->id }}/restore">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="POST" />
-                            <button type="submit" class="btn btn-success">
-                                Restore
-                            </button>
-                        </form>
+                
             </div>
         </div>
     </div>
+	@endif --}}
 @endsection
