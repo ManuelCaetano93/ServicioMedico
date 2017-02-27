@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
 Route::resource('/users', 'UsersController');
+Route::resource('/specializations', 'SpecializationController');
 Route::resource('/roles', 'RolesController');
 Route::resource('/permissions', 'PermissionsController');
 Auth::routes();
