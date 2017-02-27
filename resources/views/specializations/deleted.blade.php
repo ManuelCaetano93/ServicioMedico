@@ -25,33 +25,36 @@
                             <i class="fa fa-specialization"></i> Nueva Especializacion
                         </a>
 						
-						<a href="{{ url('/specializations/deleted') }}" class="btn btn-success">
-							<i class="fa fa-specialization"></i> Especializaciones Borradas
+						<a href="{{ url('/specializations/') }}" class="btn btn-success">
+							<i class="fa fa-specialization"></i> Especializaciones
 						</a>
 
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
                                 <th width="10%" colspan="3">Acciones</th>
-                            </tr>
-                            @foreach( $specializations as $specialization)
-                                <tr>
-                                    <td>{{ $specialization->name }}</td>
-                                    <td>
-                                        <a href="{{ url('specializations/'.$specialization->id.'/edit') }}" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
 
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/specializations/'.$specialization->id) }}"
-                                                data-name="{{ $specialization->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                            </tr>
+                            @foreach($specializations as $specialization)
+                                <tr>
+								@if($specialization->deleted_at != null)
+									<td>{{ $specialization->name }}</td>
+									<td>
+										<a href="{{ url('specializations/'.$specialization->id.'/edit') }}" class="btn btn-primary">
+											<i class="fa fa-edit"></i>
+										</a>
+
+									</td>
+									<td>
+										<button class="btn btn-success"
+												data-action="{{ url('/specializations/'.$specialization->id.'/restore') }}"
+												data-name="{{ $specialization->name }}"
+												data-toggle="modal" data-target="#confirm-restore">
+												<i class="fa fa-trash fa-1x"></i>
+											</button>
+										</td>
+									</tr>
+								@endif
                             @endforeach
                             <tr>
                                 <td colspan="7" class="text-center">
@@ -64,16 +67,16 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirm-delete" tabindex="-1"
+    <div class="modal fade" id="confirm-restore" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="/specialization/{{ $specialization->id }}/delete">
+                <form method="POST" action="/specialization/{{ $specialization->id }}/restore">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <button type="submit" class="btn btn-danger">
-                                Delete
+                            <input type="hidden" name="_method" value="POST" />
+                            <button type="submit" class="btn btn-success">
+                                Restore
                             </button>
                         </form>
             </div>

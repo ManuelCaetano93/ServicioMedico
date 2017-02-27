@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+Route::get('/specializations/deleted', function (){
+	return view ('specializations.deleted');
+});
+Route::get('specializations/deleted', 'SpecializationController@deleted');
+Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
 Route::resource('/users', 'UsersController');
 Route::resource('/specializations', 'SpecializationController');

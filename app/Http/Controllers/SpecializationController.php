@@ -33,6 +33,12 @@ class SpecializationController extends Controller
         $specializations = Specialization::paginate();
         return view('specializations.index', ['specializations' => $specializations]);
     }
+	
+	public function deleted()
+	{
+		$specializations = Specialization::withTrashed()->paginate();
+        return view('specializations.deleted', ['specializations' => $specializations]);
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -41,8 +47,6 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-        
-
         $roles = Role::all();
         return view('specializations.create', ['roles' => $roles]);
     }
@@ -145,6 +149,12 @@ class SpecializationController extends Controller
     public function destroy($id)
     {
         Specialization::find($id)->delete();
-        return redirect('/specializations')->with('mensaje', 'Especializacion eliminada satisfactoriamente');
+        return redirect('/specializations')->with('message', 'Especializacion eliminada satisfactoriamente');
     }
+	
+	public function restore($id)
+	{
+		Specialization::withTrashed($id)->find($id)->restore();
+		return redirect ('/specializations/deleted')->with('message', 'Especializacion restaurada exitosamente');
+	}
 }

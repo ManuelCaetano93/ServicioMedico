@@ -40,9 +40,6 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->can('CrearUsuario'))
-            abort(403, 'Acceso Prohibido');
-
         $roles = Role::all();
         return view('user.create', ['roles' => $roles]);
     }
@@ -120,9 +117,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (!Auth::user()->can('EditarUsuario'))
-            abort(403);
-
         $roles = Role::all();
         $user = User::findOrFail($id);
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
@@ -198,31 +192,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        if (!Auth::user()->can('EliminarUsuario'))
-            abort(403, 'Permiso Denegado');
-
         User::detroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
-    }
-
-    public function permissions($id)
-    {
-        if (!Auth::user()->can('permissionsUsuario'))
-            abort(403, 'Permiso Denegado');
-
-        $user = User::findOrFail($id);
-        $permissions = Permission::all();
-        return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
-
-    }
-
-    public function asignarpermissions(Request $request, $id)
-    {
-
-        $user = User::findOrFail($id);
-        $user->revokePermissionTo(Permission::all());
-        if ($request->input('permissions'))
-            $user->givePermissionTo($request->input('permissions'));
-        return redirect('/users')->with('mensaje', 'permissions Asignados Satisfactoriamente');
     }
 }
