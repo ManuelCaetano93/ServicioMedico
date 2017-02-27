@@ -6,8 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-info alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Info:</strong> {{ session('mensaje') }}.
                     </div>
                 </div>
@@ -29,7 +28,6 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th width="10%" colspan="3">Acciones</th>
-
                             </tr>
                             @foreach( $specializations as $specialization)
                                 <tr>
@@ -66,13 +64,13 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="/specialization/{{ $specialization->id }}/delete">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <button type="submit" class="btn btn-danger">
-                                Delete
-                            </button>
-                        </form>
+                <form method="POST" action="/specializations/{{ $specializations->id }}/delete">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
     </div>

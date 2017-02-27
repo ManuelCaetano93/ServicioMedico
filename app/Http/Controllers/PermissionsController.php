@@ -38,7 +38,7 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:50|alpha',
+            'name' => 'required|max:10|alpha',
         ]);
 
         if($v->fails()){

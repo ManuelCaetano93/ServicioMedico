@@ -93,9 +93,6 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        if(!Auth::user()->can('EditRole'))
-            abort(403);
-
         $role = Role::findOrFail($id);
         return view('roles.edit', ['role'=>$role]);
     }
@@ -142,7 +139,6 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        var_dump($data);
         try{
             \DB::beginTransaction();
             Role::destroy($id);
