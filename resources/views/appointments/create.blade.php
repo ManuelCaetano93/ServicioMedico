@@ -12,8 +12,12 @@
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
-                            <input data-provide="datepicker">
-							
+                            <div class="input-group col-md-6" data-provide="datepicker">
+                                <input type="text" class="form-control datepicker">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
