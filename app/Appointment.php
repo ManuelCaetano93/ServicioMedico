@@ -12,8 +12,8 @@ class Appointment extends Model
         'date', 'status',
     ];
 
-    public function userAppointemnts(){
-        return $this->belongsTo('App/User', 'id_user_appointment');
-    }
+    //public function userAppointments(){
+    //    return $this->belongsTo('App/User', 'id_user_appointment');
+    //}
 	protected $dates = ['deleted_at'];
 }

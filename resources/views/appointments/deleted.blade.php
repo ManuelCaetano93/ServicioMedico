@@ -16,29 +16,29 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Especializaciones</div>
+                    <div class="panel-heading">Citas</div>
 
                     <div class="panel-body">
-                        Listado de Especializaciones
+                        Listado de Citas Borradas
 
                         <a href="{{ url('/appointments/create') }}" class="btn btn-success">
-                            <i class="fa fa-appointment"></i> Nueva Especializacion
+                            <i class="fa fa-appointment"></i> Nueva Cita
                         </a>
 						
 						<a href="{{ url('/appointments/') }}" class="btn btn-success">
-							<i class="fa fa-appointment"></i> Especializaciones
+							<i class="fa fa-appointment"></i> Citas
 						</a>
 
                         <table class="table table-bordered">
                             <tr>
-                                <th>Nombre</th>
+                                <th>Fecha</th>
                                 <th width="10%" colspan="3">Acciones</th>
 
                             </tr>
                             @foreach($appointments as $appointment)
                                 <tr>
 								@if($appointment->deleted_at != null)
-									<td>{{ $appointment->name }}</td>
+									<td>{{ $appointment->date }}</td>
 									<td>
 										<a href="{{ url('appointments/'.$appointment->id.'/edit') }}" class="btn btn-primary">
 											<i class="fa fa-edit"></i>

@@ -5,17 +5,25 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Especializacion</div>
+                    <div class="panel-heading">Crear Cita</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/appointments') }}">
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
-                            <div class="input-group col-md-6" data-provide="datepicker">
-                                <input type="text" class="form-control datepicker">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
+                            <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
+                                <label for="date" class="col-md-4 control-label">Date</label>
+
+                                <div class="col-md-6">
+                                    <input id="date" type="date" class="form-control datepicker" name="date"
+                                           value="{{ old('date') }}" required autofocus>
+
+                                    @if ($errors->has('date'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">

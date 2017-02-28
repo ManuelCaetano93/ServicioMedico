@@ -66,6 +66,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                        <li><a href={{ url('/appointments') }}>Citas</a></li>
 						<li><a href="{{ url('/specializations') }}">Especializaciones</a></li>
                         <li><a href="{{ url('/users') }}">Usuarios</a></li>
                         <li><a href="{{ url('/permissions') }}">Permisos</a></li>

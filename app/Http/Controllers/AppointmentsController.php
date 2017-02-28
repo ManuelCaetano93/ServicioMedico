@@ -60,7 +60,7 @@ class AppointmentsController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'date' => 'required|max:255',
         ]);
 
         if ($v->fails()) {
@@ -70,9 +70,9 @@ class AppointmentsController extends Controller
         try {
             \DB::BeginTransaction();
 
-            $appointment = appointment::create([
-                'name' => $request->input('name'),
-				'status' => 'Activa',
+            $appointment = Appointment::create([
+                'date' => $request->input('date'),
+                'status' => 'Active',
             ]);
         } catch (\Exception $e) {
             \DB::rollback();
@@ -150,12 +150,12 @@ class AppointmentsController extends Controller
     public function destroy($id)
     {
         Appointment::find($id)->delete();
-        return redirect('/appointments')->with('message', 'Especializacion eliminada satisfactoriamente');
+        return redirect('/appointments')->with('message', 'Cita eliminada satisfactoriamente');
     }
 	
 	public function restore($id)
 	{
 		Appointment::withTrashed($id)->find($id)->restore();
-		return redirect ('/appointments/deleted')->with('message', 'Especializacion restaurada exitosamente');
+		return redirect ('/appointments/deleted')->with('message', 'Cita restaurada exitosamente');
 	}
 }
