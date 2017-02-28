@@ -13,8 +13,8 @@ class Specialization extends Model
         'name',
     ];
 
-    public function userAppointemnts(){
-        return $this->belongsTo('App/User', 'id_user_specialization');
+    public function users(){
+        return $this->belongsToMany('App\User');
     }
 	
 	protected $dates = ['deleted_at'];

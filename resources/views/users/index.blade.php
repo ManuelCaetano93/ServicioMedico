@@ -50,6 +50,11 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <a href="{{ url('users/'.$user->id.'/associate') }}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
                                         <button class="btn btn-danger"
                                                 data-action="{{ url('/users/'.$user->id) }}"
                                                 data-name="{{ $user->name }}"

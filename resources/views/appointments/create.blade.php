@@ -17,7 +17,7 @@
 
                                 <div class="col-md-6">
                                     <input id="date" type="date" class="form-control datepicker" name="date"
-                                           value="{{ old('date') }}" required autofocus>
+                                           value="" required autofocus>
 
                                     @if ($errors->has('date'))
                                         <span class="help-block">
