@@ -15,8 +15,9 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('date');
-            $table->string('status');
+            $table->date('date');
+            $table->enum('status', array('Activa', 'Cancelada', 'Cumplida'));
+			$table->softDeletes();
             $table->timestamps();
         });
     }
