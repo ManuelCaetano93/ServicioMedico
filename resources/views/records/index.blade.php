@@ -16,45 +16,43 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Especializaciones</div>
+                    <div class="panel-heading">records</div>
 
                     <div class="panel-body">
-                        Listado de Especializaciones
-
-                        <a href="{{ url('/specializations/create') }}" class="btn btn-success">
-                            <i class="fa fa-specialization"></i> Nueva Especializacion
+                        Listado de records
+                        <a href="{{ url('/records/create') }}" class="btn btn-success">
+                            <i class="fa fa-user"></i> Nuevo record
                         </a>
+
 
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
-                                <th width="10%" colspan="3">Acciones</th>
+                                <th>Descripcion</th>
+                                <th>Nivel</th>
+                                <th>Estatus</th>
+                                <th width="10%" colspan="2">Acciones</th>
                             </tr>
-                            @foreach( $specializations as $specialization)
+                            @foreach($records as $record)
                                 <tr>
-                                    <td>{{ $specialization->name }}</td>
+                                    <td>{{ $record->nombre }}</td>
+                                    <td>{{ $record->descripcion }}</td>
+                                    <td>{{ ucfirst($record->status) }}</td>
                                     <td>
-                                        <a href="{{ url('specializations/'.$specialization->id.'/edit') }}"
-                                           class="btn btn-primary">
+                                        <a href="{{ url('records/'.$record->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
-
                                     </td>
                                     <td>
                                         <button class="btn btn-danger"
-                                                data-action="{{ url('/specializations/'.$specialization->id) }}"
-                                                data-name="{{ $specialization->name }}"
+                                                data-action="{{ url('/records/'.$record->id) }}"
+                                                data-name="{{ $record->name }}"
                                                 data-toggle="modal" data-target="#confirm-delete">
                                             <i class="fa fa-trash fa-1x"></i>
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr>
-                                <td colspan="7" class="text-center">
-                                    {{ $specializations->links() }}
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>
@@ -66,13 +64,31 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="/specializations/{{ $specializations->id }}/delete">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="_method" value="DELETE"/>
-                    <button type="submit" class="btn btn-danger">
-                        Delete
-                    </button>
-                </form>
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                    <p>¿Seguro que desea eliminar este
+                        registro?</p>
+                    <p class="name"></p>
+                </div>
+                <div class="modal-footer">
+                    <form class="form-inline form-delete"
+                          role="form"
+                          method="POST"
+                          action="">
+                        {!! method_field('DELETE') !!}
+                        {!! csrf_field() !!}
+                        <button type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal">Cancelar
+                        </button>
+                        <button id="delete-btn"
+                                class="btn btn-danger"
+                                title="Eliminar">Eliminar
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

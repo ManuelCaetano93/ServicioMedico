@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ url('/roles/'.$role->id.'/asignarpermisos') }}">
+                              action="{{ url('/roles/'.$role->id.'/asignpermissions') }}">
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
 
@@ -27,27 +27,27 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('permisos') ? ' has-error' : '' }}">
-                                <label for="permisos" class="col-md-4 control-label">Permisos</label>
+                            <div class="form-group{{ $errors->has('permissions') ? ' has-error' : '' }}">
+                                <label for="permissions" class="col-md-4 control-label">Permisos</label>
 
                                 <div class="col-md-6">
-                                    @foreach($permisos as $permiso)
+                                    @foreach($permissions as $permission)
                                         <label class="checkbox-inline">
-                                            <input class="i-check" type="checkbox" id="permisos" name="permisos[]"
-                                                   value="{{ $permiso->name }}"
-                                                   @if($role->hasPermissionTo($permiso->name)) checked @endif>
+                                            <input class="i-check" type="checkbox" id="permissions" name="permissions[]"
+                                                   value="{{ $permission->name }}"
+                                                   @if($role->hasPermissionTo($permission->name)) checked @endif>
 
-                                            @if(str_contains($permiso->name,'Modulo'))
-                                                <strong>{{ $permiso->name  }}</strong>
+                                            @if(str_contains($permission->name,'Modulo'))
+                                                <strong>{{ $permission->name  }}</strong>
                                             @else
-                                                {{ $permiso->name  }}
+                                                {{ $permission->name  }}
                                             @endif
 
                                         </label><br>
                                     @endforeach
-                                    @if($errors->has('permisos'))
+                                    @if($errors->has('permissions'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('permisos') }}</strong>
+                                            <strong>{{ $errors->first('permissions') }}</strong>
                                         </span>
                                     @endif
                                 </div>

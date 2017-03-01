@@ -17,8 +17,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
 Route::resource('/users', 'UsersController');
+Route::resource('/records', 'RecordsController');
 Route::resource('/specializations', 'SpecializationController');
 Route::resource('/roles', 'RolesController');
 Route::resource('/permissions', 'PermissionsController');
+
+Route::get('/roles/{id}/permisos','RolesController@permissions');
+Route::put('/roles/{id}/asignpermissions','RolesController@asignpermissions');
+
+
 Auth::routes();
 Route::post('/users', 'UsersController@index');

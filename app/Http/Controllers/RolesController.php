@@ -139,7 +139,6 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-
         try {
             \DB::beginTransaction();
             Role::destroy($id);
