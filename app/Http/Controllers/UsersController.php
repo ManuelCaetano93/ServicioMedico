@@ -53,19 +53,19 @@ class UsersController extends Controller
     public function store(Request $request)
     {
 
-      $v = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
 
-          'name' => 'required|max:255',
-          'surname' => 'required|max:255',
-          'identification' => 'required|max:10',
-          'birthday' => 'required',
-          'sex' => 'required',
-          'phone' => 'required|max:10',
-          'cellphone' => 'required|max:10',
-          'residence' => 'required|max:255',
-          'email' => 'required|email|max:255|unique:users',
-          'password' => 'required|min:6|confirmed',
-      ]);
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'identification' => 'required|max:10',
+            'birthday' => 'required',
+            'sex' => 'required',
+            'phone' => 'required|max:10',
+            'cellphone' => 'required|max:10',
+            'residence' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
@@ -84,7 +84,10 @@ class UsersController extends Controller
                 'cellphone' => $request->input('cellphone'),
                 'residence' => $request->input('residence'),
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
+<<<<<<< HEAD
+=======
+                'password' => $request->input('password'),
+>>>>>>> be3efb49290589b0b5a068ffb828f62ba0f99094
             ]);
 
             $user->assignRole($request->input('role'));
@@ -95,7 +98,6 @@ class UsersController extends Controller
             \DB::commit();
         }
         return redirect('/users')->with('mensaje', 'Usuario creado satisfactoriamente');
-
 
 
     }
@@ -144,6 +146,7 @@ class UsersController extends Controller
                 'phone' => 'required|max:10',
                 'cellphone' => 'required|max:10',
                 'residence' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
             ]);
 
         if ($v->fails()) {
@@ -202,23 +205,20 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
 
-    public
-    function permissions($id)
+    public function permissions($id)
     {
         $user = User::findOrFail($id);
         $permissions = Permission::all();
         return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
     }
 
-    public
-    function asignarpermissions(Request $request, $id)
+    public function asignpermissions(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->revokePermissionTo(Permission::all());

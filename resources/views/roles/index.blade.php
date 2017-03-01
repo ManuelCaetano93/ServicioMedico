@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         @if(session('mensaje'))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Info:</strong> {{ session('mensaje') }}.
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Info:</strong> {{ session('mensaje') }}.
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -20,10 +20,9 @@
                     <div class="panel-body">
                         Listado de Roles
 
-                            <a href="{{ url('/roles/create') }}" class="btn btn-success">
-                                <i class="fa fa-user"></i> Nuevo Role
-                            </a>
-
+                        <a href="{{ url('/roles/create') }}" class="btn btn-success">
+                            <i class="fa fa-user"></i> Nuevo Role
+                        </a>
 
                         <table class="table table-bordered">
                             <tr>
@@ -88,10 +87,10 @@
                                 class="btn btn-default"
                                 data-dismiss="modal">Cancelar
                         </button>
-                            <button id="delete-btn"
-                                    class="btn btn-danger"
-                                    title="Eliminar">Eliminar
-                            </button>
+                        <button id="delete-btn"
+                                class="btn btn-danger"
+                                title="Eliminar">Eliminar
+                        </button>
                     </form>
                 </div>
             </div>

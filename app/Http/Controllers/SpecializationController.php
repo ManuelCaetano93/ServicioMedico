@@ -30,7 +30,7 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        $specializations = Specialization::paginate();
+        $specializations = Specialization::paginate(2);
         return view('specializations.index', ['specializations' => $specializations]);
     }
 	
@@ -70,7 +70,7 @@ class SpecializationController extends Controller
         try {
             \DB::BeginTransaction();
 
-            $specialization = specialization::create([
+            Specialization::create([
                 'name' => $request->input('name'),
             ]);
         } catch (\Exception $e) {
@@ -102,7 +102,7 @@ class SpecializationController extends Controller
     {
         
         $roles = Role::all();
-        $specialization = specialization::findOrFail($id);
+        $specialization = Specialization::findOrFail($id);
         return view('specializations.edit', ['specialization' => $specialization, 'roles' => $roles]);
     }
 

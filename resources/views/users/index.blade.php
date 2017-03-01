@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Users</div>
+                    <div class="panel-heading">Usuarios</div>
 
                     <div class="panel-body">
                         Listado de Usuarios
@@ -39,8 +39,7 @@
                                     <td>{{ $user->surname }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <a href="{{ url('users/'.$user->id.'/permissions') }}"
-                                           class="btn btn-warning">
+                                        <a href="{{ url('users/'.$user->id.'/permissions') }}" class="btn btn-warning">
                                             <i class="fa fa-id-card"></i>
                                         </a>
                                     </td>
