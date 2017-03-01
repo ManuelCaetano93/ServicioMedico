@@ -46,7 +46,7 @@
 
 									</td>
 									<td>
-										<form method="POST" action="/appointment/{{ $appointment->id }}/restore">
+										<form method="POST" action="/appointments/{{ $appointment->id }}/restore">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 											<input type="hidden" name="_method" value="POST" />
 											<button type="submit" class="btn btn-success">

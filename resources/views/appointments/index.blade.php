@@ -19,7 +19,7 @@
                     <div class="panel-heading">Citas</div>
 
                     <div class="panel-body">
-                        Listado de Especializaciones
+                        Listado de Citas Activas
 
                         <a href="{{ url('/appointments/create') }}" class="btn btn-success">
                             <i class="fa fa-user"></i> Nueva Cita
@@ -34,6 +34,7 @@
                                 <th>Fecha</th>
                                 <th width="10%" colspan="3">Acciones</th>
                             </tr>
+                            @if($appointments->status = 'Active')
 								@foreach($appointments as $appointment)
 									<tr>
 										<td>{{ $appointment->date }}</td>
@@ -54,6 +55,7 @@
 										</td>
 									</tr>
 								@endforeach
+                            @endif
 								<tr>
 									<td colspan="7" class="text-center">
 										{{ $appointments->links() }}

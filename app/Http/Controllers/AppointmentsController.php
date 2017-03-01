@@ -149,12 +149,14 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
+        Appointment::where('id', $id)->update(array('status'=>'Canceled'));
         Appointment::find($id)->delete();
         return redirect('/appointments')->with('message', 'Cita eliminada satisfactoriamente');
     }
 	
 	public function restore($id)
 	{
+        Appointment::withTrashed($id)->where('id', $id)->update(array('status'=>'Active'));
 		Appointment::withTrashed($id)->find($id)->restore();
 		return redirect ('/appointments/deleted')->with('message', 'Cita restaurada exitosamente');
 	}
