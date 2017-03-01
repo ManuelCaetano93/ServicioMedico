@@ -16,12 +16,13 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('date');
-            $table->string('status');
+            $table->enum('status', array('Active', 'Canceled', 'Successful'));
+			$table->softDeletes();
             $table->timestamps();
         });
     }
 
-	// TODO: Change Data Types to correct values
+	// TODO: Create means for the create api to introduce values that can be parsed by mysql date. Use string till then.
 	
     /**
      * Reverse the migrations.
