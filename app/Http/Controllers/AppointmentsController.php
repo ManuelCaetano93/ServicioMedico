@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -61,6 +62,8 @@ class AppointmentsController extends Controller
     {
         $v = Validator::make($request->all(), [
             'date' => 'required|max:255',
+            'patient_identification' => 'required|exists:users,identification|unique_with:appointments, doctor_identification',
+            'doctor_identification' => 'required|exists:users,identification',
         ]);
 
         if ($v->fails()) {
@@ -70,10 +73,18 @@ class AppointmentsController extends Controller
         try {
             \DB::BeginTransaction();
 
+            $identification_doctor = $request->input('doctor_identification');
+            $id_doctor = User::where('identification', '=', $identification_doctor)->firstOrFail();
+            $identification_patient = $request->input('patient_identification');
+            $id_patient = User::where('identification', '=', $identification_patient)->firstOrFail();
+
             $appointment = Appointment::create([
                 'date' => $request->input('date'),
+                'id_user_patient' => $id_patient,
+                'id_user_doctor' => $id_doctor,
                 'status' => 'Active',
             ]);
+
         } catch (\Exception $e) {
             \DB::rollback();
         } finally {

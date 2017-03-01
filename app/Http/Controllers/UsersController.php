@@ -226,10 +226,12 @@ class UsersController extends Controller
             $user->givePermissionTo($request->input('permissions'));
         return redirect('/users')->with('mensaje', 'permissions Asignados Satisfactoriamente');
     }
+
     public function associate($id){
         $user = User::findOrFail($id);
         $specializations = Specialization::all();
         return view('users.associate', ['user' => $user, 'specializations' => $specializations]);
     }
+
 
 }
