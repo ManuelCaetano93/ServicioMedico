@@ -18,9 +18,9 @@
                                            value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -33,9 +33,9 @@
                                            value="{{ old('surname') }}" required>
 
                                     @if ($errors->has('surname'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('surname') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -49,9 +49,9 @@
                                            value="{{ old('identification') }}" required>
 
                                     @if ($errors->has('identification'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('identification') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -64,9 +64,9 @@
                                            value="{{ old('age') }}"
                                            required>
                                     @if ($errors->has('birthday'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('birthday') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -83,9 +83,9 @@
                                         </option>
                                     </select>
                                     @if ($errors->has('sex'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('sex') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
 
                                 </div>
@@ -99,9 +99,9 @@
                                            value="{{ old('phone') }}" required>
 
                                     @if ($errors->has('phone'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -114,9 +114,9 @@
                                            value="{{ old('cellphone') }}" required>
 
                                     @if ($errors->has('cellphone'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('cellphone') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -129,9 +129,9 @@
                                            value="{{ old('residence') }}" required>
 
                                     @if ($errors->has('residence'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('residence') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -144,9 +144,9 @@
                                            value="{{ old('email') }}" required>
 
                                     @if ($errors->has('email'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -159,9 +159,9 @@
                                            required>
 
                                     @if ($errors->has('password'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>

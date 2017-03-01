@@ -147,7 +147,7 @@ class RecordsController extends Controller
             \DB::commit();
         }
 
-        return redirect('/records')->with('mensaje', 'Historia actualizado satisfactoriamente');
+        return redirect('/records')->with('mensaje', 'Historia actualizada satisfactoriamente');
     }
 
     /**
@@ -158,11 +158,9 @@ class RecordsController extends Controller
      */
     public function destroy($id)
     {
-        $record = Records::findOrFail($id);
-        $record->destroy($record->id);
 
-        record::destroy($id);
-        return redirect('/records')->with('mensaje', 'Historia eliminado satisfactoriamente');
+        Records::destroy($id);
+        return redirect('/records')->with('mensaje', 'Historia eliminada satisfactoriamente');
     }
 
     public function postular($id){

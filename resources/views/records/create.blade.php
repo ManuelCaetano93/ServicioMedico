@@ -19,9 +19,9 @@
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -33,9 +33,9 @@
                                               class="form-control">{{ old('description') }}</textarea>
 
                                     @if ($errors->has('description'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -47,9 +47,9 @@
                                               class="form-control">{{ old('suffering') }}</textarea>
 
                                     @if ($errors->has('suffering'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('suffering') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -61,9 +61,9 @@
                                               class="form-control">{{ old('doctor') }}</textarea>
 
                                     @if ($errors->has('doctor'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('doctor') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -75,9 +75,9 @@
                                               class="form-control">{{ old('pretreatments') }}</textarea>
 
                                     @if ($errors->has('pretreatments'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('pretreatments') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -89,9 +89,9 @@
                                               class="form-control">{{ old('medicines') }}</textarea>
 
                                     @if ($errors->has('medicines'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('medicines') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>
@@ -106,9 +106,9 @@
                                         <option value="inactivo" @if(old('status')=='inactivo') selected @endif>Inactivo</option>
                                     </select>
                                     @if ($errors->has('status'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                         <strong>{{ $errors->first('status') }}</strong>
-                                    </span>
+                                    </spam>
                                     @endif
                                 </div>
                             </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RecordUsersTable extends Migration
+class CreateRecordsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class RecordUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('suffering');
+            $table->string('suffering');
             $table->string('doctor');
             $table->string('pretreatments');
             $table->string('medicines');

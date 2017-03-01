@@ -17,7 +17,7 @@
                                 <label for="name" class="col-md-4 control-label">Nombre del Paciente</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ $record->name or old('name') }}"" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -31,7 +31,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="description" id="description" cols="30" rows="5"
-                                              class="form-control">{{ old('description') }}</textarea>
+                                              class="form-control" >{{ $record->description or old('description') }}</textarea>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
@@ -45,7 +45,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="suffering" id="suffering" cols="30" rows="5"
-                                              class="form-control">{{ old('suffering') }}</textarea>
+                                              class="form-control">{{ $record->suffering or old('suffering') }}</textarea>
 
                                     @if ($errors->has('suffering'))
                                         <span class="help-block">
@@ -59,7 +59,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="doctor" id="doctor" cols="30" rows="5"
-                                              class="form-control">{{ old('doctor') }}</textarea>
+                                              class="form-control">{{ $record->doctor or old('doctor') }}</textarea>
 
                                     @if ($errors->has('doctor'))
                                         <span class="help-block">
@@ -73,7 +73,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="pretreatments" id="pretreatments" cols="30" rows="5"
-                                              class="form-control">{{ old('pretreatments') }}</textarea>
+                                              class="form-control" >{{ $record->pretreatments or old('pretreatments') }}</textarea>
 
                                     @if ($errors->has('pretreatments'))
                                         <span class="help-block">
@@ -87,7 +87,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="medicines" id="medicines" cols="30" rows="5"
-                                              class="form-control">{{ old('medicines') }}</textarea>
+                                              class="form-control">{{ $record->medicines or old('medicines') }}</textarea>
 
                                     @if ($errors->has('medicines'))
                                         <span class="help-block">
