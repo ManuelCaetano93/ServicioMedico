@@ -19,6 +19,7 @@ Route::get('/home', 'HomeController@index');
 // Users Routes
 
 Route::resource('/users', 'UsersController');
+
 Route::get('/users/{id}/associate', 'UsersController@associate');
 Route::put('/users/{id}/associatespecialization', 'SpecializationsUserController@associatespecialization');
 
@@ -31,6 +32,9 @@ Route::get('/specializations/deleted', function (){
 Route::get('/specializations/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
+
+Route::resource('/records', 'RecordsController');
+
 Route::resource('/specializations', 'SpecializationController');
 
 // Appointments Routes
@@ -47,10 +51,12 @@ Route::resource('/appointments', 'AppointmentsController');
 
 Route::resource('/permissions', 'PermissionsController');
 
+
 // Roles Routes
 
 Route::resource('/roles', 'RolesController');
-
+Route::get('/roles/{id}/permisos','RolesController@permissions');
+Route::put('/roles/{id}/asignpermissions','RolesController@asignpermissions');
 
 
 
