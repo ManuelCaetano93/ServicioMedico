@@ -28,7 +28,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::paginate();
-        return view('roles.index', ['roles'=>$roles]);
+        return view('roles.index', ['roles' => $roles]);
     }
 
     /**
@@ -44,7 +44,7 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,20 +53,20 @@ class RolesController extends Controller
             'name' => 'required|max:10|alpha',
         ]);
 
-        if($v->fails()){
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
 
-        try{
+        try {
             \DB::beginTransaction();
 
             Role::create([
-                'name'=>$request->input('name'),
+                'name' => $request->input('name'),
             ]);
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
 
@@ -76,35 +76,32 @@ class RolesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $role = Role::findOrFail($id);
-        return view('roles.show', ['role'=>$role]);
+        return view('roles.show', ['role' => $role]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if(!Auth::user()->can('EditRole'))
-            abort(403);
-
         $role = Role::findOrFail($id);
-        return view('roles.edit', ['role'=>$role]);
+        return view('roles.edit', ['role' => $role]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -113,21 +110,21 @@ class RolesController extends Controller
             'name' => 'required|max:50|alpha',
         ]);
 
-        if($v->fails()){
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
 
-        try{
+        try {
             \DB::beginTransaction();
 
             $role = Role::findOrFail($id);
             $role->update([
-                'name'=>$request->input('name'),
+                'name' => $request->input('name'),
             ]);
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
 
@@ -137,35 +134,38 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try{
+
+        try {
             \DB::beginTransaction();
             Role::destroy($id);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
-        }finally{
+        } finally {
             \DB::commit();
         }
         return redirect('/roles')->with('mensaje', 'Role ha sido eliminado con exito');
     }
 
-    public function permissions($id){
-        if(!Auth::user()->can('PermissionsRole'))
+    public function permissions($id)
+    {
+        if (!Auth::user()->can('PermissionsRole'))
             abort(403);
 
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
-        return view('roles.permissions', ['role'=>$role, 'permissions'=>$permissions]);
+        return view('roles.permissions', ['role' => $role, 'permissions' => $permissions]);
     }
 
-    public function asignarpermissions(Request $request, $id){
+    public function asignpermissions(Request $request, $id)
+    {
         $role = Role::findOrFail($id);
         $role->revokePermissionTo(Permission::all());
-        if($request->input('permissions'))
+        if ($request->input('permissions'))
             $role->givePermissionTo($request->input('permissions'));
         return redirect('/roles')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
     }
