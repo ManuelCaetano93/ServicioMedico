@@ -19,10 +19,6 @@ class User extends Authenticatable
         'name', 'surname', 'identification', 'birthday', 'sex', 'phone', 'cellphone', 'residence', 'email'
     ];
 
-    //public function userAppointments(){
-    //    return $this->hasMany('App/Appointment', 'id', 'id_user_appointment');
-    //}
-	
 	public function specializations(){
 		return $this->belongsToMany('App\Specialization');
 	}
