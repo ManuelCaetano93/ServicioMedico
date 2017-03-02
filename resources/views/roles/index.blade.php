@@ -75,7 +75,7 @@
                     <div class="modal-body">
                         <p>¿Seguro que desea eliminar este
                             registro?</p>
-                        <p class="name">{{ url('/roles/'.$role->id) }}</p>
+                        <p class="name">{{ $role->name }}</p>
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline form-delete"
