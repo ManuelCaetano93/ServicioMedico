@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Medicines;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Validator;
+use Auth;
 
-class PermissionsController extends Controller
+class MedicinesController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +27,8 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::paginate(8);
-        return view('permissions.index', ['permissions' => $permissions]);
+        $medicines = Medicines::paginate();
+        return view('medicines.index', ['medicines' => $medicines]);
     }
 
     /**
@@ -26,7 +38,7 @@ class PermissionsController extends Controller
      */
     public function create()
     {
-        return view('permissions.create');
+        return view('Medicines.create');
     }
 
     /**
@@ -38,7 +50,7 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:10|alpha',
+            'name' => 'required|max:255|alpha',
         ]);
 
         if ($v->fails()) {
@@ -48,7 +60,7 @@ class PermissionsController extends Controller
         try {
             \DB::beginTransaction();
 
-            Permission::create([
+            Medicines::create([
                 'name' => $request->input('name'),
             ]);
 
@@ -58,7 +70,7 @@ class PermissionsController extends Controller
             \DB::commit();
         }
 
-        return redirect('/permissions')->with('mensaje', 'Permiso ha sido creado con exito');
+        return redirect('/medicines')->with('mensaje', 'Medicine ha sido creado con exito');
     }
 
     /**
@@ -69,7 +81,8 @@ class PermissionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $medicine = Medicines::findOrFail($id);
+        return view('Medicines.show', ['Medicine' => $medicine]);
     }
 
     /**
@@ -80,8 +93,8 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        $permission = Permission::findOrFail($id);
-        return view('permissions.edit', ['permission' => $permission]);
+        $medicine = Medicines::findOrFail($id);
+        return view('medicines.edit', ['medicines' => $medicine]);
     }
 
     /**
@@ -94,26 +107,28 @@ class PermissionsController extends Controller
     public function update(Request $request, $id)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:50|alpha',
+            'name' => 'required|max:255|alpha',
         ]);
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
         }
+
         try {
             \DB::beginTransaction();
 
-            $permission = Permission::findOrFail($id);
-            $permission->update([
+            $medicine = Medicines::findOrFail($id);
+            $medicine->update([
                 'name' => $request->input('name'),
             ]);
+
         } catch (\Exception $e) {
             \DB::rollback();
         } finally {
             \DB::commit();
         }
 
-        return redirect('/permissions')->with('mensaje', 'Permiso ha sido editado con exito');
+        return redirect('/medicines')->with('mensaje', 'Medicine ha sido editado con exito');
     }
 
     /**
@@ -124,15 +139,26 @@ class PermissionsController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            \DB::beginTransaction();
-            Permission::destroy($id);
-        } catch (\Exception $e) {
-            \DB::rollback();
-        } finally {
-            \DB::commit();
-        }
+        Medicines::destroy($id);
+        return redirect('/medicines')->with('mensaje', 'Medicinas eliminado satisfactoriamente');
+    }
 
-        return redirect('/permissions')->with('mensaje', 'Permiso ha sido eliminado con exito');
+    public function permissions($id)
+    {
+        if (!Auth::user()->can('PermissionsMedicine'))
+            abort(403);
+
+        $medicine = Medicines::findOrFail($id);
+        $permissions = Permission::all();
+        return view('medicines.permissions', ['medicine' => $medicine, 'permissions' => $permissions]);
+    }
+
+    public function asignpermissions(Request $request, $id)
+    {
+        $medicine = Medicines::findOrFail($id);
+        $medicine->revokePermissionTo(Permission::all());
+        if ($request->input('permissions'))
+            $medicine->givePermissionTo($request->input('permissions'));
+        return redirect('/medicines')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
     }
 }

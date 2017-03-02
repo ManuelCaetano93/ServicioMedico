@@ -30,7 +30,7 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Email</th>
-                                <th width="10%" colspan="3">Acciones</th>
+                                <th width="10%" colspan="4">Acciones</th>
 
                             </tr>
                             @foreach( $users as $user)
@@ -48,11 +48,17 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
+
+                                    <td>
+                                        <a href="{{ url('users/'.$user->id.'/associate') }}" class="btn btn-info">
+                                            <i class="fa fa-stethoscope"></i>
+                                        </a>
+                                    </td>
                                     <td>
                                         <button class="btn btn-danger"
                                                 data-action="{{ url('/users/'.$user->id) }}"
                                                 data-name="{{ $user->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete">
+                                                data-toggle="modal" data-target="#confirm-delete{{$user->id}}">
                                             <i class="fa fa-trash fa-1x"></i>
                                         </button>
                                     </td>
@@ -69,7 +75,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirm-delete" tabindex="-1"
+    @foreach($users as $user)
+    <div class="modal fade" id="confirm-delete{{$user->id}}" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -79,13 +86,13 @@
                 <div class="modal-body">
                     <p>¿Seguro que desea eliminar este
                         registro?</p>
-                    <p class="name"></p>
+                    <p class="name">{{ url('/users/'.$user->id) }}</p>
                 </div>
                 <div class="modal-footer">
                     <form class="form-inline form-delete"
                           role="form"
                           method="POST"
-                          action="">
+                          action="{{ url('/users/'.$user->id) }}">
                         {!! method_field('DELETE') !!}
                         {!! csrf_field() !!}
                         <button type="button"
@@ -101,4 +108,5 @@
             </div>
         </div>
     </div>
+    @endforeach
 @endsection

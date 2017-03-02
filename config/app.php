@@ -168,6 +168,7 @@ return [
          */
 
         Spatie\Permission\PermissionServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
         //
 

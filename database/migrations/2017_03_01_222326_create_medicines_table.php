@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppointmentsTable extends Migration
+class CreateMedicinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('medicines', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('date');
-            $table->enum('status', array('Active', 'Canceled', 'Successful'));
-			$table->softDeletes();
+            $table->string('name');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
 
-	// TODO: Create means for the create api to introduce values that can be parsed by mysql date. Use string till then.
-	
     /**
      * Reverse the migrations.
      *
@@ -31,6 +28,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('medicines');
     }
 }

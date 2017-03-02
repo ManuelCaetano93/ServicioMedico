@@ -3,53 +3,59 @@
 @section('content')
     <div class="container">
         @if(session('mensaje'))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Info:</strong> {{ session('mensaje') }}.
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <strong>Info:</strong> {{ session('mensaje') }}.
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Permisos</div>
+                    <div class="panel-heading">Medicinas</div>
 
                     <div class="panel-body">
-                        Listado de Permisos
+                        Listado de Medicinas
 
-                        <a href="{{ url('/permissions/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nuevo Permiso
+                        <a href="{{ url('/medicines/create') }}" class="btn btn-success">
+                            <i class="fa fa-user"></i> Nueva Medicina
                         </a>
 
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
-                                <th width="10%" colspan="2">Acciones</th>
+                                <th width="10%" colspan="3">Acciones</th>
                             </tr>
-                            @foreach($permissions as $permission)
+                            @foreach($medicines as $medicine)
                                 <tr>
-                                    <td>{{ $permission->name }}</td>
+                                    <td>{{ $medicine->name }}</td>
                                     <td>
-                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-primary">
+                                        <a href="{{ url('medicines/'.$medicine->id.'/medicines') }}" class="btn btn-warning">
+                                            <i class="fa fa-id-card"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('medicines/'.$medicine->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger"
-                                                data-action="{{ url('/permissions/'.$permission->id) }}"
-                                                data-name="{{ $permission->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$permission->id}}">
+                                                data-action="{{ url('/medicines/'.$medicine->id) }}"
+                                                data-name="{{ $medicine->name }}"
+                                                data-toggle="modal" data-target="#confirm-delete{{$medicine->id}}">
                                             <i class="fa fa-trash fa-1x"></i>
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <td colspan="3" class="text-center">
-                                    {{ $permissions->links() }}
+                                <td colspan="4" class="text-center">
+                                    {{ $medicines->links() }}
                                 </td>
                             </tr>
                         </table>
@@ -58,8 +64,8 @@
             </div>
         </div>
     </div>
-    @foreach($permissions as $permission)
-        <div class="modal fade" id="confirm-delete{{$permission->id}}" tabindex="-1"
+    @foreach($medicines as $medicine)
+        <div class="modal fade" id="confirm-delete{{$medicine->id}}" tabindex="-1"
              role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -69,13 +75,13 @@
                     <div class="modal-body">
                         <p>¿Seguro que desea eliminar este
                             registro?</p>
-                        <p class="name">{{ url('/permissions/'.$permission->id) }}</p>
+                        <p class="name">{{ url('/medicines/'.$medicine->id) }}</p>
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline form-delete"
                               role="form"
                               method="POST"
-                              action="{{ url('/permissions/'.$permission->id) }}">
+                              action="{{ url('/medicines/'.$medicine->id) }}">
                             {!! method_field('DELETE') !!}
                             {!! csrf_field() !!}
                             <button type="button"

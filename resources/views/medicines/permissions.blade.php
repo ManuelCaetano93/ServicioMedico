@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar Role</div>
+                    <div class="panel-heading">Editar Medicina</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ url('/roles/'.$role->id.'/asignpermissions') }}">
+                              action="{{ url('/medicines/'.$medicine->id.'/asignpermissions') }}">
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
 
@@ -18,7 +18,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ $role->name or old('name') }}" autofocus readonly>
+                                           value="{{ $medicine->name or old('name') }}" autofocus readonly>
                                     @if($errors->has('name'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -35,7 +35,7 @@
                                         <label class="checkbox-inline">
                                             <input class="i-check" type="checkbox" id="permissions" name="permissions[]"
                                                    value="{{ $permission->name }}"
-                                                   @if($role->hasPermissionTo($permission->name)) checked @endif>
+                                                   @if($medicine->hasPermissionTo($permission->name)) checked @endif>
 
                                             @if(str_contains($permission->name,'Modulo'))
                                                 <strong>{{ $permission->name  }}</strong>

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\specialization;
+use App\Appointment;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Validator;
 
-class SpecializationController extends Controller
+class AppointmentsController extends Controller
 
 {
     /**
@@ -28,14 +31,14 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        $specializations = Specialization::paginate();
-        return view('specializations.index', ['specializations' => $specializations]);
+        $appointments = appointment::paginate();
+        return view('appointments.index', ['appointments' => $appointments]);
     }
 	
 	public function deleted()
 	{
-		$specializations = Specialization::withTrashed()->paginate();
-        return view('specializations.deleted', ['specializations' => $specializations]);
+		$appointments = appointment::withTrashed()->paginate();
+        return view('appointments.deleted', ['appointments' => $appointments]);
 	}
 
     /**
@@ -46,7 +49,7 @@ class SpecializationController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('specializations.create', ['roles' => $roles]);
+        return view('appointments.create', ['roles' => $roles]);
     }
 
     /**
@@ -58,7 +61,9 @@ class SpecializationController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'date' => 'required|max:255',
+            'patient_identification' => 'required|exists:users,identification|unique_with:appointments, doctor_identification',
+            'doctor_identification' => 'required|exists:users,identification',
         ]);
 
         if ($v->fails()) {
@@ -68,15 +73,24 @@ class SpecializationController extends Controller
         try {
             \DB::BeginTransaction();
 
-            Specialization::create([
-                'name' => $request->input('name'),
+            $identification_doctor = $request->input('doctor_identification');
+            $id_doctor = User::where('identification', '=', $identification_doctor)->firstOrFail();
+            $identification_patient = $request->input('patient_identification');
+            $id_patient = User::where('identification', '=', $identification_patient)->firstOrFail();
+
+            $appointment = Appointment::create([
+                'date' => $request->input('date'),
+                'id_user_patient' => $id_patient,
+                'id_user_doctor' => $id_doctor,
+                'status' => 'Active',
             ]);
+
         } catch (\Exception $e) {
             \DB::rollback();
         } finally {
             \DB::commit();
         }
-        return redirect('/specializations')->with('mensaje', 'Especializacion ha sido creado con exito');
+        return redirect('/appointments')->with('mensaje', 'Especializacion ha sido creado con exito');
     }
 
     /**
@@ -100,8 +114,8 @@ class SpecializationController extends Controller
     {
         
         $roles = Role::all();
-        $specialization = Specialization::findOrFail($id);
-        return view('specializations.edit', ['specialization' => $specialization, 'roles' => $roles]);
+        $appointment = Appointment::findOrFail($id);
+        return view('appointments.edit', ['appointment' => $appointment, 'roles' => $roles]);
     }
 
     /**
@@ -123,8 +137,8 @@ class SpecializationController extends Controller
 
         try {
             \DB::beginTransaction();
-            $specialization = specialization::findOrFail($id);
-            $specialization->update([
+            $appointment = appointment::findOrFail($id);
+            $appointment->update([
                 'name' => $request->input('name'),
             ]);
             
@@ -135,7 +149,7 @@ class SpecializationController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/specializations')->with('mensaje', 'Especializacion editado satisfactoriamente');
+        return redirect('/appointments')->with('mensaje', 'Especializacion editado satisfactoriamente');
     }
 
     /**
@@ -146,13 +160,15 @@ class SpecializationController extends Controller
      */
     public function destroy($id)
     {
-        Specialization::find($id)->delete();
-        return redirect('/specializations')->with('message', 'Especializacion eliminada satisfactoriamente');
+        Appointment::where('id', $id)->update(array('status'=>'Canceled'));
+        Appointment::find($id)->delete();
+        return redirect('/appointments')->with('message', 'Cita eliminada satisfactoriamente');
     }
 	
 	public function restore($id)
 	{
-		Specialization::withTrashed($id)->find($id)->restore();
-		return redirect ('/specializations/deleted')->with('message', 'Especializacion restaurada exitosamente');
+        Appointment::withTrashed($id)->where('id', $id)->update(array('status'=>'Active'));
+		Appointment::withTrashed($id)->find($id)->restore();
+		return redirect ('/appointments/deleted')->with('message', 'Cita restaurada exitosamente');
 	}
 }

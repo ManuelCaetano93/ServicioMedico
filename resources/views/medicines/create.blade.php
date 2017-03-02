@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Permiso</div>
+                    <div class="panel-heading">Crear Medicina</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/permissions') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/medicines') }}">
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
