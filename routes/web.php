@@ -58,6 +58,10 @@ Route::resource('/roles', 'RolesController');
 Route::get('/roles/{id}/permisos','RolesController@permissions');
 Route::put('/roles/{id}/asignpermissions','RolesController@asignpermissions');
 
+//Medicines Routes
+
+Route::resource('/medicines', 'MedicinesController');
+
 
 
 Auth::routes();

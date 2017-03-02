@@ -29,15 +29,12 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
-                                <th>Nivel</th>
-                                <th>Estatus</th>
                                 <th width="10%" colspan="2">Acciones</th>
                             </tr>
                             @foreach($records as $record)
                                 <tr>
-                                    <td>{{ $record->nombre }}</td>
-                                    <td>{{ $record->descripcion }}</td>
-                                    <td>{{ ucfirst($record->status) }}</td>
+                                    <td>{{ $record->name }}</td>
+                                    <td>{{ $record->description }}</td>
                                     <td>
                                         <a href="{{ url('records/'.$record->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
@@ -47,7 +44,7 @@
                                         <button class="btn btn-danger"
                                                 data-action="{{ url('/records/'.$record->id) }}"
                                                 data-name="{{ $record->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete">
+                                                data-toggle="modal" data-target="#confirm-delete{{$record->id}}">
                                             <i class="fa fa-trash fa-1x"></i>
                                         </button>
                                     </td>
@@ -59,37 +56,38 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirm-delete" tabindex="-1"
-         role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea eliminar este
-                        registro?</p>
-                    <p class="name"></p>
-                </div>
-                <div class="modal-footer">
-                    <form class="form-inline form-delete"
-                          role="form"
-                          method="POST"
-                          action="">
-                        {!! method_field('DELETE') !!}
-                        {!! csrf_field() !!}
-                        <button type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal">Cancelar
-                        </button>
-                        <button id="delete-btn"
-                                class="btn btn-danger"
-                                title="Eliminar">Eliminar
-                        </button>
-                    </form>
+    @foreach($records as $record)
+        <div class="modal fade" id="confirm-delete{{$record->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea eliminar este
+                            registro?</p>
+                        <p class="name">{{ url('/records/'.$record->id) }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-inline form-delete"
+                              role="form"
+                              method="POST"
+                              action="{{ url('/records/'.$record->id) }}">
+                            {!! method_field('DELETE') !!}
+                            {!! csrf_field() !!}
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 @endsection

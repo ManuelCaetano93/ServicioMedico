@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar Usuario</div>
+                    <div class="panel-heading">Editar Especialización</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/specializations/'.$specialization->id) }}">
@@ -16,7 +16,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" required autofocus>
+                                           value="{{ $specialization->name or old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">

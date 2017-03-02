@@ -14,7 +14,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">name</label>
+                                <label for="name" class="col-md-4 control-label">Nombre</label>
 
                                 <div class="col-md-6">
                                     <p>{{ $user->name }}</p>
@@ -22,21 +22,20 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
-                                <label for="surname" class="col-md-4 control-label">surname</label>
+                                <label for="surname" class="col-md-4 control-label">Apellido</label>
 
                                 <div class="col-md-6">
-                                    <p>{{ $user->surname }}</p>
+                                    <i>{{ $user->surname }}</i>
                                 </div>
                             </div>
 
                             <div class="form-group{{ $errors->has('specializations') ? ' has-error' : '' }}">
-                                <label for="specializations" class="col-md-4 control-label">specializations</label>
+                                <label for="specializations" class="col-md-4 control-label">Especializaciones</label>
 
                                 <div class="col-md-6">
                                     @foreach($specializations as $specialization)
                                         <label class="checkbox-inline">
-                                            <input class="i-check" type="checkbox" id="specializations" name="specializations[]"
-                                                   value="{{ $specialization->id  }}">
+                                            <input class="i-check" type="checkbox" id="specializations" name="specializations[]" value="{{ $specialization->id  }}">
                                                 {{ $specialization->name  }}
                                         </label><br>
                                     @endforeach

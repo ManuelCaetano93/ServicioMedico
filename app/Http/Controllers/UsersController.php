@@ -175,7 +175,7 @@ class UsersController extends Controller
     public
     function destroy($id)
     {
-        User::detroy($id);
+        User::destroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
     public
