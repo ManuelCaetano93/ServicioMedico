@@ -34,6 +34,11 @@
                                 <tr>
                                     <td>{{ $medicine->name }}</td>
                                     <td>
+                                        <a href="{{ url('medicines/'.$medicine->id.'/medicines') }}" class="btn btn-warning">
+                                            <i class="fa fa-id-card"></i>
+                                        </a>
+                                    </td>
+                                    <td>
                                         <a href="{{ url('medicines/'.$medicine->id.'/edit') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>

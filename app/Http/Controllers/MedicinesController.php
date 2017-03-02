@@ -143,5 +143,22 @@ class MedicinesController extends Controller
         return redirect('/medicines')->with('mensaje', 'Medicinas eliminado satisfactoriamente');
     }
 
+    public function permissions($id)
+    {
+        if (!Auth::user()->can('PermissionsMedicine'))
+            abort(403);
 
+        $medicine = Medicines::findOrFail($id);
+        $permissions = Permission::all();
+        return view('medicines.permissions', ['medicine' => $medicine, 'permissions' => $permissions]);
+    }
+
+    public function asignpermissions(Request $request, $id)
+    {
+        $medicine = Medicines::findOrFail($id);
+        $medicine->revokePermissionTo(Permission::all());
+        if ($request->input('permissions'))
+            $medicine->givePermissionTo($request->input('permissions'));
+        return redirect('/medicines')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
+    }
 }
