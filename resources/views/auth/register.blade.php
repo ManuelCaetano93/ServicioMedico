@@ -87,7 +87,6 @@
                                         <strong>{{ $errors->first('sex') }}</strong>
                                     </spam>
                                     @endif
-
                                 </div>
                             </div>
 
