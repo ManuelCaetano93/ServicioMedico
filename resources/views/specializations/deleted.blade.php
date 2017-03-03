@@ -16,19 +16,20 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Especializaciones</div>
-
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-4"><h5>Especializaciones</h5></div>
+                            <div class="col-xs-6 text-right">
+                                <a href="{{ url('/specializations/create') }}" class="btn btn-success">Nueva Especializacion
+                                </a>
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <a href="{{ url('/specializations/') }}" class="btn btn-success">Recuperar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        Listado de Especializaciones
-
-                        <a href="{{ url('/specializations/create') }}" class="btn btn-success">
-                            <i class="fa fa-specialization"></i> Nueva Especializacion
-                        </a>
-						
-						<a href="{{ url('/specializations/') }}" class="btn btn-success">
-							<i class="fa fa-specialization"></i> Especializaciones
-						</a>
-
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>

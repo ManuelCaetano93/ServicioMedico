@@ -20,12 +20,12 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-4"><h5>Especializaciones</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/specializations/create') }}" class="btn btn-success">Nueva Especializacion
-                                </button>
+                                <a href="{{ url('/specializations/create') }}" class="btn btn-success">Nueva Especializacion
+                                </a>
                             </div>
                             <div class="col-xs-2 text-right">
-                                <button href="{{ url('/specializations/deleted') }}" class="btn btn-success">Recuperar
-                                </button>
+                                <a href="{{ url('/specializations/deleted') }}" class="btn btn-success">Recuperar
+                                </a>
                             </div>
                         </div>
                     </div>

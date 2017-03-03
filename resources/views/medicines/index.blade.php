@@ -20,8 +20,8 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Medicinas</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
-                                </button>
+                                <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
+                                </a>
                             </div>
                         </div>
                     </div>

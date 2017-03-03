@@ -20,8 +20,8 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Roles</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/roles/create') }}" class="btn btn-success">Nuevo Rol
-                                </button>
+                                <a href="{{ url('/roles/create') }}" class="btn btn-success">Nuevo Rol
+                                </a>
                             </div>
                         </div>
                     </div>

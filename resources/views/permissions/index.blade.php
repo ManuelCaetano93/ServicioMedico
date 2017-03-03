@@ -20,8 +20,8 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Permisos</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/permissions/create') }}" class="btn btn-success">Nuevo Permiso
-                                </button>
+                                <a href="{{ url('/permissions/create') }}" class="btn btn-success">Nuevo Permiso
+                                </a>
                             </div>
                         </div>
                     </div>

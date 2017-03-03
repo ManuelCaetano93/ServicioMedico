@@ -20,8 +20,8 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Usuarios</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/users/create') }}" class="btn btn-success">Nuevo Usuario
-                                </button>
+                                <a href="{{ url('/users/create') }}" class="btn btn-success">Nuevo Usuario
+                                </a>
                             </div>
                         </div>
                     </div>

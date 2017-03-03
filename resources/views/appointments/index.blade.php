@@ -20,12 +20,12 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-4"><h5>Citas</h5></div>
                             <div class="col-xs-6 text-right">
-                                <button href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
-                                </button>
+                                <a href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
+                                </a>
                             </div>
                             <div class="col-xs-2 text-right">
-                                <button href="{{ url('/appointments/deleted') }}" class="btn btn-success">Recuperar
-                                </button>
+                                <a href="{{ url('/appointments/deleted') }}" class="btn btn-success">Recuperar
+                                </a>
                             </div>
                         </div>
                     </div>

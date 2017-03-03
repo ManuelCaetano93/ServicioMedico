@@ -21,8 +21,8 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Historia Medica</h5></div>
                             <div class="col-xs-6 text-right" >
-                                <button href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
-                                </button>
+                                <a href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
+                                </a>
                             </div>
                         </div>
                     </div>
