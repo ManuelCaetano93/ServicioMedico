@@ -16,15 +16,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Medicinas</div>
-
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-6"><h5>Medicinas</h5></div>
+                            <div class="col-xs-6 text-right">
+                                <button href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        Listado de Medicinas
-
-                        <a href="{{ url('/medicines/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nueva Medicina
-                        </a>
-
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
@@ -34,7 +35,8 @@
                                 <tr>
                                     <td>{{ $medicine->name }}</td>
                                     <td>
-                                        <a href="{{ url('medicines/'.$medicine->id.'/medicines') }}" class="btn btn-warning">
+                                        <a href="{{ url('medicines/'.$medicine->id.'/medicines') }}"
+                                           class="btn btn-warning">
                                             <i class="fa fa-id-card"></i>
                                         </a>
                                     </td>

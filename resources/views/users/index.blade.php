@@ -16,15 +16,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Usuarios</div>
-
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-6"><h5>Usuarios</h5></div>
+                            <div class="col-xs-6 text-right">
+                                <button href="{{ url('/users/create') }}" class="btn btn-success">Nuevo Usuario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        Listado de Usuarios
-
-                        <a href="{{ url('/users/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nuevo Usuario
-                        </a>
-
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
@@ -76,37 +77,37 @@
         </div>
     </div>
     @foreach($users as $user)
-    <div class="modal fade" id="confirm-delete{{$user->id}}" tabindex="-1"
-         role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea eliminar este
-                        registro?</p>
-                    <p class="name">{{ $user->name }}</p>
-                </div>
-                <div class="modal-footer">
-                    <form class="form-inline form-delete"
-                          role="form"
-                          method="POST"
-                          action="{{ url('/users/'.$user->id) }}">
-                        {!! method_field('DELETE') !!}
-                        {!! csrf_field() !!}
-                        <button type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal">Cancelar
-                        </button>
-                        <button id="delete-btn"
-                                class="btn btn-danger"
-                                title="Eliminar">Eliminar
-                        </button>
-                    </form>
+        <div class="modal fade" id="confirm-delete{{$user->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea eliminar este
+                            registro?</p>
+                        <p class="name">{{ $user->name }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-inline form-delete"
+                              role="form"
+                              method="POST"
+                              action="{{ url('/users/'.$user->id) }}">
+                            {!! method_field('DELETE') !!}
+                            {!! csrf_field() !!}
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endforeach
 @endsection
