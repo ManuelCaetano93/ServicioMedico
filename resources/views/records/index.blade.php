@@ -19,9 +19,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row fa-align-center">
-                            <div class="col-xs-6"><h5>Records</h5></div>
+                            <div class="col-xs-6"><h5>Historia Medica</h5></div>
                             <div class="col-xs-6 text-right" >
-                                <button href="{{ url('/records/create') }}" class="btn btn-success">Nuevo Record
+                                <button href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
                                 </button>
                             </div>
                         </div>
