@@ -13,44 +13,56 @@
                 </div>
             </div>
         @endif
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">records</div>
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-6"><h5>Historia Medica</h5></div>
+                            <div class="col-xs-6 text-right" >
+                                <a href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="panel-body">
-                        Listado de records
-                        <a href="{{ url('/records/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nuevo record
-                        </a>
-
-
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th width="10%" colspan="2">Acciones</th>
-                            </tr>
-                            @foreach($records as $record)
-                                <tr>
-                                    <td>{{ $record->name }}</td>
-                                    <td>{{ $record->description }}</td>
-                                    <td>
-                                        <a href="{{ url('records/'.$record->id.'/edit') }}" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/records/'.$record->id) }}"
-                                                data-name="{{ $record->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$record->id}}">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        @foreach($records as $record)
+                            <div class="col-md-4">
+                                <table class="table table-bordered ">
+                                    <div class="card-block text-center">
+                                        <div class="card" style="width: 20rem;">
+                                            <img class="card-img-top" src="http://placehold.it/200x150"
+                                                 alt="Card image cap">
+                                            <div class="card-block">
+                                                <h4 class="card-title">{{ $record->name }}</h4>
+                                                <p class="card-text">{{ $record->description }}</p>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">{{ $record->suffering }}</li>
+                                                <li class="list-group-item">{{ $record->doctor }}</li>
+                                                <li class="list-group-item">{{ $record->pretreatments }}</li>
+                                                <li class="list-group-item">{{ $record->medicines }}</li>
+                                            </ul>
+                                            <div class="card-block">
+                                                <a href="{{ url('records/'.$record->id.'/edit') }}"
+                                                   class="btn btn-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-danger"
+                                                        data-action="{{ url('/records/'.$record->id) }}"
+                                                        data-name="{{ $record->name }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-delete{{$record->id}}">
+                                                    <i class="fa fa-trash fa-1x"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </table>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -67,7 +79,7 @@
                     <div class="modal-body">
                         <p>¿Seguro que desea eliminar este
                             registro?</p>
-                        <p class="name">{{ $record->name }}</p>
+                        <p class="name">{{ url('/records/'.$record->id) }}</p>
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline form-delete"
