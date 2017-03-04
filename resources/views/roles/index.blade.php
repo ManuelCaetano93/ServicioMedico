@@ -16,15 +16,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Roles</div>
-
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-6"><h5>Roles</h5></div>
+                            <div class="col-xs-6 text-right">
+                                <a href="{{ url('/roles/create') }}" class="btn btn-success">Nuevo Rol
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        Listado de Roles
-
-                        <a href="{{ url('/roles/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nuevo Role
-                        </a>
-
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
@@ -75,7 +76,7 @@
                     <div class="modal-body">
                         <p>¿Seguro que desea eliminar este
                             registro?</p>
-                        <p class="name">{{ url('/roles/'.$role->id) }}</p>
+                        <p class="name">{{ $role->name }}</p>
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline form-delete"

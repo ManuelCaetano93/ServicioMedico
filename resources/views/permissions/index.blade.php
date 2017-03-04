@@ -3,27 +3,29 @@
 @section('content')
     <div class="container">
         @if(session('mensaje'))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Info:</strong> {{ session('mensaje') }}.
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <strong>Info:</strong> {{ session('mensaje') }}.
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Permisos</div>
-
+                    <div class="panel-heading">
+                        <div class="row fa-align-center">
+                            <div class="col-xs-6"><h5>Permisos</h5></div>
+                            <div class="col-xs-6 text-right">
+                                <a href="{{ url('/permissions/create') }}" class="btn btn-success">Nuevo Permiso
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
-                        Listado de Permisos
-
-                        <a href="{{ url('/permissions/create') }}" class="btn btn-success">
-                            <i class="fa fa-user"></i> Nuevo Permiso
-                        </a>
-
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
@@ -33,7 +35,8 @@
                                 <tr>
                                     <td>{{ $permission->name }}</td>
                                     <td>
-                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-primary">
+                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}"
+                                           class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
@@ -69,7 +72,7 @@
                     <div class="modal-body">
                         <p>¿Seguro que desea eliminar este
                             registro?</p>
-                        <p class="name">{{ url('/permissions/'.$permission->id) }}</p>
+                        <p class="name">{{ $permission->name }}</p>
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline form-delete"
