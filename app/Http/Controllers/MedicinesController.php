@@ -51,6 +51,7 @@ class MedicinesController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => 'required|max:255|alpha',
+            'component' => 'required|max:255|alpha',
         ]);
 
         if ($v->fails()) {
@@ -62,6 +63,7 @@ class MedicinesController extends Controller
 
             Medicines::create([
                 'name' => $request->input('name'),
+                'component' => $request->input('component'),
             ]);
 
         } catch (\Exception $e) {
@@ -70,7 +72,7 @@ class MedicinesController extends Controller
             \DB::commit();
         }
 
-        return redirect('/medicines')->with('mensaje', 'Medicine ha sido creado con exito');
+        return redirect('/medicines')->with('mensaje', 'Medicina ha sido creada con exito');
     }
 
     /**
@@ -108,6 +110,7 @@ class MedicinesController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => 'required|max:255|alpha',
+            'component' => 'required|max:255|alpha',
         ]);
 
         if ($v->fails()) {
@@ -120,6 +123,7 @@ class MedicinesController extends Controller
             $medicine = Medicines::findOrFail($id);
             $medicine->update([
                 'name' => $request->input('name'),
+                'component' => $request->input('component'),
             ]);
 
         } catch (\Exception $e) {
@@ -128,7 +132,7 @@ class MedicinesController extends Controller
             \DB::commit();
         }
 
-        return redirect('/medicines')->with('mensaje', 'Medicine ha sido editado con exito');
+        return redirect('/medicines')->with('mensaje', 'Medicina ha sido editada con exito');
     }
 
     /**
@@ -140,7 +144,7 @@ class MedicinesController extends Controller
     public function destroy($id)
     {
         Medicines::destroy($id);
-        return redirect('/medicines')->with('mensaje', 'Medicinas eliminado satisfactoriamente');
+        return redirect('/medicines')->with('mensaje', 'Medicina eliminada satisfactoriamente');
     }
 
     public function permissions($id)

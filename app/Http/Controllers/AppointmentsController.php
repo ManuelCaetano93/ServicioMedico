@@ -31,13 +31,13 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        $appointments = appointment::paginate();
+        $appointments = Appointment::paginate();
         return view('appointments.index', ['appointments' => $appointments]);
     }
 	
 	public function deleted()
 	{
-		$appointments = appointment::withTrashed()->paginate();
+		$appointments = Appointment::withTrashed()->paginate();
         return view('appointments.deleted', ['appointments' => $appointments]);
 	}
 
@@ -137,7 +137,7 @@ class AppointmentsController extends Controller
 
         try {
             \DB::beginTransaction();
-            $appointment = appointment::findOrFail($id);
+            $appointment = Appointment::findOrFail($id);
             $appointment->update([
                 'name' => $request->input('name'),
             ]);

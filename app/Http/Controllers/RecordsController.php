@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Records;
+use App\Medicines;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -37,7 +38,9 @@ class RecordsController extends Controller
      */
     public function create()
     {
-        return view('records.create');
+        $record = Records::findOrFail($id);
+        $medicine = Medicines::all();
+        return view('records.create', ['medicine' => $medicine, 'record' => $record]);
     }
 
     /**
@@ -81,6 +84,7 @@ class RecordsController extends Controller
             \DB::commit();
         }
         return redirect('/records')->with('mensaje', 'Historia creada satisfactoriamente');
+
     }
 
     /**
@@ -103,7 +107,9 @@ class RecordsController extends Controller
     public function edit($id)
     {
         $record = Records::findOrFail($id);
-        return view('records.edit', ['record'=>$record]);
+        $medicine = Medicines::all();
+        return view('records.edit', ['medicine' => $medicine, 'record' => $record]);
+
     }
 
     /**
@@ -168,4 +174,13 @@ class RecordsController extends Controller
         return redirect('/records')->with('mensaje', 'Postulado satisfactoriamente');
     }
 
+    /**
+     * @return string
+     */
+    public function medicines ()
+    {
+        $record = Records::findOrFail($id);
+        $medicine = Medicines::all();
+        return view('records.edit', ['medicine' => $medicine, 'record' => $record]);
+    }
 }

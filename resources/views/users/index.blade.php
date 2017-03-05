@@ -26,51 +26,66 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th width="10%" colspan="4">Acciones</th>
+                        @foreach( $users as $user)
+                            <div class="col-md-5">
+                                <div class="card testimonial-card">
+                                    <div class="text-center">
+                                        <div class="panel-heading btn-info" style="background-color: #D4F1FC">
+                                            <img src="http://placehold.it/100x100"
+                                                 class="img-circle img-responsive img-thumbnail back">
+                                        </div>
+                                    </div>
+                                    <div class="card-block">
+                                        <h4 class="card-title text-center">{{ $user->name }} {{ $user->surname }}</h4>
+                                        <hr>
+                                        <h6>
+                                            <strong>CI:</strong>
+                                            {{ $user->identification }}</h6>
+                                        <h6>
+                                            <strong>Sexo:</strong>
 
-                            </tr>
-                            @foreach( $users as $user)
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->surname }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        <a href="{{ url('users/'.$user->id.'/permissions') }}" class="btn btn-warning">
-                                            <i class="fa fa-id-card"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
+                                            {{ $user->sex }}</h6>
+                                        <h6>{{ $user->email }}</h6>
+                                        <hr>
+                                        <div class="text-center">
+                                            <td>
+                                                <a href="{{ url('users/'.$user->id.'/permissions') }}"
+                                                   class="btn btn-warning">
+                                                    <i class="fa fa-id-card"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ url('users/'.$user->id.'/edit') }}"
+                                                   class="btn btn-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
 
-                                    <td>
-                                        <a href="{{ url('users/'.$user->id.'/associate') }}" class="btn btn-info">
-                                            <i class="fa fa-stethoscope"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/users/'.$user->id) }}"
-                                                data-name="{{ $user->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$user->id}}">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="7" class="text-center">
-                                    {{ $users->links() }}
-                                </td>
-                            </tr>
-                        </table>
+                                            <td>
+                                                <a href="{{ url('users/'.$user->id.'/associate') }}"
+                                                   class="btn btn-info">
+                                                    <i class="fa fa-stethoscope"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger"
+                                                        data-action="{{ url('/users/'.$user->id) }}"
+                                                        data-name="{{ $user->name }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-delete{{$user->id}}">
+                                                    <i class="fa fa-trash fa-1x"></i>
+                                                </button>
+                                            </td>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                {{ $users->links() }}
+                            </td>
+                        </tr>
                     </div>
                 </div>
             </div>

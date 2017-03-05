@@ -26,40 +26,42 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Nombre</th>
-                                <th width="10%" colspan="3">Acciones</th>
-                            </tr>
-                            @foreach($roles as $role)
-                                <tr>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
-                                        <a href="{{ url('roles/'.$role->id.'/roles') }}" class="btn btn-warning">
-                                            <i class="fa fa-id-card"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/roles/'.$role->id) }}"
-                                                data-name="{{ $role->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$role->id}}">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    {{ $roles->links() }}
-                                </td>
-                            </tr>
-                        </table>
+                        @foreach($roles as $role)
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div>
+                                            <h4 class="card-title">{{ $role->name }}</h4>
+                                        </div>
+                                        <hr>
+                                        <div class="text-center">
+                                            <td>
+                                                <a href="{{ url('roles/'.$role->id.'/roles') }}"
+                                                   class="btn btn-warning">
+                                                    <i class="fa fa-id-card"></i>
+                                                </a>
+                                            </td>
+                                            <a href="{{ url('roles/'.$role->id.'/edit') }}"
+                                               class="btn btn-primary">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-danger"
+                                                    data-action="{{ url('/roles/'.$role->id) }}"
+                                                    data-name="{{ $role->name }}"
+                                                    data-toggle="modal"
+                                                    data-target="#confirm-delete{{$role->id}}">
+                                                <i class="fa fa-trash fa-1x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                {{ $roles->links() }}
+                            </td>
+                        </tr>
                     </div>
                 </div>
             </div>

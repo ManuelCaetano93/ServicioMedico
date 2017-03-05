@@ -20,7 +20,7 @@
                     <div class="panel-heading">
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Historia Medica</h5></div>
-                            <div class="col-xs-6 text-right" >
+                            <div class="col-xs-6 text-right">
                                 <a href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
                                 </a>
                             </div>
@@ -33,18 +33,18 @@
                                 <table class="table table-bordered ">
                                     <div class="card-block text-center">
                                         <div class="card" style="width: 20rem;">
-                                            <img class="card-img-top" src="http://placehold.it/200x150"
-                                                 alt="Card image cap">
                                             <div class="card-block">
-                                                <h4 class="card-title">{{ $record->name }}</h4>
+                                                <h3 class="card-title">{{ $record->name }}</h3>
                                                 <p class="card-text">{{ $record->description }}</p>
+                                                <hr>
+                                                <p>{{ $record->suffering }}</p>
+                                                <hr>
+                                                <p>{{ $record->doctor }}</p>
+                                                <hr>
+                                                <p>{{ $record->pretreatments }}</p>
+                                                <hr>
+                                                <p>{{ $record->medicines }}</p>
                                             </div>
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">{{ $record->suffering }}</li>
-                                                <li class="list-group-item">{{ $record->doctor }}</li>
-                                                <li class="list-group-item">{{ $record->pretreatments }}</li>
-                                                <li class="list-group-item">{{ $record->medicines }}</li>
-                                            </ul>
                                             <div class="card-block">
                                                 <a href="{{ url('records/'.$record->id.'/edit') }}"
                                                    class="btn btn-primary">

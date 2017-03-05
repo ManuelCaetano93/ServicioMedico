@@ -30,7 +30,7 @@
                                 <div class="col-md-6">
                                     @foreach($permissions as $permission)
                                         <label class="checkbox-inline">
-                                            <input class="i-check" type="checkbox" id="permissions" name="permissions[]" value="{{ $permission->name }}"
+                                            <input class="i-check" type="checkbox" id="permissions" name="permissions" value="{{ $permission->name }}"
                                                    @if($user->hasPermissionTo($permission->name)) checked @endif>
 
                                             @if(str_contains($permission->name, 'Modulo'))

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class UsersController extends Controller
     public function __contruct()
     {
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +31,7 @@ class UsersController extends Controller
         $users = User::paginate();
         return view('users.index', ['users' => $users]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,6 +41,7 @@ class UsersController extends Controller
     {
         return view('users.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -83,6 +87,7 @@ class UsersController extends Controller
         }
         return redirect('/users')->with('mensaje', 'Usuario creado satisfactoriamente');
     }
+
     /**
      * Display the specified resource.
      *
@@ -93,6 +98,7 @@ class UsersController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,6 +111,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         return view('users.edit', ['user' => $user, 'roles' => $roles]);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -124,6 +131,7 @@ class UsersController extends Controller
                 'phone' => 'required|max:10',
                 'cellphone' => 'required|max:10',
                 'residence' => 'required|max:255',
+                'email' => 'required|max:255',
             ]);
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
@@ -166,35 +174,37 @@ class UsersController extends Controller
         }
         return redirect('/users')->with('mensaje', 'Usuario actualizado satisfactoriamente');
     }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
-    public
-    function permissions($id)
+
+    public function permissions($id)
     {
         $user = User::findOrFail($id);
         $permissions = Permission::all();
         return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
     }
-    public
-    function asignarpermissions(Request $request, $id)
+
+    public function asignpermissions(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->revokePermissionTo(Permission::all());
         if ($request->input('permissions'))
             $user->givePermissionTo($request->input('permissions'));
-        return redirect('/users')->with('mensaje', 'permissions Asignados Satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
     }
-    public function associate($id){
+
+    public function associate($id)
+    {
         $user = User::findOrFail($id);
         $specializations = Specialization::all();
         return view('users.associate', ['user' => $user, 'specializations' => $specializations]);
