@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\User;
+use App\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -31,14 +32,16 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
+        $roles = Role::all();
         $appointments = appointment::paginate();
-        return view('appointments.index', ['appointments' => $appointments]);
+        return view('appointments.index', ['appointments' => $appointments, 'roles' => $roles]);
     }
 	
 	public function deleted()
 	{
+        $roles = Role::all();
 		$appointments = appointment::withTrashed()->paginate();
-        return view('appointments.deleted', ['appointments' => $appointments]);
+        return view('appointments.deleted', ['appointments' => $appointments, 'roles' => $roles]);
 	}
 
     /**
@@ -46,10 +49,13 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         $roles = Role::all();
-        return view('appointments.create', ['roles' => $roles]);
+        $user = User::findOrFail($id);
+        $specializations = Specialization::all();
+        $doctor = User::all();
+        return view('appointments.create', ['roles' => $roles, 'user' => $user, 'specializations' => $specializations, 'doctor' => $doctor]);
     }
 
     /**
@@ -62,8 +68,9 @@ class AppointmentsController extends Controller
     {
         $v = Validator::make($request->all(), [
             'date' => 'required|max:255',
-            'patient_identification' => 'required|exists:users,identification|unique_with:appointments, doctor_identification',
-            'doctor_identification' => 'required|exists:users,identification',
+            'id_user_doctor' => 'required|exists:users,id|not_in:'.$request->input('id_user_patient'),
+            'id_user_patient' => 'required|exists:users,id',
+
         ]);
 
         if ($v->fails()) {
@@ -72,25 +79,17 @@ class AppointmentsController extends Controller
 
         try {
             \DB::BeginTransaction();
+            $user = User::findOrFail($request->input('id_user_patient'));
+            $user->appointments()->attach($request->input('id_user_doctor'), ['date' => $request->input('date'), 'status' => 'Active',]);
 
-            $identification_doctor = $request->input('doctor_identification');
-            $id_doctor = User::where('identification', '=', $identification_doctor)->firstOrFail();
-            $identification_patient = $request->input('patient_identification');
-            $id_patient = User::where('identification', '=', $identification_patient)->firstOrFail();
 
-            $appointment = Appointment::create([
-                'date' => $request->input('date'),
-                'id_user_patient' => $id_patient,
-                'id_user_doctor' => $id_doctor,
-                'status' => 'Active',
-            ]);
 
         } catch (\Exception $e) {
             \DB::rollback();
         } finally {
             \DB::commit();
         }
-        return redirect('/appointments')->with('mensaje', 'Especializacion ha sido creado con exito');
+        return redirect('/appointments')->with('mensaje', 'Cita ha sido creada con exito');
     }
 
     /**
@@ -149,7 +148,7 @@ class AppointmentsController extends Controller
         } finally {
             \DB::commit();
         }
-        return redirect('/appointments')->with('mensaje', 'Especializacion editado satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Especializacion editado satisfactoriamente');
     }
 
     /**
@@ -171,4 +170,37 @@ class AppointmentsController extends Controller
 		Appointment::withTrashed($id)->find($id)->restore();
 		return redirect ('/appointments/deleted')->with('message', 'Cita restaurada exitosamente');
 	}
+
+    // Get and Post to create appointment for a user
+
+    public function createappointment($id){
+        $user = User::findOrFail($id);
+        $specializations = Specialization::all();
+        $doctor = User::all();
+        return view('appointments.create', ['user' => $user, 'specializations' => $specializations, 'doctor' => $doctor]);
+    }
+
+    public function storeappointment(Request $request, $id){
+        $v = Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+            ]);
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v)->withInput();
+        }
+        try {
+
+            \DB::beginTransaction();
+            $user = User::findOrFail($id);
+            $user->update([
+                'name' => $request->input('name'),
+            ]);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            \DB::rollback();
+        } finally {
+            \DB::commit();
+        }
+        return redirect('/users')->with('mensaje', 'Usuario actualizado satisfactoriamente');
+    }
 }

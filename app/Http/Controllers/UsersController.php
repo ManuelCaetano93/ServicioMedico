@@ -178,12 +178,14 @@ class UsersController extends Controller
         User::destroy($id);
         return redirect('/users')->with('mensaje', 'Usuario eliminado satisfactoriamente');
     }
+
     public
     function permissions($id)
     {
+        $roles = Role::all();
         $user = User::findOrFail($id);
         $permissions = Permission::all();
-        return view('users.permissions', ['user' => $user, 'permissions' => $permissions]);
+        return view('users.permissions', ['roles' => $roles, 'user' => $user, 'permissions' => $permissions]);
     }
     public
     function asignarpermissions(Request $request, $id)
@@ -194,12 +196,16 @@ class UsersController extends Controller
             $user->givePermissionTo($request->input('permissions'));
         return redirect('/users')->with('mensaje', 'permissions Asignados Satisfactoriamente');
     }
+
+    // Get to create the view to associate a specialization
+
     public function associate($id){
+        $roles = Role::all();
         $user = User::findOrFail($id);
         $specializations = Specialization::all();
-        return view('users.associate', ['user' => $user, 'specializations' => $specializations]);
+        return view('users.associate', ['roles' => $roles, 'user' => $user, 'specializations' => $specializations]);
     }
-
-
 }
+
+// TODO: FINISH CREATING THE SPECIALIZATIONS TABLE
 

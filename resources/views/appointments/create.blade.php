@@ -12,15 +12,16 @@
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('patient_identification') ? ' has-error' : '' }}">
-                                <label for="patient_identification" class="col-md-4 control-label">Cedula</label>
+                            <div class="form-group{{ $errors->has('id_user_patient') ? ' has-error' : '' }}">
+                                <label for="id_user_patient" class="col-md-4 control-label">Cedula</label>
 
                                 <div class="col-md-6">
-                                    <input id="patient_identification" type="text" class="form-control" name="patient_identification"
-                                       value="" required>
-                                    @if ($errors->has('patient_identification'))
+                                    <input id="id_user_patient" type="text" class="form-control" name="id_user_patient"
+                                           value="{{ $user->id }}" required autofocus readonly>
+
+                                    @if ($errors->has('id_user_patient'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('patient_identification') }}</strong>
+                                        <strong>{{ $errors->first('id_user_patient') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -41,19 +42,33 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('doctor_identification') ? ' has-error' : '' }}">
-                                <label for="doctor_identification" class="col-md-4 control-label">Cedula</label>
+                            <div class="form-group{{ $errors->has('id_user_doctor') ? ' has-error' : '' }}">
+                                <label for="id_user_doctor" class="col-md-4 control-label">Cedula</label>
 
                                 <div class="col-md-6">
-                                    <input id="doctor_identification" type="text" class="form-control" name="doctor_identification"
+                                    <input id="id_user_doctor" type="text" class="form-control" name="id_user_doctor"
                                            value="" required>
                                     @if ($errors->has('id_user_doctor'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('doctor_identification') }}</strong>
+                                        <strong>{{ $errors->first('id_user_doctor') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="specialization" class="col-md-4 control-label">Especializacion</label>
+
+                                <div class="col-md-6">
+                                    <select name="specialization" id="specialization" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($specializations as $specialization)
+                                        <option value="{{ $specialization->id }}" >{{ $specialization->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
