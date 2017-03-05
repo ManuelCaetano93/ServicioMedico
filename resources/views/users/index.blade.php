@@ -43,9 +43,9 @@
                                             {{ $user->identification }}</h6>
                                         <h6>
                                             <strong>Sexo:</strong>
-
                                             {{ $user->sex }}</h6>
-                                        <h6>{{ $user->email }}</h6>
+                                        <h6><strong>Email:</strong>
+                                            {{ $user->email }}</h6>
                                         <hr>
                                         <div class="text-center">
                                             <td>
