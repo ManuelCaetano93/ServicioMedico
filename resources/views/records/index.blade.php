@@ -44,6 +44,8 @@
                                                 <p>{{ $record->pretreatments }}</p>
                                                 <hr>
                                                 <p>{{ $record->medicines }}</p>
+                                                <hr>
+                                                <p>{{ $record->status }}</p>
 
                                                 <div class="row">
                                                     <div class="col-sm-6 text-center">
