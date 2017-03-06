@@ -67,6 +67,12 @@
                                                 </a>
                                             </td>
                                             <td>
+                                                <a href="{{ url('users/'.$user->id.'/appointment') }}"
+                                                   class="btn btn-info">
+                                                    <i class="fa fa-stethoscope"></i>
+                                                </a>
+                                            </td>
+                                            <td>
                                                 <button class="btn btn-danger"
                                                         data-action="{{ url('/users/'.$user->id) }}"
                                                         data-name="{{ $user->name }}"
