@@ -35,7 +35,8 @@
                                 <div class="col-md-6">
                                     @foreach($specializations as $specialization)
                                         <label class="checkbox-inline">
-                                            <input class="i-check" type="checkbox" id="specializations" name="specializations[]" value="{{ $specialization->id  }}">
+                                            <input class="i-check" type="checkbox" id="specializations" name="specializations[]" value="{{ $specialization->id  }}"
+                                                   @if( $specialization->users->contains((string)($user->id)) == $specialization->id) checked @endif >
                                                 {{ $specialization->name  }}
                                         </label><br>
                                     @endforeach

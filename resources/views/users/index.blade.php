@@ -56,6 +56,9 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <a href="{{ url('users/'.$user->id.'/appointment') }}" class="btn btn-info"></a>
+                                    </td>
+                                    <td>
                                         <button class="btn btn-danger"
                                                 data-action="{{ url('/users/'.$user->id) }}"
                                                 data-name="{{ $user->name }}"

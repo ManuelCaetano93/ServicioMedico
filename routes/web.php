@@ -26,9 +26,6 @@ Route::put('/users/{id}/associatespecialization', 'SpecializationsUserController
 
 // Specialization Routes
 
-Route::get('/specializations/deleted', function (){
-	return view ('specializations.deleted');
-});
 Route::get('/specializations/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
@@ -39,13 +36,12 @@ Route::resource('/specializations', 'SpecializationController');
 
 // Appointments Routes
 
-Route::get('/appointments/deleted', function (){
-	return view ('appointments.deleted');
-});
 Route::get('/appointments/deleted', 'AppointmentsController@deleted');
 Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
 Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
 Route::resource('/appointments', 'AppointmentsController');
+Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
+Route::post('users/{id}/appointment', 'AppointmentsController@storeappointment');
 
 // Permissions Routes
 
@@ -55,8 +51,8 @@ Route::resource('/permissions', 'PermissionsController');
 // Roles Routes
 
 Route::resource('/roles', 'RolesController');
-Route::get('/roles/{id}/permisos','RolesController@permissions');
-Route::put('/roles/{id}/asignpermissions','RolesController@asignpermissions');
+Route::get('/roles/{id}/assignpermissions','RolesController@permissions');
+Route::put('/roles/{id}/assignpermissions','RolesController@assignpermissions');
 
 //Medicines Routes
 

@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         // Not On Final Release
 
         DB::table('users')->insert([
-            'name' => 'Pedro',
+            'name' => 'Doctor',
             'surname' => 'Ramirez',
             'identification' => '122233',
             'birthday' => '12313',
@@ -37,27 +37,55 @@ class UsersTableSeeder extends Seeder
             'phone' => '123123',
             'cellphone' => '123123',
             'residence' => 'Caracas',
-            'email' => 'PedroRamirez@gmail.com',
+            'email' => 'Doctor@doctor.doctor',
             'password' => bcrypt('123123'),
             'updated_at' => \Carbon\Carbon::now(),
             'created_at' => \Carbon\Carbon::now(),
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Betty',
-            'surname' => 'Ramirez',
+            'name' => 'Farmaceuta',
+            'surname' => 'Perez',
             'identification' => '22211',
             'birthday' => '12313',
             'sex' => 'female',
             'phone' => '123123',
             'cellphone' => '123123',
             'residence' => 'Caracas',
-            'email' => 'BettyRamirez@gmail.com',
+            'email' => 'Farmaceuta@farmaceuta.farmaceuta',
             'password' => bcrypt('123123'),
             'updated_at' => \Carbon\Carbon::now(),
             'created_at' => \Carbon\Carbon::now(),
         ]);
 
-    }
+        DB::table('users')->insert([
+            'name' => 'Secretaria',
+            'surname' => 'Fernandez',
+            'identification' => '223311',
+            'birthday' => '12313',
+            'sex' => 'female',
+            'phone' => '123123',
+            'cellphone' => '123123',
+            'residence' => 'Caracas',
+            'email' => 'Secretaria@secretaria.secretaria',
+            'password' => bcrypt('123123'),
+            'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
 
+        DB::table('users')->insert([
+            'name' => 'Paciente',
+            'surname' => 'Rodriguez',
+            'identification' => '113311',
+            'birthday' => '12313',
+            'sex' => 'female',
+            'phone' => '123123',
+            'cellphone' => '123123',
+            'residence' => 'Caracas',
+            'email' => 'Paciente@paciente.paciente',
+            'password' => bcrypt('123123'),
+            'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+    }
 }
