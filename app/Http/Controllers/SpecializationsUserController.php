@@ -17,6 +17,6 @@ class SpecializationsUserController extends Controller
         $user->specializations()->detach(Specialization::all());
         $specialization = $request->input('specializations');
         $user->specializations()->attach($specialization);
-        return redirect('/users')->with('mensaje', 'Especializacion asignada satisfactoriamente');
+        return redirect('/users')->with('mensaje', 'Especializacion Asignada Satisfactoriamente');
     }
 }

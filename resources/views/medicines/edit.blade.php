@@ -26,6 +26,21 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('component') ? ' has-error' : '' }}">
+                                <label for="component" class="col-md-4 control-label">Componente activo</label>
+
+                                <div class="col-md-6">
+                                    <input id="component" type="text" class="form-control" name="component"
+                                           value="{{ $medicines->component or old('component') }}" autofocus>
+
+                                    @if ($errors->has('component'))
+                                        <spam class="help-block">
+                                            <strong>{{ $errors->first('component') }}</strong>
+                                        </spam>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

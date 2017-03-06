@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Medicines extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'component'
     ];
 }

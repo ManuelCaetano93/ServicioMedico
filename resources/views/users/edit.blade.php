@@ -77,9 +77,9 @@
                                 <div class="col-md-6">
                                     <select name="sex" id="sex" class="form-control">
                                         <option value="">Seleccione</option>
-                                        <option value="female" @if(old('status')=='female') selected @endif>Femenino
+                                        <option value="female" @if($user->sex or old('status')=='female') selected @endif>Femenino
                                         </option>
-                                        <option value="male" @if(old('status')=='male') selected @endif>Masculino
+                                        <option value="male" @if($user->sex or old('status')=='male') selected @endif>Masculino
                                         </option>
                                     </select>
                                     @if ($errors->has('sex'))

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Asignar specializations user</div>
+                    <div class="panel-heading">Asignar Especializacion</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
@@ -13,11 +13,12 @@
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
 
+
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Nombre</label>
 
                                 <div class="col-md-6">
-                                    <p>{{ $user->name }}</p>
+                                    <h5>{{$user->name or old('name') }}</h5>
                                 </div>
                             </div>
 
@@ -25,7 +26,7 @@
                                 <label for="surname" class="col-md-4 control-label">Apellido</label>
 
                                 <div class="col-md-6">
-                                    <i>{{ $user->surname }}</i>
+                                    <h5>{{$user->surname or old('surname') }}</h5>
                                 </div>
                             </div>
 
@@ -41,9 +42,9 @@
                                         </label><br>
                                     @endforeach
                                     @if($errors->has('specializations'))
-                                        <span class="help-block">
+                                        <spam class="help-block">
                                             <strong>{{ $errors->first('specializations') }}</strong>
-                                        </span>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>

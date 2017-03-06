@@ -136,7 +136,7 @@ class AppointmentsController extends Controller
 
         try {
             \DB::beginTransaction();
-            $appointment = appointment::findOrFail($id);
+            $appointment = Appointment::findOrFail($id);
             $appointment->update([
                 'name' => $request->input('name'),
             ]);
