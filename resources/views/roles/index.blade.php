@@ -29,7 +29,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Nombre</th>
-                                <th width="10%" colspan="3">Acciones</th>
+                                <th width="10%" colspan="4">Acciones</th>
                             </tr>
                             @foreach($roles as $role)
                                 <tr>
@@ -41,6 +41,11 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/roles/'.$role->id.'/assignpermissions') }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>

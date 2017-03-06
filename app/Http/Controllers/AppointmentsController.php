@@ -175,9 +175,10 @@ class AppointmentsController extends Controller
 
     public function createappointment($id){
         $user = User::findOrFail($id);
+        $users = User::all();
         $specializations = Specialization::all();
         $doctor = User::all();
-        return view('appointments.create', ['user' => $user, 'specializations' => $specializations, 'doctor' => $doctor]);
+        return view('appointments.create', ['user' => $user, 'users' => $users, 'specializations' => $specializations, 'doctor' => $doctor]);
     }
 
     public function storeappointment(Request $request, $id){

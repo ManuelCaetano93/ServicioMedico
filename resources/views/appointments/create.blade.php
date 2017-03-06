@@ -13,11 +13,12 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('id_user_patient') ? ' has-error' : '' }}">
-                                <label for="id_user_patient" class="col-md-4 control-label">Cedula</label>
+                                <label for="id_user_patient" class="col-md-4 control-label ">Usuario</label>
 
                                 <div class="col-md-6">
-                                    <input id="id_user_patient" type="text" class="form-control" name="id_user_patient"
-                                           value="{{ $user->id }}" required autofocus readonly>
+                                    <input id="id_user_patient" type="hidden" class="form-control" name="id_user_patient"
+                                           value="{{ $user->id }}">
+                                    <div class="panel panel-default input-group-md">{{ $user->name }} {{ $user->surname }}</div>
 
                                     @if ($errors->has('id_user_patient'))
                                         <span class="help-block">
@@ -56,6 +57,7 @@
                                 </div>
                             </div>
 
+
                             <div class="form-group">
                                 <label for="specialization" class="col-md-4 control-label">Especializacion</label>
 
@@ -69,6 +71,34 @@
                                 </div>
                             </div>
 
+                            <div class="panel-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Apellido</th>
+                                        <th width="10%" colspan="4">Acciones</th>
+
+                                    </tr>
+                                    @foreach( $users as $user)
+                                        <tr>
+                                            <td>Dr. {{ $user->surname }}</td>
+                                            {{-- <td>
+                                                <a href="{{ url('users/'.$user->id.'/permissions') }}" class="btn btn-warning">
+                                                    <i class="fa fa-id-card"></i>
+                                                </a>
+                                            </td> --}}
+
+                                            <td>
+                                                <button class="btn btn-success"
+                                                        data-action=""
+                                                        data-name=""
+                                                        data-toggle="modal" data-target="">
+                                                    <i class="fa fa-id-card fa-1x"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
