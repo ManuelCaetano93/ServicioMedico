@@ -34,6 +34,8 @@ class CreateRecordsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routes');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('records');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
