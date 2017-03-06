@@ -19,16 +19,12 @@ class User extends Authenticatable
         'name', 'surname', 'identification', 'birthday', 'sex', 'phone', 'cellphone', 'residence', 'email', 'password'
     ];
 
-    //public function userAppointments(){
-    //    return $this->hasMany('App/Appointment', 'id', 'id_user_appointment');
-    //}
-	
 	public function specializations(){
 		return $this->belongsToMany('App\Specialization');
 	}
 
 	public function appointments(){
-	    return $this->hasMany('App\Appointment', '');
+	    return $this->belongsToMany('App\User', 'appointments', 'id_user_patient', 'id_user_doctor')->withTimestamps();
     }
 
     /**

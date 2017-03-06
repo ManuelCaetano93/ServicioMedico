@@ -60,7 +60,6 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
-
                                             <td>
                                                 <a href="{{ url('users/'.$user->id.'/associate') }}"
                                                    class="btn btn-info">
