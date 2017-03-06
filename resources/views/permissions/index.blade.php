@@ -26,36 +26,40 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Nombre</th>
-                                <th width="10%" colspan="2">Acciones</th>
-                            </tr>
-                            @foreach($permissions as $permission)
-                                <tr>
-                                    <td>{{ $permission->name }}</td>
-                                    <td>
-                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}"
-                                           class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/permissions/'.$permission->id) }}"
-                                                data-name="{{ $permission->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$permission->id}}">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($permissions as $permission)
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ $permission->name }}</h4>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a href="{{ url('permissions/'.$permission->id.'/permissions') }}"
+                                               class="btn btn-warning">
+                                                <i class="fa fa-id-card"></i>
+                                            </a>
+                                            <a href="{{ url('permissions/'.$permission->id.'/edit') }}"
+                                               class="btn btn-primary">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-danger"
+                                                    data-action="{{ url('/permissions/'.$permission->id) }}"
+                                                    data-name="{{ $permission->name }}"
+                                                    data-toggle="modal"
+                                                    data-target="#confirm-delete{{$permission->id}}">
+                                                <i class="fa fa-trash fa-1x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="col-sm-12 text-center">
                             <tr>
                                 <td colspan="3" class="text-center">
                                     {{ $permissions->links() }}
                                 </td>
                             </tr>
-                        </table>
+                        </div>
                     </div>
                 </div>
             </div>

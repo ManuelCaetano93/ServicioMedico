@@ -1,11 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar record</div>
+                    <div class="panel-heading">Editar Historia</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
@@ -17,7 +16,8 @@
                                 <label for="name" class="col-md-4 control-label">Nombre del Paciente</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ $record->name or old('name') }}"" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           value="{{ $record->name or old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -31,7 +31,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="description" id="description" cols="30" rows="5"
-                                              class="form-control" >{{ $record->description or old('description') }}</textarea>
+                                              class="form-control">{{ $record->description or old('description') }}</textarea>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
@@ -73,7 +73,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="pretreatments" id="pretreatments" cols="30" rows="5"
-                                              class="form-control" >{{ $record->pretreatments or old('pretreatments') }}</textarea>
+                                              class="form-control">{{ $record->pretreatments or old('pretreatments') }}</textarea>
 
                                     @if ($errors->has('pretreatments'))
                                         <span class="help-block">
@@ -84,27 +84,28 @@
                             </div>
                             <div class="form-group{{ $errors->has('medicines') ? ' has-error' : '' }}">
                                 <label for="medicines" class="col-md-4 control-label">Medicinas</label>
-
                                 <div class="col-md-6">
-                                    <textarea name="medicines" id="medicines" cols="30" rows="5"
-                                              class="form-control">{{ $record->medicines or old('medicines') }}</textarea>
-
-                                    @if ($errors->has('medicines'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('medicines') }}</strong>
-                                    </span>
-                                    @endif
+                                    <select name="medicines" id="medicines" class="form-control">
+                                        <option value="activo"
+                                                @if( $record->medicines or old('medicines') == $medicine->name ) selected @endif>
+                                          {{--   {{['medicine' => $medicine]}} --}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                                 <label for="status" class="col-md-4 control-label">Estatus</label>
 
                                 <div class="col-md-6">
                                     <select name="status" id="status" class="form-control">
                                         <option value="">Seleccione</option>
-                                        <option value="activo" @if(old('status')=='activo') selected @endif>Activo</option>
-                                        <option value="inactivo" @if(old('status')=='inactivo') selected @endif>Inactivo</option>
+                                        <option value="activo"
+                                                @if( $record->status or old('status') =='activo') selected @endif>Activo
+                                        </option>
+                                        <option value="inactivo"
+                                                @if($record->status or old('status')=='inactivo') selected @endif>
+                                            Inactivo
+                                        </option>
                                     </select>
                                     @if ($errors->has('status'))
                                         <span class="help-block">
