@@ -1,5 +1,6 @@
 
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +42,7 @@ Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
 Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
 Route::resource('/appointments', 'AppointmentsController');
 Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
-Route::post('users/{id}/appointment', 'AppointmentsController@storeappointment');
+route::post('appointments/{id}/create', 'AppointmentsController@store');
 
 // Permissions Routes
 

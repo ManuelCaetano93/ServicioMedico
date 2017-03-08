@@ -64,13 +64,11 @@ class AppointmentsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $v = Validator::make($request->all(), [
             'date' => 'required|max:255',
-            'id_user_doctor' => 'required|exists:users,id|not_in:'.$request->input('id_user_patient'),
-            'id_user_patient' => 'required|exists:users,id',
-
+            'id_user_doctor' => 'required|exists:users,id',
         ]);
 
         if ($v->fails()) {
@@ -80,7 +78,14 @@ class AppointmentsController extends Controller
         try {
             \DB::BeginTransaction();
             $user = User::findOrFail($request->input('id_user_patient'));
-            $user->appointments()->attach($request->input('id_user_doctor'), ['date' => $request->input('date'), 'status' => 'Active',]);
+            $specialization = Specialization::findOrFail($request->input('specialization'));
+            $doctor = $request->input('id_user_doctor');
+            if (User::findOrFail($doctor)->specializations->contains($specialization)){
+                $user->appointments()->attach($doctor, ['date' => $request->input('date'), 'status' => 'Active',]);
+            }
+            else{
+                return redirect('/appointments')->with('mensaje', 'Cita no pudo ser creada');
+            }
 
 
 
@@ -174,34 +179,11 @@ class AppointmentsController extends Controller
     // Get and Post to create appointment for a user
 
     public function createappointment($id){
+
+        $roles = Role::all();
         $user = User::findOrFail($id);
-        $users = User::all();
         $specializations = Specialization::all();
-        $doctor = User::all();
-        return view('appointments.create', ['user' => $user, 'users' => $users, 'specializations' => $specializations, 'doctor' => $doctor]);
-    }
-
-    public function storeappointment(Request $request, $id){
-        $v = Validator::make($request->all(),
-            [
-                'name' => 'required|max:255',
-            ]);
-        if ($v->fails()) {
-            return redirect()->back()->withErrors($v)->withInput();
-        }
-        try {
-
-            \DB::beginTransaction();
-            $user = User::findOrFail($id);
-            $user->update([
-                'name' => $request->input('name'),
-            ]);
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            \DB::rollback();
-        } finally {
-            \DB::commit();
-        }
-        return redirect('/users')->with('mensaje', 'Usuario actualizado satisfactoriamente');
+        $doctors = User::all();
+        return view('appointments.create', ['roles' => $roles, 'user' => $user, 'specializations' => $specializations, 'doctors' => $doctors]);
     }
 }

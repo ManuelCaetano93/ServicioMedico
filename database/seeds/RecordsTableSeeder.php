@@ -20,6 +20,7 @@ class RecordsTableSeeder extends Seeder
             'pretreatments' => 'tratamientos anteriores xx1',
             'medicines' => 'Atamel',
             'status' => 'activo',
+            'id_user' => '1',
         ]);
 
     }
