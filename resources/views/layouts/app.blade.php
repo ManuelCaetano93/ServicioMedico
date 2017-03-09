@@ -86,4 +86,4 @@
 <script src="{{ asset("js/jqueryui/jquery-ui.js") }}"></script>
 <script src="{{ asset('js/datetimepicker.js') }}"></script>
 </body>
-</html></html>
+</html>
