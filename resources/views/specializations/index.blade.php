@@ -39,18 +39,23 @@
                                             <h4 class="card-title">{{ $specialization->name }}</h4>
                                         </div>
                                         <hr>
-                                        <div class="text-center">
-                                            <a href="{{ url('specializations/'.$specialization->id.'/edit') }}"
-                                               class="btn btn-primary">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <button class="btn btn-danger"
-                                                    data-action="{{ url('/specializations/'.$specialization->id) }}"
-                                                    data-name="{{ $specialization->name }}"
-                                                    data-toggle="modal"
-                                                    data-target="#confirm-delete{{$specialization->id}}">
-                                                <i class="fa fa-trash fa-1x"></i>
-                                            </button>
+                                        <div class="row">
+                                            <div class="col-sm-6 text-center">
+                                                <a href="{{ url('specializations/'.$specialization->id.'/edit') }}"
+                                                   class="btn btn-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-sm-6 text-center">
+                                                <button class="btn btn-danger"
+                                                        data-action="{{ url('/specializations/'.$specialization->id) }}"
+                                                        data-name="{{ $specialization->name }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-delete{{$specialization->id}}">
+                                                    <i class="fa fa-trash fa-1x"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -44,19 +44,27 @@
                                                 <p>{{ $record->pretreatments }}</p>
                                                 <hr>
                                                 <p>{{ $record->medicines }}</p>
-                                            </div>
-                                            <div class="card-block">
-                                                <a href="{{ url('records/'.$record->id.'/edit') }}"
-                                                   class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <button class="btn btn-danger"
-                                                        data-action="{{ url('/records/'.$record->id) }}"
-                                                        data-name="{{ $record->name }}"
-                                                        data-toggle="modal"
-                                                        data-target="#confirm-delete{{$record->id}}">
-                                                    <i class="fa fa-trash fa-1x"></i>
-                                                </button>
+                                                <hr>
+                                                <p>{{ $record->status }}</p>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6 text-center">
+                                                        <a href="{{ url('records/'.$record->id.'/edit') }}"
+                                                           class="btn btn-primary">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col-sm-6 text-center">
+                                                        <button class="btn btn-danger"
+                                                                data-action="{{ url('/records/'.$record->id) }}"
+                                                                data-name="{{ $record->name }}"
+                                                                data-toggle="modal"
+                                                                data-target="#confirm-delete{{$record->id}}">
+                                                            <i class="fa fa-trash fa-1x"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
