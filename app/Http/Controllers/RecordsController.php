@@ -39,8 +39,8 @@ class RecordsController extends Controller
     public function create($id)
     {
         $record = Records::findOrFail($id);
-        $medicine = Medicines::all();
-        return view('records.create', ['medicine' => $medicine, 'record' => $record]);
+        $medicines = Medicines::all();
+        return view('records.create', ['medicines' => $medicines, 'record' => $record]);
     }
 
     /**
@@ -107,8 +107,8 @@ class RecordsController extends Controller
     public function edit($id)
     {
         $record = Records::findOrFail($id);
-        $medicine = Medicines::all();
-        return view('records.edit', ['medicine' => $medicine, 'record' => $record]);
+        $medicines = Medicines::all();
+        return view('records.edit', ['medicines' => $medicines, 'record' => $record]);
 
     }
 

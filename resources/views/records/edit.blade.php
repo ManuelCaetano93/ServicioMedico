@@ -86,10 +86,12 @@
                                 <label for="medicines" class="col-md-4 control-label">Medicinas</label>
                                 <div class="col-md-6">
                                     <select name="medicines" id="medicines" class="form-control">
-                                        <option value="activo"
-                                                @if( $record->medicines or old('medicines') == $medicine->name ) selected @endif>
-                                          {{--   {{['medicine' => $medicine]}} --}}
-                                        </option>
+                                        @foreach($medicines as $medicine)
+                                            <option value="{{ $medicine->name }}"
+                                                    @if( $record->medicines or old('medicines') == $medicine->name ) selected @endif>
+                                                {{ $medicine->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -99,10 +101,10 @@
                                 <div class="col-md-6">
                                     <select name="status" id="status" class="form-control">
                                         <option value="">Seleccione</option>
-                                        <option value="activo"
+                                        <option value="Activo"
                                                 @if( $record->status or old('status') =='activo') selected @endif>Activo
                                         </option>
-                                        <option value="inactivo"
+                                        <option value="Inactivo"
                                                 @if($record->status or old('status')=='inactivo') selected @endif>
                                             Inactivo
                                         </option>

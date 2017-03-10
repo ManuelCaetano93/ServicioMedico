@@ -12,9 +12,7 @@
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <link href="{{ asset('css/bootstraps/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstraps/bootstrap-theme.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -89,4 +87,4 @@
 <script src="{{ asset("js/jqueryui/jquery-ui.js") }}"></script>
 <script src="{{ asset('js/datetimepicker.js') }}"></script>
 </body>
-</html></html>
+</html>
