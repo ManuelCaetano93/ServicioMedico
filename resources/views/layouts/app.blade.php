@@ -58,6 +58,7 @@
                         <li><a href="{{ url('/roles') }}">Roles</a></li>
                         <li><a href="{{ url('/records') }}">Historia Medica</a></li>
                         <li><a href="{{ url('/medicines') }}">Medicinas</a></li>
+                        <li><a href="{{ url('/recipes') }}">Recipes</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>

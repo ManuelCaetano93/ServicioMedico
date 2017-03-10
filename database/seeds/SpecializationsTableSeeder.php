@@ -12,7 +12,25 @@ class SpecializationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('specializations')->insert([
-            'name' => 'Doctor',
+            'name' => 'Cardiologo',
+            'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+
+        DB::table('specializations')->insert([
+            'name' => 'Endocrinologo',
+            'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+
+        DB::table('specializations')->insert([
+            'name' => 'Pediatra',
+            'updated_at' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+
+        DB::table('specializations')->insert([
+            'name' => 'Urologo',
             'updated_at' => \Carbon\Carbon::now(),
             'created_at' => \Carbon\Carbon::now(),
         ]);

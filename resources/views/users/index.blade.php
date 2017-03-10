@@ -43,7 +43,7 @@
                                             {{ $user->identification }}</h6>
                                         <h6>
                                             <strong>Sexo:</strong>
-                                            {{ $user->sex }}</h6>
+                                            @if($user->sex == 'male') Hombre @endif @if($user->sex == 'female') Mujer @endif</h6>
                                         <h6><strong>Email:</strong>
                                             {{ $user->email }}</h6>
                                         <hr>
@@ -68,8 +68,8 @@
                                             </td>
                                             <td>
                                                 <a href="{{ url('users/'.$user->id.'/appointment') }}"
-                                                   class="btn btn-info">
-                                                    <i class="fa fa-stethoscope"></i>
+                                                   class="btn btn-success">
+                                                    <i class="fa fa-calendar-check-o"></i>
                                                 </a>
                                             </td>
                                             <td>

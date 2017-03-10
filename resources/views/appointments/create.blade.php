@@ -41,7 +41,7 @@
                                         <option value="">Seleccione</option>
                                         @foreach($doctors as $doctor)
                                             @if($doctor->hasRole('Doctor'))
-                                                <option value="{{ $doctor->id }}" >Dr.{{ $doctor->surname }}</option>
+                                                <option value="{{ $doctor->id }}" >Dr.{{ $doctor->surname }}: @foreach($doctor->specializations as $specialization) -- {{ $specialization->name }} @endforeach </option>
                                             @endif
                                         @endforeach
                                     </select>

@@ -39,7 +39,7 @@
                                                 <hr>
                                                 <p>{{ $record->suffering }}</p>
                                                 <hr>
-                                                <p>{{ $record->doctor }}</p>
+                                                <p>@if($record->user != null){{ $record->user->name }} @endif</p>
                                                 <hr>
                                                 <p>{{ $record->pretreatments }}</p>
                                                 <hr>

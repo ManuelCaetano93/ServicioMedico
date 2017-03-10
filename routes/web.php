@@ -48,6 +48,9 @@ route::post('appointments/{id}/create', 'AppointmentsController@store');
 
 Route::resource('/permissions', 'PermissionsController');
 
+// Recipes Routes
+
+Route::resource('/recipes', 'RecipesController');
 
 // Roles Routes
 

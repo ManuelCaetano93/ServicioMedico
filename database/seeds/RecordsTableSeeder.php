@@ -16,7 +16,7 @@ class RecordsTableSeeder extends Seeder
             'name' => 'Record 1',
             'description' => 'descripcion',
             'suffering' => 'padecimiento x',
-            'doctor' => 'doctor x1',
+            'id_doctor' => '2',
             'pretreatments' => 'tratamientos anteriores xx1',
             'medicines' => 'Atamel',
             'status' => 'activo',
