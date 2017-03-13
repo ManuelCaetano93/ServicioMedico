@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Medico medical and health Free HTML5 Template</title>
+    <title>Servicio Medico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="http://webthemez.com"/>
@@ -46,20 +46,18 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li>
-                            @if (Auth::check())
+                        @if (Auth::check())
+                            <li>
                                 <a href="{{ url('/home') }}">Home</a>
-                            @else
+                            </li>
+                        @else
+                            <li>
                                 <a href="{{ url('/login') }}">Login</a>
-                            @endif
-                        </li>
-                        <li>
-                            @if (Auth::check())
-                                <a href="{{ url('/home') }}">Home</a>
-                            @else
+                            </li>
+                            <li>
                                 <a href="{{ url('/register') }}">Register</a>
-                            @endif
-                        </li>
+                            </li>
+                        @endif
 
                     </ul>
                 </div>
@@ -267,7 +265,8 @@
                     <div class="col-lg-6">
                         <div class="copyright">
                             <p>
-                                <span>&copy; Medico 2016 All right reserved. By </span><a href="http://webthemez.com" Medico="_blank">WebThemez</a>
+                                <span>&copy; Medico 2016 All right reserved. By </span><a href="http://webthemez.com"
+                                                                                          Medico="_blank">WebThemez</a>
                             </p>
                         </div>
                     </div>
@@ -280,7 +279,8 @@
                             </li>
                             <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a>
                             </li>
-                            <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" data-placement="top" title="Google plus"><i
+                                            class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                 </div>
