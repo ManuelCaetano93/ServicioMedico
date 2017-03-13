@@ -27,8 +27,12 @@ class User extends Authenticatable
 	    return $this->belongsToMany('App\User', 'appointments', 'id_user_patient', 'id_user_doctor')->withTimestamps();
     }
 
-    public function record(){
-	    return $this->hasOne('App\Records', 'user_id', 'record_id');
+    public function recordsUser(){
+	    return $this->hasMany('App\Records', 'user_id', 'id');
+    }
+
+    public function recordsDoctor(){
+        return $this->hasMany('App\Records', 'doctor_id', 'id');
     }
 
     /**

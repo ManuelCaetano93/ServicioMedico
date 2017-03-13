@@ -13,9 +13,28 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('id_user_patient') ? ' has-error' : '' }}">
-                                <label for="id_user_patient" class="col-md-4 control-label ">Usuario</label>
+                                <label for="user" class="col-md-4 control-label ">Usuario</label>
                                 <div class="col-md-6">
-                                    <div name="id_user_patient" class="panel panel-default">{{ $user->name }} {{ $user->surname }}</div>
+                                    <div name="user" class="panel panel-default">{{ $user->name }} {{ $user->surname }}</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <input id="id_user_patient" type="text" class="form-control" name="id_user_patient"
+                                           value="{{ $user->id }}" autofocus hidden>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('specialization') ? ' has-error' : '' }}">
+                                <label for="specialization" class="col-md-4 control-label">Especializacion</label>
+                                <div class="col-md-6">
+                                    <select name="specialization" id="specialization" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($specializations as $specialization)
+                                            <option value="{{ $specialization->id }}" >{{$specialization->name }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 

@@ -33,8 +33,9 @@ class AppointmentsController extends Controller
     public function index()
     {
         $roles = Role::all();
+        $user = Auth::id();
         $appointments = appointment::paginate();
-        return view('appointments.index', ['appointments' => $appointments, 'roles' => $roles]);
+        return view('appointments.index', ['appointments' => $appointments, 'roles' => $roles, 'user' => $user]);
     }
 	
 	public function deleted()
@@ -91,6 +92,7 @@ class AppointmentsController extends Controller
 
         } catch (\Exception $e) {
             \DB::rollback();
+            return redirect()->back()->withErrors($v)->withInput();
         } finally {
             \DB::commit();
         }

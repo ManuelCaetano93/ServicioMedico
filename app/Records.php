@@ -11,10 +11,10 @@ class Records extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\User', 'id_user_records', 'id');
+        return $this->belongsTo('App\User', 'id_user', 'id');
     }
 
     public function doctor(){
-        return $this->belongsTo('App\User', 'id_user_records', 'id');
+        return $this->belongsTo('App\User', 'id_doctor', 'id');
     }
 }

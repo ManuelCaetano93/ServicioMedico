@@ -21,7 +21,7 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Historia Medica</h5></div>
                             <div class="col-xs-6 text-right">
-                                <a href="{{ url('/records/create') }}" class="btn btn-success">Nueva Historia
+                                <a href="{{ url('/records'.$user.'/create') }}" class="btn btn-success">Nueva Registro
                                 </a>
                             </div>
                         </div>
@@ -34,12 +34,12 @@
                                     <div class="card-block text-center">
                                         <div class="card" style="width: 20rem;">
                                             <div class="card-block">
-                                                <h3 class="card-title">{{ $record->name }}</h3>
+                                                <h3 class="card-title">Registro: {{ $record->id }}</h3>
                                                 <p class="card-text">{{ $record->description }}</p>
                                                 <hr>
                                                 <p>{{ $record->suffering }}</p>
                                                 <hr>
-                                                <p>@if($record->user != null){{ $record->user->name }} @endif</p>
+                                                <p>@if($record->id_user != null){{ $record->user->name }} @endif</p>
                                                 <hr>
                                                 <p>{{ $record->pretreatments }}</p>
                                                 <hr>

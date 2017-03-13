@@ -6,7 +6,7 @@ use App\Records;
 use App\Medicines;
 use Illuminate\Http\Request;
 use Validator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RecordsController extends Controller
 {
@@ -27,8 +27,15 @@ class RecordsController extends Controller
      */
     public function index()
     {
-        $records = Records:: paginate(10);
-        return view('records.index', ['records'=>$records]);
+        $user = Auth::id();
+        $user_records = Records::all();
+        $records = array();
+        foreach($user_records as $record){
+            if($record->user->id == $user){
+                $records[] = $record;
+            }
+        }
+        return view('records.index', ['records'=>$records, 'user'=>$user]);
     }
 
     /**
