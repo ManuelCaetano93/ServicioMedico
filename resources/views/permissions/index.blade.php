@@ -33,10 +33,6 @@
                                         <h4 class="card-title">{{ $permission->name }}</h4>
                                         <hr>
                                         <div class="text-center">
-                                            <a href="{{ url('permissions/'.$permission->id.'/permissions') }}"
-                                               class="btn btn-warning">
-                                                <i class="fa fa-id-card"></i>
-                                            </a>
                                             <a href="{{ url('permissions/'.$permission->id.'/edit') }}"
                                                class="btn btn-primary">
                                                 <i class="fa fa-edit"></i>

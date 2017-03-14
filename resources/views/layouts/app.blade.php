@@ -79,7 +79,6 @@
         </div>
     </nav>
     @yield('content')
-    @yield('footer')
 </div>
 @extends('footer')
 

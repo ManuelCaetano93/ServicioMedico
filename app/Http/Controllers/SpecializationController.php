@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\specialization;
+use App\Specialization;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Validator;
@@ -31,12 +31,12 @@ class SpecializationController extends Controller
         $specializations = Specialization::paginate();
         return view('specializations.index', ['specializations' => $specializations]);
     }
-	
-	public function deleted()
-	{
-		$specializations = Specialization::withTrashed()->paginate();
+
+    public function deleted()
+    {
+        $specializations = Specialization::withTrashed()->paginate();
         return view('specializations.deleted', ['specializations' => $specializations]);
-	}
+    }
 
     /**
      * Show the form for creating a new resource.
