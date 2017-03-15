@@ -72,6 +72,7 @@
         </div>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
     @foreach($specializations as $specialization)
         <div class="modal fade" id="confirm-delete{{$specialization->id}}" tabindex="-1"
@@ -107,6 +108,8 @@
             </div>
         </div>
     @endforeach
+=======
+>>>>>>> parent of c6861bc... Merge pull request #19 from ManuelCaetano93FG/Dev_sabina
 =======
 >>>>>>> parent of c6861bc... Merge pull request #19 from ManuelCaetano93FG/Dev_sabina
 @endsection
