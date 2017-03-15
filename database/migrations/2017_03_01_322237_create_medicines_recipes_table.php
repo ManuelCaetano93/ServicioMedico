@@ -14,10 +14,10 @@ class CreateMedicinesRecipesTable extends Migration
     public function up()
     {
         Schema::create('medicines_recipes', function (Blueprint $table) {
-            $table->unsignedInteger('medicines_id')->nullable();
+            $table->unsignedInteger('medicines_id');
             $table->foreign('medicines_id')->references('id')->on('medicines')->update('cascade')->delete('cascade');
-            $table->unsignedInteger('recipes_id')->nullable();
-            $table->foreign('recipes_id')->references('id')->on('recipes')->update('cascade')->delete('cascade');
+            $table->unsignedInteger('recipe_id');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->update('cascade')->delete('cascade');
         });
     }
 

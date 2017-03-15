@@ -30,9 +30,6 @@ Route::put('/users/{id}/associatespecialization', 'SpecializationsUserController
 Route::get('/specializations/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
-
-Route::resource('/records', 'RecordsController');
-
 Route::resource('/specializations', 'SpecializationController');
 
 // Appointments Routes
@@ -61,6 +58,13 @@ Route::put('/roles/{id}/assignpermissions','RolesController@assignpermissions');
 //Medicines Routes
 
 Route::resource('/medicines', 'MedicinesController');
+
+// Records Routes
+
+Route::get('/records/{id}/create', 'RecordsController@create');
+Route::post('/records/{id}/create', 'RecordsController@store');
+Route::resource('/records', 'RecordsController');
+
 
 
 

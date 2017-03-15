@@ -13,13 +13,12 @@ class RecordsTableSeeder extends Seeder
     {
         DB::table('records')->insert([
 
-            'name' => 'Record 1',
             'description' => 'descripcion',
             'suffering' => 'padecimiento x',
             'id_doctor' => '2',
             'pretreatments' => 'tratamientos anteriores xx1',
             'medicines' => 'Atamel',
-            'status' => 'activo',
+            'status' => 'Active',
             'id_user' => '1',
         ]);
 

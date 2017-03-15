@@ -13,10 +13,7 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('id_record')->nullable();
-            $table->foreign('id_record')->references('id')->on('records')->update('cascade')->delete('cascade');
-        });
+
     }
 
     /**

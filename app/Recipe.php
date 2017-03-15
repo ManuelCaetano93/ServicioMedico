@@ -6,11 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-    public function medicalrecords(){
-        return $this->belongsTo('App\Record', 'id_recipe');
-    }
+
+    protected $fillable = [
+        'name', 'description', 'status',
+    ];
 
     public function medicine(){
-        return $this->belongsToMany('App\Medicines');
+        return $this->belongsToMany('App\Medicines', 'medicines_recipes');
+    }
+
+    public function patient(){
+        return $this->belongsTo('App\User', 'id_user');
+    }
+
+    public function doctor(){
+        return $this->belongsTo('App\User', 'id_doctor');
     }
 }

@@ -21,7 +21,7 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Historia Medica</h5></div>
                             <div class="col-xs-6 text-right">
-                                <a href="{{ url('/records'.$user.'/create') }}" class="btn btn-success">Nueva Registro
+                                <a href="{{ url('/records/'.$user.'/create') }}" class="btn btn-success">Nuevo Registro
                                 </a>
                             </div>
                         </div>

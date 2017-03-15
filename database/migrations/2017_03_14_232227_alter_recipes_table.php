@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterRecipeTable extends Migration
+class AlterRecipesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,12 @@ class AlterRecipeTable extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->unsignedInteger('id_medicine');
-            $table->foreign('id_medicine')->references('id')->on('medicines')->update('cascade')->delete('cascade');
+            $table->unsignedInteger('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->update('cascade')->delete('cascade');
+        });
+        Schema::table('recipes', function (Blueprint $table) {
+            $table->unsignedInteger('id_doctor')->nullable();
+            $table->foreign('id_doctor')->references('id')->on('users')->update('cascade')->delete('cascade');
         });
     }
 

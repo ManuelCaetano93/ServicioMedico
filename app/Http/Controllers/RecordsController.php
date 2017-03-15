@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Records;
+use App\Specialization;
 use App\Medicines;
 use Illuminate\Http\Request;
 use Validator;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 
 class RecordsController extends Controller
@@ -30,9 +34,11 @@ class RecordsController extends Controller
         $user = Auth::id();
         $user_records = Records::all();
         $records = array();
-        foreach($user_records as $record){
-            if($record->user->id == $user){
-                $records[] = $record;
+        if($user_records != null) {
+            foreach ($user_records as $record) {
+                if ($record->user != null AND $record->user->id == $user) {
+                    $records[] = $record;
+                }
             }
         }
         return view('records.index', ['records'=>$records, 'user'=>$user]);
@@ -45,9 +51,11 @@ class RecordsController extends Controller
      */
     public function create($id)
     {
-        $record = Records::findOrFail($id);
+        $user = User::findOrFail($id);
+        $specializations = Specialization::all();
+        $doctors = User::all();
         $medicines = Medicines::all();
-        return view('records.create', ['medicines' => $medicines, 'record' => $record]);
+        return view('records.create', ['medicines' => $medicines, 'user' => $user, 'specializations' => $specializations, 'doctors' => $doctors]);
     }
 
     /**
@@ -59,7 +67,7 @@ class RecordsController extends Controller
     public function store(Request $request)
     {
         $v = Validator::make($request->all(),[
-            'name' => 'required|max:255',
+            'patient_id' => 'required',
             'description' => 'required|max:400',
             'suffering' => 'required',
             'doctor' => 'required',
@@ -75,18 +83,22 @@ class RecordsController extends Controller
         try{
             \DB::beginTransaction();
 
-            Records::create([
-                'name' => $request->input('name'),
+
+            $record = Records::create([
                 'description' => $request->input('description'),
                 'suffering' => $request->input('suffering'),
-                'doctor' => $request->input('doctor'),
                 'pretreatments' => $request->input('pretreatments'),
                 'medicines' => $request->input('medicines'),
                 'status' => $request->input('status'),
             ]);
+            $patient = User::findOrFail($request->input('patient_id'));
+            $patient->recordsUser()->save($record);
+            $doctor = User::findOrFail($request->input('doctor'));
+            $doctor->recordsDoctor()->save($record);
 
         }catch (\Exception $e){
             \DB::rollback();
+            return redirect()->back();
         }finally{
             \DB::commit();
         }

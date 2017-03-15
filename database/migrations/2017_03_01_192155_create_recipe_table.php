@@ -16,8 +16,6 @@ class CreateRecipeTable extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
-            $table->string('date');
-            $table->integer('quantity');
             $table->enum('status', ['Active','Fulfilled', 'Cancelled']);
             $table->softDeletes();
             $table->timestamps();

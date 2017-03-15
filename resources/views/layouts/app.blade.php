@@ -54,7 +54,7 @@
                         <li><a href="{{ url('/users') }}">Usuarios</a></li>
                         <li><a href="{{ url('/permissions') }}">Permisos</a></li>
                         <li><a href="{{ url('/roles') }}">Roles</a></li>
-                        <li><a href="{{ url('/records') }}">Historia Medica</a></li>
+                        <li><a href="{{ url('/records/') }}">Historia Medica</a></li>
                         <li><a href="{{ url('/medicines') }}">Medicinas</a></li>
                         <li><a href="{{ url('/recipes') }}">Recipes</a></li>
                         <li class="dropdown">

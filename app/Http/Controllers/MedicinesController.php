@@ -27,6 +27,7 @@ class MedicinesController extends Controller
      */
     public function index()
     {
+
         $medicines = Medicines::paginate();
         return view('medicines.index', ['medicines' => $medicines]);
     }
@@ -52,6 +53,7 @@ class MedicinesController extends Controller
         $v = Validator::make($request->all(), [
             'name' => 'required|max:255|alpha',
             'component' => 'required|max:255|alpha',
+            'presentation' => 'required',
         ]);
 
         if ($v->fails()) {
@@ -64,6 +66,7 @@ class MedicinesController extends Controller
             Medicines::create([
                 'name' => $request->input('name'),
                 'component' => $request->input('component'),
+                'presentation' => $request->input('presentation'),
             ]);
 
         } catch (\Exception $e) {

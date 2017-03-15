@@ -14,11 +14,11 @@ class AlterRecordsTable extends Migration
     public function up()
     {
         Schema::table('records', function (Blueprint $table) {
-            $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->update('cascade')->delete('cascade');
         });
         Schema::table('records', function (Blueprint $table) {
-            $table->unsignedInteger('id_doctor');
+            $table->unsignedInteger('id_doctor')->nullable();
             $table->foreign('id_doctor')->references('id')->on('users')->update('cascade')->delete('cascade');
         });
     }

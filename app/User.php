@@ -28,11 +28,19 @@ class User extends Authenticatable
     }
 
     public function recordsUser(){
-	    return $this->hasMany('App\Records', 'user_id', 'id');
+	    return $this->hasMany('App\Records', 'id_user', 'id');
     }
 
     public function recordsDoctor(){
-        return $this->hasMany('App\Records', 'doctor_id', 'id');
+        return $this->hasMany('App\Records', 'id_doctor', 'id');
+    }
+
+    public function recipesUser(){
+        return $this->hasMany('App\Recipe', 'id_user', 'id');
+    }
+
+    public function recipesDoctor(){
+        return $this->hasMany('App\Recipe', 'id_doctor', 'id');
     }
 
     /**

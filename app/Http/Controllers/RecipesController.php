@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Recipe;
 use App\Medicines;
 use Illuminate\Http\Request;
+use Validator;
+use Auth;
 
 class RecipesController extends Controller
 {
@@ -26,8 +29,9 @@ class RecipesController extends Controller
      */
     public function create()
     {
+        $patients = User::all();
         $medicines = Medicines::all();
-        return view('recipes.create', ['medicines' => $medicines]);
+        return view('recipes.create', ['medicines' => $medicines, 'patients' => $patients]);
     }
 
     /**
@@ -38,7 +42,37 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'patient' => 'required',
+            'description' => 'required|max:400',
+            'medicines' => 'required|min:1|max:3',
+        ]);
+
+        if($v->fails()){
+            return redirect()->back()->withErrors($v)->withInput();
+        }
+        try{
+            \DB::beginTransaction();
+
+            $recipe = Recipe::create([
+                'description' => $request->input('description'),
+                'status' => 'Active',
+            ]);
+            foreach($request->input('medicines') as $medicine){
+                $recipe->medicine()->attach($medicine);
+            }
+            $patient = User::findOrFail($request->input('patient'));
+            $patient->recipesUser()->save($recipe);
+            $doctor = Auth::user();
+            $doctor->recipesDoctor()->save($recipe);
+
+
+        }catch (\Exception $e){
+            \DB::rollback();
+        }finally{
+            \DB::commit();
+        }
+        return redirect('/recipes')->with('mensaje', 'Recipe creado satisfactoriamente');
     }
 
     /**

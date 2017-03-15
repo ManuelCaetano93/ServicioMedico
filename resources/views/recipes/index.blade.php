@@ -30,7 +30,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-block">
-                                        <h4 class="card-title">{{ $recipe->name }}</h4>
+                                        <h4 class="card-title">{{ $recipe->description }}</h4>
                                         <hr>
                                         <div class="text-center">
                                             <a href="{{ url('recipes/'.$recipe->id.'/recipes') }}"

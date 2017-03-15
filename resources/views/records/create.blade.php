@@ -12,17 +12,15 @@
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Nombre del Paciente</label>
-
+                            <div class="form-group{{ $errors->has('patient_id') ? ' has-error' : '' }}">
+                                <label for="patient_id" class="col-md-4 control-label">Nombre del Paciente</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <spam class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </spam>
-                                    @endif
+                                    <select name="patient_id" id="patient_id" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($doctors as $doctor)
+                                                <option value="{{ $doctor->id }}" >{{ $doctor->name }} {{ $doctor->surname }} - {{ $doctor->identification }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
@@ -54,17 +52,16 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('doctor') ? ' has-error' : '' }}">
-                                <label for="doctor" class="col-md-4 control-label">Medico Anterior</label>
-
+                                <label for="doctor" class="col-md-4 control-label">Doctor</label>
                                 <div class="col-md-6">
-                                    <textarea name="doctor" id="doctor" cols="30" rows="5"
-                                              class="form-control">{{ old('doctor') }}</textarea>
-
-                                    @if ($errors->has('doctor'))
-                                        <spam class="help-block">
-                                        <strong>{{ $errors->first('doctor') }}</strong>
-                                    </spam>
-                                    @endif
+                                    <select name="doctor" id="doctor" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($doctors as $doctor)
+                                            @if($doctor->hasRole('Doctor'))
+                                                <option value="{{ $doctor->id }}" >Dr.{{ $doctor->surname }}: @foreach($doctor->specializations as $specialization) -- {{ $specialization->name }} @endforeach </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('pretreatments') ? ' has-error' : '' }}">
