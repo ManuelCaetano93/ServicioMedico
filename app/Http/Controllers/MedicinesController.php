@@ -32,6 +32,11 @@ class MedicinesController extends Controller
         return view('medicines.index', ['medicines' => $medicines]);
     }
 
+    public function deleted(){
+        $medicines = Medicines::withTrashed()->paginate();
+        return view('/medicines/deleted', ['medicines' => $medicines]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -98,8 +103,8 @@ class MedicinesController extends Controller
      */
     public function edit($id)
     {
-        $medicine = Medicines::findOrFail($id);
-        return view('medicines.edit', ['medicines' => $medicine]);
+        $medicines = Medicines::findOrFail($id);
+        return view('medicines.edit', ['medicines' => $medicines]);
     }
 
     /**
@@ -146,26 +151,13 @@ class MedicinesController extends Controller
      */
     public function destroy($id)
     {
-        Medicines::destroy($id);
+        Medicines::find($id)->delete();
         return redirect('/medicines')->with('mensaje', 'Medicina eliminada satisfactoriamente');
     }
 
-    public function permissions($id)
+    public function restore($id)
     {
-        if (!Auth::user()->can('PermissionsMedicine'))
-            abort(403);
-
-        $medicine = Medicines::findOrFail($id);
-        $permissions = Permission::all();
-        return view('medicines.permissions', ['medicine' => $medicine, 'permissions' => $permissions]);
-    }
-
-    public function asignpermissions(Request $request, $id)
-    {
-        $medicine = Medicines::findOrFail($id);
-        $medicine->revokePermissionTo(Permission::all());
-        if ($request->input('permissions'))
-            $medicine->givePermissionTo($request->input('permissions'));
-        return redirect('/medicines')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
+        Medicines::withTrashed($id)->find($id)->restore();
+        return redirect('/medicines/deleted')->with('mensaje', 'Medicina recuperada exitosamente');
     }
 }

@@ -23,10 +23,15 @@
                                 <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
                                 </a>
                             </div>
+                            <div class="col-xs-2 text-right">
+                                <a href="{{ url('/medicines/deleted') }}" class="btn btn-success">Recuperar
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-body">
                             @foreach($medicines as $medicine)
+
                                 <div class="col-sm-5">
                                     <div class="card">
                                         <div class="card-block">

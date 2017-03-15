@@ -18,6 +18,7 @@ class CreateMedicinesTable extends Migration
             $table->string('name');
             $table->string('component');
             $table->string('presentation');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

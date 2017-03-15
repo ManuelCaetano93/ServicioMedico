@@ -183,7 +183,6 @@ class RecordsController extends Controller
      */
     public function destroy($id)
     {
-
         Records::destroy($id);
         return redirect('/records')->with('mensaje', 'Historia eliminada satisfactoriamente');
     }

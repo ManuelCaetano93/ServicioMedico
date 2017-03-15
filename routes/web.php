@@ -57,6 +57,8 @@ Route::put('/roles/{id}/assignpermissions','RolesController@assignpermissions');
 
 //Medicines Routes
 
+Route::get('/medicines/deleted', 'MedicinesController@deleted');
+Route::post('/medicines/{id}/restore', 'MedicinesController@restore');
 Route::resource('/medicines', 'MedicinesController');
 
 // Records Routes

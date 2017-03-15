@@ -117,6 +117,9 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $recipe->medicine()->detach(Medicines::all());
+        Recipe::destroy($id);
+        return redirect('/recipes')->with('mensaje', 'Recipe eliminado satisfactoriamente');
     }
 }

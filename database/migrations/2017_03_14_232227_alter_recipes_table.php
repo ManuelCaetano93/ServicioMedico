@@ -15,11 +15,11 @@ class AlterRecipesTable extends Migration
     {
         Schema::table('recipes', function (Blueprint $table) {
             $table->unsignedInteger('id_user')->nullable();
-            $table->foreign('id_user')->references('id')->on('users')->update('cascade')->delete('cascade');
+            $table->foreign('id_user')->references('id')->on('users');
         });
         Schema::table('recipes', function (Blueprint $table) {
             $table->unsignedInteger('id_doctor')->nullable();
-            $table->foreign('id_doctor')->references('id')->on('users')->update('cascade')->delete('cascade');
+            $table->foreign('id_doctor')->references('id')->on('users');
         });
     }
 
