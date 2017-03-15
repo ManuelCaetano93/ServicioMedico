@@ -36,7 +36,7 @@
                                         <hr>
                                         <div class="text-center">
                                             <td>
-                                                <a href="{{ url('roles/'.$role->id.'/roles') }}"
+                                                <a href="{{ url('roles/'.$role->id.'/assignpermissions') }}"
                                                    class="btn btn-warning">
                                                     <i class="fa fa-id-card"></i>
                                                 </a>

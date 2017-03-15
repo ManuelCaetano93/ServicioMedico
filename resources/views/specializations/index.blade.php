@@ -71,4 +71,39 @@
             </div>
         </div>
     </div>
-@endsection
+    </div>
+    @foreach($specializations as $specialization)
+        <div class="modal fade" id="confirm-delete{{$specialization->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea eliminar este
+                            registro?</p>
+                        <p class="name">{{ url('/specializations/'.$specialization->name) }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-inline form-delete"
+                              role="form"
+                              method="POST"
+                              action="{{ url('/specializations/'.$specialization->id) }}">
+                            {!! method_field('DELETE') !!}
+                            {!! csrf_field() !!}
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @endsection
