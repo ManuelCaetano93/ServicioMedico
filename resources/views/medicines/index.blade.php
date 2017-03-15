@@ -27,7 +27,7 @@
                     </div>
                     <div class="panel-body">
                         @foreach($medicines as $medicine)
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <div class="card">
                                     <div class="card-block">
                                         <h3 class="card-title">{{ $medicine->name }}</h3>
