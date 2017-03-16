@@ -17,7 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row fa-align-center">
+                        <div class="row">
                             <div class="col-xs-6"><h5>Roles</h5></div>
                             <div class="col-xs-6 text-right">
                                 <a href="{{ url('/roles/create') }}" class="btn btn-success">Nuevo Rol

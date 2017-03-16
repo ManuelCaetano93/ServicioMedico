@@ -18,8 +18,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-xs-4"><h5>Medicinas</h5></div>
                             <div class="col-xs-8 text-right">
+=======
+                            <div class="col-xs-6"><h5>Medicinas</h5></div>
+                            <div class="col-xs-6 text-right">
+>>>>>>> Dev_sabina
                                 <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
                                 </a>
                                 <a href="{{ url('/medicines/deleted') }}" class="btn btn-success">Recuperar
@@ -55,12 +60,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    {{ $medicines->links() }}
-                                </td>
-                            </tr>
+                            </div>
+                        @endforeach
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                {{ $medicines->links() }}
+                            </td>
+                        </tr>
                     </div>
                 </div>
             </div>

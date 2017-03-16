@@ -40,7 +40,6 @@ Route::resource('/specializations', 'SpecializationController');
 // Appointments Routes
 Route::resource('/appointments', 'AppointmentsController');
 Route::get('/appointment/deleted', 'AppointmentsController@deleted');
-
 Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
 Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
 Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
@@ -79,6 +78,7 @@ Auth::routes();
 Route::post('/users', 'UsersController@index');
 Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');
 Route::put('/medicines/{id}/asignpermissions', 'MedicinesController@asignpermissions');
+
 
 
 //});

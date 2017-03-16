@@ -18,7 +18,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row fa-align-center">
+                        <div class="row">
                             <div class="col-xs-6"><h5>Historia Medica</h5></div>
                             <div class="col-xs-6 text-right">
                                 <a href="{{ url('/records/'.$user.'/create') }}" class="btn btn-success">Nuevo Registro
@@ -46,25 +46,20 @@
                                                 <p>{{ $record->medicines }}</p>
                                                 <hr>
                                                 <p>{{ $record->status }}</p>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6 text-center">
-                                                        <a href="{{ url('records/'.$record->id.'/edit') }}"
-                                                           class="btn btn-primary">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="col-sm-6 text-center">
-                                                        <button class="btn btn-danger"
-                                                                data-action="{{ url('/records/'.$record->id) }}"
-                                                                data-name="{{ $record->name }}"
-                                                                data-toggle="modal"
-                                                                data-target="#confirm-delete{{$record->id}}">
-                                                            <i class="fa fa-trash fa-1x"></i>
-                                                        </button>
-                                                    </div>
+                                                <div class="text-center">
+                                                    <a href="{{ url('records/'.$record->id.'/edit') }}"
+                                                       class="btn btn-primary">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger"
+                                                            data-action="{{ url('/records/'.$record->id) }}"
+                                                            data-name="{{ $record->name }}"
+                                                            data-toggle="modal"
+                                                            data-target="#confirm-delete{{$record->id}}">
+                                                        <i class="fa fa-trash fa-1x"></i>
+                                                    </button>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
