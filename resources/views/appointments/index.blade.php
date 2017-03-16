@@ -22,9 +22,7 @@
                             <div class="col-xs-6 text-right">
                                 <a href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
                                 </a>
-                            </div>
-                            <div class="col-xs-2 text-right">
-                                <a href="{{ url('/appointments/deleted') }}" class="btn btn-success">Recuperar
+                                <a href="{{ url('/appointment/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
                             </div>
                         </div>

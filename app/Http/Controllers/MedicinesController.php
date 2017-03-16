@@ -152,6 +152,7 @@ class MedicinesController extends Controller
         if (!Auth::user()->can('PermissionsMedicine'))
             abort(403);
 
+        $roles = Role::all();
         $medicine = Medicines::findOrFail($id);
         $permissions = Permission::all();
         return view('medicines.permissions', ['medicine' => $medicine, 'permissions' => $permissions]);

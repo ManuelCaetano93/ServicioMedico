@@ -23,9 +23,7 @@
                                 <a href="{{ url('/specializations/create') }}" class="btn btn-success">Nueva
                                     Especializacion
                                 </a>
-                            </div>
-                            <div class="col-xs-2 text-right">
-                                <a href="{{ url('/specializations/deleted') }}" class="btn btn-success">Recuperar
+                                <a href="{{ url('/specialization/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
                             </div>
                         </div>
@@ -64,10 +62,50 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                {{ $specializations->links() }}
+                            </td>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    @foreach($specializations as $specialization)
+        <div class="modal fade" id="confirm-delete{{$specialization->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea eliminar este
+                            registro?</p>
+                        <p class="name">{{ url('/specializations/'.$specialization->name) }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-inline form-delete"
+                              role="form"
+                              method="POST"
+                              action="{{ url('/specializations/'.$specialization->id) }}">
+                            {!! method_field('DELETE') !!}
+                            {!! csrf_field() !!}
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
+

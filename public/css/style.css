@@ -1120,6 +1120,11 @@ ul.link-list li {
 
 footer {
     background: #011627;
+    margin-top: 39vh;
+    position: relative;
+    padding: 30px 0 0 0;
+    size: 20px;
+    text-shadow: none;
 }
 
 footer ul.link-list li a {

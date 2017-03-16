@@ -32,10 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ url('img/logo.png') }}" alt="logo"/></a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
@@ -80,6 +77,8 @@
     </nav>
     @yield('content')
 </div>
+</body>
+@extends('footer')
 <!-- Scripts -->
 <script src="/js/app.js"></script>
 <script src="{{ asset("js/jquery/jquery.min.js") }}"></script>

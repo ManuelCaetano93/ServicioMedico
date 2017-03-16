@@ -157,7 +157,7 @@ class RolesController extends Controller
     public function permissions($id)
     {
         //if (!Auth::user()->can('PermissionsRole'))
-            //abort(403);
+        //abort(403);
 
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
