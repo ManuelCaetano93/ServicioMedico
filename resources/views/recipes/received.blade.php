@@ -18,10 +18,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row fa-align-center">
-                            <div class="col-xs-4"><h5>Recipe</h5></div>
-                            <div class="col-xs-8 text-right">
-                                <a href="{{ url('/recipes/received') }}" class="btn btn-success">Recipes Recibidos
-                                </a>
+                            <div class="col-xs-6"><h5>Recipe</h5></div>
+                            <div class="col-xs-6 text-right">
                                 <a href="{{ url('/recipes/create') }}" class="btn btn-success">Nuevo Recipe
                                 </a>
                             </div>
@@ -29,37 +27,37 @@
                     </div>
                     <div class="panel-body">
                         @foreach($recipes as $recipe)
-                            @if($recipe->status == 'Active')
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <h4 class="card-title">{{ $recipe->description }}</h4>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a href="{{ url('recipes/'.$recipe->id.'/recipes') }}"
-                                               class="btn btn-warning">
-                                                <i class="fa fa-id-card"></i>
-                                            </a>
+                            @if($recipe->status == 'Fulfilled')
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <h4 class="card-title">{{ $recipe->description }}</h4>
+                                            <hr>
+                                            <div class="text-center">
+                                                <a href="{{ url('recipes/'.$recipe->id.'/recipes') }}"
+                                                   class="btn btn-warning">
+                                                    <i class="fa fa-id-card"></i>
+                                                </a>
 
 
-                                            <button class="btn btn-success"
-                                                    data-action="{{ url('recipes/'.$recipe->id.'/receive') }}"
-                                                    data-name="{{ $recipe->description }}"
-                                                    data-toggle="modal"
-                                                    data-target="#confirm-receive{{$recipe->id}}">
-                                                <i class="fa fa-edit fa-1x"></i>
-                                            </button>
-                                            <button class="btn btn-danger"
-                                                    data-action="{{ url('/recipes/'.$recipe->id) }}"
-                                                    data-name="{{ $recipe->description }}"
-                                                    data-toggle="modal"
-                                                    data-target="#confirm-delete{{$recipe->id}}">
-                                                <i class="fa fa-trash fa-1x"></i>
-                                            </button>
+                                                <button class="btn btn-success"
+                                                        data-action="{{ url('recipes/'.$recipe->id.'/receive') }}"
+                                                        data-name="{{ $recipe->description }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-receive{{$recipe->id}}">
+                                                    <i class="fa fa-edit fa-1x"></i>
+                                                </button>
+                                                <button class="btn btn-danger"
+                                                        data-action="{{ url('/recipes/'.$recipe->id) }}"
+                                                        data-name="{{ $recipe->description }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-delete{{$recipe->id}}">
+                                                    <i class="fa fa-trash fa-1x"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                         @endforeach
                         <div class="col-sm-12 text-center">

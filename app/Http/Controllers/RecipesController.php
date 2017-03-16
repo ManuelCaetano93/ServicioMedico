@@ -122,4 +122,17 @@ class RecipesController extends Controller
         Recipe::destroy($id);
         return redirect('/recipes')->with('mensaje', 'Recipe eliminado satisfactoriamente');
     }
+
+    public function receive($id){
+        $recipe = Recipe::findOrFail($id);
+        $recipe->update([
+            'status' => 'Fulfilled',
+        ]);
+        return redirect('/recipes')->with('mensaje', 'Recipe recibido exitosamente');
+    }
+
+    public function received(){
+        $recipes = Recipe::paginate();
+        return view('/recipes/received', ['recipes' => $recipes]);
+    }
 }

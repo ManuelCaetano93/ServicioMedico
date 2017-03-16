@@ -17,13 +17,11 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row fa-align-center">
-                            <div class="col-xs-6"><h5>Medicinas</h5></div>
-                            <div class="col-xs-6 text-right">
+                        <div class="row">
+                            <div class="col-xs-4"><h5>Medicinas</h5></div>
+                            <div class="col-xs-8 text-right">
                                 <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
                                 </a>
-                            </div>
-                            <div class="col-xs-2 text-right">
                                 <a href="{{ url('/medicines/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
                             </div>

@@ -48,6 +48,11 @@ Route::resource('/permissions', 'PermissionsController');
 // Recipes Routes
 
 Route::resource('/recipes', 'RecipesController');
+Route::match(array('PUT', 'PATCH'), "/recipes/{id}/receive", array(
+    'uses' => 'RecipesController@receive',
+    'as' => 'recipes.receive'
+));
+Route::get('/recipes/received', 'RecipesController@received');
 
 // Roles Routes
 
