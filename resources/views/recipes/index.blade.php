@@ -17,7 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row fa-align-center">
+                        <div class="row">
                             <div class="col-xs-4"><h5>Recipe</h5></div>
                             <div class="col-xs-8 text-right">
                                 <a href="{{ url('/recipes/received') }}" class="btn btn-success">Recipes Recibidos

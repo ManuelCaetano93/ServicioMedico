@@ -19,13 +19,8 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-4"><h5>Citas</h5></div>
-<<<<<<< HEAD
-                            <div class="col-xs-6 text-right">
-                                <a href="{{ url('users/'.$user.'/appointment') }}" class="btn btn-success">Nueva Cita
-=======
                             <div class="col-xs-8 text-right">
-                                <a href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
->>>>>>> Dev_sabina
+                                <a href="{{ url('users/'.$user.'/appointment') }}" class="btn btn-success">Nueva Cita
                                 </a>
                                 <a href="{{ url('/appointment/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
