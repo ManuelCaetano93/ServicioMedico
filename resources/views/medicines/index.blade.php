@@ -17,7 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row">
+                        <div class="row fa-align-center">
                             <div class="col-xs-6"><h5>Medicinas</h5></div>
                             <div class="col-xs-6 text-right">
                                 <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
@@ -49,13 +49,12 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                        <tr>
-                            <td colspan="4" class="text-center">
-                                {{ $medicines->links() }}
-                            </td>
-                        </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    {{ $medicines->links() }}
+                                </td>
+                            </tr>
                     </div>
                 </div>
             </div>

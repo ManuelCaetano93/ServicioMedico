@@ -25,6 +25,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="panel-body">
                         @foreach($specializations as $specialization)
 
@@ -55,7 +56,6 @@
 
                         @endforeach
                         {{ $specializations->links() }}
-
                     </div>
                 </div>
             </div>

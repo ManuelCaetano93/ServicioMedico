@@ -14,7 +14,6 @@
 
         .title {
             font-size: 72px;
-
             margin: 50px;
         }
     </style>

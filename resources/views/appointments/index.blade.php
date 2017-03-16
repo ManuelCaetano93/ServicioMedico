@@ -17,9 +17,9 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row">
+                        <div class="row fa-align-center">
                             <div class="col-xs-4"><h5>Citas</h5></div>
-                            <div class="col-xs-8 text-right">
+                            <div class="col-xs-6 text-right">
                                 <a href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
                                 </a>
                                 <a href="{{ url('/appointment/deleted') }}" class="btn btn-success">Recuperar
