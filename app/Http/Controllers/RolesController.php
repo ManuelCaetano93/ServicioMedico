@@ -38,8 +38,6 @@ class RolesController extends Controller
      */
     public function create()
     {
-
-
         return view('roles.create');
     }
 
@@ -95,8 +93,6 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-
-
         $role = Role::findOrFail($id);
         return view('roles.edit', ['role' => $role]);
     }
