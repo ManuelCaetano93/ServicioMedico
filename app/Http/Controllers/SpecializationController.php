@@ -153,6 +153,6 @@ class SpecializationController extends Controller
 	public function restore($id)
 	{
 		Specialization::withTrashed($id)->find($id)->restore();
-		return redirect ('/specializations/deleted')->with('message', 'Especializacion restaurada exitosamente');
+		return redirect ('/specialization/deleted')->with('message', 'Especializacion restaurada exitosamente');
 	}
 }

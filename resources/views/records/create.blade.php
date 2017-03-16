@@ -20,8 +20,8 @@
 
                                     @if ($errors->has('name'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -34,8 +34,8 @@
 
                                     @if ($errors->has('description'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -48,8 +48,8 @@
 
                                     @if ($errors->has('suffering'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('suffering') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('suffering') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -62,8 +62,8 @@
 
                                     @if ($errors->has('doctor'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('doctor') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('doctor') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -76,8 +76,8 @@
 
                                     @if ($errors->has('pretreatments'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('pretreatments') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('pretreatments') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -90,8 +90,8 @@
 
                                     @if ($errors->has('medicines'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('medicines') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('medicines') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
@@ -107,8 +107,8 @@
                                     </select>
                                     @if ($errors->has('status'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('status') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>
