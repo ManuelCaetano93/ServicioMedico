@@ -41,6 +41,20 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('presentation') ? ' has-error' : '' }}">
+                                <label for="presentation" class="col-md-4 control-label">Presentacion</label>
+
+                                <div class="col-md-6">
+                                    <input id="presentation" type="text" class="form-control" name="presentation"
+                                           value="{{ $medicines->presentation or old('presentation') }}" autofocus>
+
+                                    @if ($errors->has('presentation'))
+                                        <spam class="help-block">
+                                            <strong>{{ $errors->first('presentation') }}</strong>
+                                        </spam>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

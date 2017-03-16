@@ -1,4 +1,5 @@
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,8 @@ Route::resource('/specializations', 'SpecializationController');
 Route::get('/specialization/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
+Route::resource('/specializations', 'SpecializationController');
+
 
 // Appointments Routes
 Route::resource('/appointments', 'AppointmentsController');
@@ -41,20 +44,37 @@ Route::get('/appointment/deleted', 'AppointmentsController@deleted');
 Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
 Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
 Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
-Route::post('users/{id}/appointment', 'AppointmentsController@storeappointment');
+route::post('appointments/{id}/create', 'AppointmentsController@store');
 
 // Permissions Routes
 Route::resource('/permissions', 'PermissionsController');
 
+// Recipes Routes
+
+Route::resource('/recipes', 'RecipesController');
+Route::match(array('PUT', 'PATCH'), "/recipes/{id}/receive", array(
+    'uses' => 'RecipesController@receive',
+    'as' => 'recipes.receive'
+));
+Route::get('/recipes/received', 'RecipesController@received');
 
 // Roles Routes
 Route::resource('/roles', 'RolesController');
 Route::get('/roles/{id}/assignpermissions', 'RolesController@permissions');
 Route::put('/roles/{id}/assignpermissions', 'RolesController@assignpermissions');
 
-
 //Medicines Routes
+  
+Route::get('/medicines/deleted', 'MedicinesController@deleted');
+Route::post('/medicines/{id}/restore', 'MedicinesController@restore');
 Route::resource('/medicines', 'MedicinesController');
+
+// Records Routes
+
+Route::get('/records/{id}/create', 'RecordsController@create');
+Route::post('/records/{id}/create', 'RecordsController@store');
+Route::resource('/records', 'RecordsController');
+
 Auth::routes();
 Route::post('/users', 'UsersController@index');
 Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');

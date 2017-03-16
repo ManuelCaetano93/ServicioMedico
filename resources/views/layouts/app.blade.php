@@ -11,7 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('js/jqueryui/jquery-ui.min.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
@@ -51,8 +51,9 @@
                         <li><a href="{{ url('/users') }}">Usuarios</a></li>
                         <li><a href="{{ url('/permissions') }}">Permisos</a></li>
                         <li><a href="{{ url('/roles') }}">Roles</a></li>
-                        <li><a href="{{ url('/records') }}">Historia Medica</a></li>
+                        <li><a href="{{ url('/records/') }}">Historia Medica</a></li>
                         <li><a href="{{ url('/medicines') }}">Medicinas</a></li>
+                        <li><a href="{{ url('/recipes') }}">Recipes</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -81,8 +82,9 @@
 @extends('footer')
 <!-- Scripts -->
 <script src="/js/app.js"></script>
-<script src="{{ asset("js/jquery/jquery.min.js") }}"></script>
-<script src="{{ asset("js/jqueryui/jquery-ui.js") }}"></script>
+<script src="{{ asset("js/jquery.js") }}"></script>
+<script src="{{ asset("js/jqueryui/jquery-ui.min.js") }}"></script>
 <script src="{{ asset('js/datetimepicker.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

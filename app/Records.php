@@ -10,7 +10,11 @@ class Records extends Model
         'name', 'description', 'suffering', 'doctor', 'pretreatments', 'medicines', 'status'
     ];
 
-    public function userRecords(){
-        return $this->belongsTo('App/User', 'id_user_records');
+    public function user(){
+        return $this->belongsTo('App\User', 'id_user', 'id');
+    }
+
+    public function doctor(){
+        return $this->belongsTo('App\User', 'id_doctor', 'id');
     }
 }

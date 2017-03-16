@@ -17,36 +17,42 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row fa-align-center">
-                            <div class="col-xs-6"><h5>Medicinas</h5></div>
-                            <div class="col-xs-6 text-right">
+                        <div class="row">
+                            <div class="col-xs-4"><h5>Medicinas</h5></div>
+                            <div class="col-xs-8 text-right">
                                 <a href="{{ url('/medicines/create') }}" class="btn btn-success">Nueva Medicina
+                                </a>
+                                <a href="{{ url('/medicines/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
-                        @foreach($medicines as $medicine)
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <h3 class="card-title">{{ $medicine->name }}</h3>
-                                        <p class="card-text">{{ $medicine->component }}</p>
-                                        <hr>
-                                        <a href="{{ url('medicines/'.$medicine->id.'/asignpermissions') }}"
-                                           class="btn btn-warning">
-                                            <i class="fa fa-id-card"></i>
-                                        </a>
-                                        <a href="{{ url('medicines/'.$medicine->id.'/edit') }}"
-                                           class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <button class="btn btn-danger"
-                                                data-action="{{ url('/medicines/'.$medicine->id) }}"
-                                                data-name="{{ $medicine->name }}"
-                                                data-toggle="modal" data-target="#confirm-delete{{$medicine->id}}">
-                                            <i class="fa fa-trash fa-1x"></i>
-                                        </button>
+                            @foreach($medicines as $medicine)
+                                <div class="col-sm-5">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <h3 class="card-title">{{ $medicine->name }}</h3>
+                                            <p class="card-text">{{ $medicine->component }}</p>
+                                            <p class="card-text">{{ $medicine->presentation }}</p>
+
+                                            <hr>
+                                            <a href="{{ url('medicines/'.$medicine->id.'/medicines') }}"
+                                               class="btn btn-warning">
+                                                <i class="fa fa-id-card"></i>
+                                            </a>
+                                            <a href="{{ url('medicines/'.$medicine->id.'/edit') }}"
+                                               class="btn btn-primary">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-danger"
+                                                    data-action="{{ url('/medicines/'.$medicine->id) }}"
+                                                    data-name="{{ $medicine->name }}"
+                                                    data-toggle="modal" data-target="#confirm-delete{{$medicine->id}}">
+                                                <i class="fa fa-trash fa-1x"></i>
+                                            </button>
+
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

@@ -8,23 +8,33 @@
                     <div class="panel-heading">Crear Cita</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/appointments') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/appointments/'.$user->id.'/create') }}">
                             {{ method_field('POST') }}
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('id_user_patient') ? ' has-error' : '' }}">
-                                <label for="id_user_patient" class="col-md-4 control-label ">Usuario</label>
-
+                                <label for="user" class="col-md-4 control-label ">Usuario</label>
                                 <div class="col-md-6">
-                                    <input id="id_user_patient" type="hidden" class="form-control" name="id_user_patient"
-                                           value="{{ $user->id }}">
-                                    <div class="panel panel-default input-group-md">{{ $user->name }} {{ $user->surname }}</div>
+                                    <div name="user" class="panel panel-default">{{ $user->name }} {{ $user->surname }}</div>
+                                </div>
+                            </div>
 
-                                    @if ($errors->has('id_user_patient'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('id_user_patient') }}</strong>
-                                    </span>
-                                    @endif
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <input id="id_user_patient" type="text" class="form-control" name="id_user_patient"
+                                           value="{{ $user->id }}" autofocus hidden>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('specialization') ? ' has-error' : '' }}">
+                                <label for="specialization" class="col-md-4 control-label">Especializacion</label>
+                                <div class="col-md-6">
+                                    <select name="specialization" id="specialization" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($specializations as $specialization)
+                                            <option value="{{ $specialization->id }}" >{{$specialization->name }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -44,62 +54,18 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('id_user_doctor') ? ' has-error' : '' }}">
-                                <label for="id_user_doctor" class="col-md-4 control-label">Cedula</label>
-
+                                <label for="id_user_doctor" class="col-md-4 control-label">Doctor</label>
                                 <div class="col-md-6">
-                                    <input id="id_user_doctor" type="text" class="form-control" name="id_user_doctor"
-                                           value="" required>
-                                    @if ($errors->has('id_user_doctor'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('id_user_doctor') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="specialization" class="col-md-4 control-label">Especializacion</label>
-
-                                <div class="col-md-6">
-                                    <select name="specialization" id="specialization" class="form-control">
+                                    <select name="id_user_doctor" id="id_user_doctor" class="form-control">
                                         <option value="">Seleccione</option>
-                                        @foreach($specializations as $specialization)
-                                        <option value="{{ $specialization->id }}" >{{ $specialization->name }}</option>
+                                        @foreach($doctors as $doctor)
+                                            @if($doctor->hasRole('Doctor'))
+                                                <option value="{{ $doctor->id }}" >Dr.{{ $doctor->surname }}: @foreach($doctor->specializations as $specialization) -- {{ $specialization->name }} @endforeach </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="panel-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Apellido</th>
-                                        <th width="10%" colspan="4">Acciones</th>
-
-                                    </tr>
-                                    @foreach( $users as $user)
-                                        <tr>
-                                            <td>Dr. {{ $user->surname }}</td>
-                                            {{-- <td>
-                                                <a href="{{ url('users/'.$user->id.'/permissions') }}" class="btn btn-warning">
-                                                    <i class="fa fa-id-card"></i>
-                                                </a>
-                                            </td> --}}
-
-                                            <td>
-                                                <button class="btn btn-success"
-                                                        data-action=""
-                                                        data-name=""
-                                                        data-toggle="modal" data-target="">
-                                                    <i class="fa fa-id-card fa-1x"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

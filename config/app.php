@@ -168,6 +168,7 @@ return [
          */
 
         Spatie\Permission\PermissionServiceProvider::class,
+		Cviebrock\EloquentSluggable\ServiceProvider::class,
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
         //

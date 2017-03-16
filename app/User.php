@@ -27,6 +27,22 @@ class User extends Authenticatable
 	    return $this->belongsToMany('App\User', 'appointments', 'id_user_patient', 'id_user_doctor')->withTimestamps();
     }
 
+    public function recordsUser(){
+	    return $this->hasMany('App\Records', 'id_user', 'id');
+    }
+
+    public function recordsDoctor(){
+        return $this->hasMany('App\Records', 'id_doctor', 'id');
+    }
+
+    public function recipesUser(){
+        return $this->hasMany('App\Recipe', 'id_user', 'id');
+    }
+
+    public function recipesDoctor(){
+        return $this->hasMany('App\Recipe', 'id_doctor', 'id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

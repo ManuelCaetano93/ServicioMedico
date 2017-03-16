@@ -27,8 +27,14 @@ class MedicinesController extends Controller
      */
     public function index()
     {
+
         $medicines = Medicines::paginate();
         return view('medicines.index', ['medicines' => $medicines]);
+    }
+
+    public function deleted(){
+        $medicines = Medicines::withTrashed()->paginate();
+        return view('/medicines/deleted', ['medicines' => $medicines]);
     }
 
     /**
@@ -52,6 +58,7 @@ class MedicinesController extends Controller
         $v = Validator::make($request->all(), [
             'name' => 'required|max:255|alpha',
             'component' => 'required|max:255|alpha',
+            'presentation' => 'required',
         ]);
 
         if ($v->fails()) {
@@ -64,6 +71,7 @@ class MedicinesController extends Controller
             Medicines::create([
                 'name' => $request->input('name'),
                 'component' => $request->input('component'),
+                'presentation' => $request->input('presentation'),
             ]);
 
         } catch (\Exception $e) {
@@ -95,8 +103,8 @@ class MedicinesController extends Controller
      */
     public function edit($id)
     {
-        $medicine = Medicines::findOrFail($id);
-        return view('medicines.edit', ['medicines' => $medicine]);
+        $medicines = Medicines::findOrFail($id);
+        return view('medicines.edit', ['medicines' => $medicines]);
     }
 
     /**
@@ -143,27 +151,13 @@ class MedicinesController extends Controller
      */
     public function destroy($id)
     {
-        Medicines::destroy($id);
+        Medicines::find($id)->delete();
         return redirect('/medicines')->with('mensaje', 'Medicina eliminada satisfactoriamente');
     }
 
-    public function permissions($id)
+    public function restore($id)
     {
-        if (!Auth::user()->can('PermissionsMedicine'))
-            abort(403);
-
-        $roles = Role::all();
-        $medicine = Medicines::findOrFail($id);
-        $permissions = Permission::all();
-        return view('medicines.permissions', ['medicine' => $medicine, 'permissions' => $permissions]);
-    }
-
-    public function asignpermissions(Request $request, $id)
-    {
-        $medicine = Medicines::findOrFail($id);
-        $medicine->revokePermissionTo(Permission::all());
-        if ($request->input('permissions'))
-            $medicine->givePermissionTo($request->input('permissions'));
-        return redirect('/medicines')->with('mensaje', 'Permisos Asignados Satisfactoriamente');
+        Medicines::withTrashed($id)->find($id)->restore();
+        return redirect('/medicines/deleted')->with('mensaje', 'Medicina recuperada exitosamente');
     }
 }

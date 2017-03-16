@@ -20,7 +20,7 @@
                         <div class="row fa-align-center">
                             <div class="col-xs-4"><h5>Citas</h5></div>
                             <div class="col-xs-6 text-right">
-                                <a href="{{ url('/appointments/create') }}" class="btn btn-success">Nueva Cita
+                                <a href="{{ url('users/'.$user.'/appointment') }}" class="btn btn-success">Nueva Cita
                                 </a>
                                 <a href="{{ url('/appointment/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
