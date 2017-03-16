@@ -30,6 +30,7 @@
                     </div>
                     <div class="panel-body">
                         @foreach($specializations as $specialization)
+                            <<<<<<< HEAD
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-block">
