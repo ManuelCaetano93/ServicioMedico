@@ -44,7 +44,7 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="_method" value="POST"/>
                                                     <button type="submit" class="btn btn-success">
-                                                        Restaurar
+                                                        <i class="fa fa-undo" aria-hidden="true"></i>
                                                     </button>
                                                 </form>
                                             </div>
