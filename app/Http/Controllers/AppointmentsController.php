@@ -6,9 +6,9 @@ use App\Appointment;
 use App\User;
 use App\Specialization;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Auth;
 use Validator;
 
 class AppointmentsController extends Controller
@@ -41,7 +41,7 @@ class AppointmentsController extends Controller
 	public function deleted()
 	{
         $roles = Role::all();
-		$appointments = appointment::withTrashed()->paginate();
+		$appointments = Appointment::withTrashed()->paginate();
         return view('appointments.deleted', ['appointments' => $appointments, 'roles' => $roles]);
 	}
 

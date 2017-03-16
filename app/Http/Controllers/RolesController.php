@@ -38,6 +38,8 @@ class RolesController extends Controller
      */
     public function create()
     {
+
+
         return view('roles.create');
     }
 
@@ -93,6 +95,8 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
+
+
         $role = Role::findOrFail($id);
         return view('roles.edit', ['role' => $role]);
     }
@@ -153,7 +157,7 @@ class RolesController extends Controller
     public function permissions($id)
     {
         //if (!Auth::user()->can('PermissionsRole'))
-            //abort(403);
+        //abort(403);
 
         $role = Role::findOrFail($id);
         $permissions = Permission::all();

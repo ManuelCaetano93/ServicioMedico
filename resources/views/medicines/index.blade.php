@@ -29,7 +29,6 @@
                     </div>
                     <div class="panel-body">
                             @foreach($medicines as $medicine)
-
                                 <div class="col-sm-5">
                                     <div class="card">
                                         <div class="card-block">

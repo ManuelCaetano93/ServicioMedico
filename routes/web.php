@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -17,32 +16,37 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 
-// Users Routes
+//Route::group(['middleware' => ['roles:Admin']], function () {
 
+// Users Routes
 Route::resource('/users', 'UsersController');
 
+Route::get('/users/{id}/permissions', 'UsersController@permissions');
+Route::put('/users/{id}/permissions', 'UsersController@asignpermissions');
 Route::get('/users/{id}/associate', 'UsersController@associate');
 Route::put('/users/{id}/associatespecialization', 'SpecializationsUserController@associatespecialization');
 
 
 // Specialization Routes
+Route::resource('/records', 'RecordsController');
+Route::resource('/specializations', 'SpecializationController');
 
-Route::get('/specializations/deleted', 'SpecializationController@deleted');
+Route::get('/specialization/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
 Route::resource('/specializations', 'SpecializationController');
 
-// Appointments Routes
 
-Route::get('/appointments/deleted', 'AppointmentsController@deleted');
+// Appointments Routes
+Route::resource('/appointments', 'AppointmentsController');
+Route::get('/appointment/deleted', 'AppointmentsController@deleted');
+
 Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
 Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
-Route::resource('/appointments', 'AppointmentsController');
 Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
 route::post('appointments/{id}/create', 'AppointmentsController@store');
 
 // Permissions Routes
-
 Route::resource('/permissions', 'PermissionsController');
 
 // Recipes Routes
@@ -55,13 +59,12 @@ Route::match(array('PUT', 'PATCH'), "/recipes/{id}/receive", array(
 Route::get('/recipes/received', 'RecipesController@received');
 
 // Roles Routes
-
 Route::resource('/roles', 'RolesController');
-Route::get('/roles/{id}/assignpermissions','RolesController@permissions');
-Route::put('/roles/{id}/assignpermissions','RolesController@assignpermissions');
+Route::get('/roles/{id}/assignpermissions', 'RolesController@permissions');
+Route::put('/roles/{id}/assignpermissions', 'RolesController@assignpermissions');
 
 //Medicines Routes
-
+  
 Route::get('/medicines/deleted', 'MedicinesController@deleted');
 Route::post('/medicines/{id}/restore', 'MedicinesController@restore');
 Route::resource('/medicines', 'MedicinesController');
@@ -72,8 +75,10 @@ Route::get('/records/{id}/create', 'RecordsController@create');
 Route::post('/records/{id}/create', 'RecordsController@store');
 Route::resource('/records', 'RecordsController');
 
-
-
-
 Auth::routes();
 Route::post('/users', 'UsersController@index');
+Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');
+Route::put('/medicines/{id}/asignpermissions', 'MedicinesController@asignpermissions');
+
+
+//});

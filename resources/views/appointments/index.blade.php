@@ -22,51 +22,80 @@
                             <div class="col-xs-6 text-right">
                                 <a href="{{ url('users/'.$user.'/appointment') }}" class="btn btn-success">Nueva Cita
                                 </a>
-                            </div>
-                            <div class="col-xs-2 text-right">
-                                <a href="{{ url('/appointments/deleted') }}" class="btn btn-success">Recuperar
+                                <a href="{{ url('/appointment/deleted') }}" class="btn btn-success">Recuperar
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Fecha</th>
-                                <th width="10%" colspan="3">Acciones</th>
-                            </tr>
-                            @if($appointments->status = 'Active')
-                                @foreach($appointments as $appointment)
-                                    <tr>
-                                        <td>{{ $appointment->date }}</td>
-                                        <td>
-                                            <a href="{{ url('appointments/'.$appointment->id.'/edit') }}"
-                                               class="btn btn-primary">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form method="POST" action="/appointments/{{ $appointment->id }}/delete">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="_method" value="DELETE"/>
-                                                <button type="submit" class="btn btn-danger">
-                                                    Delete
+                        @if($appointments->status = 'Active')
+                            @foreach($appointments as $appointment)
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <h4 class="card-title">{{ $appointment->name }}</h4>
+                                            <hr>
+                                            <div class="text-center">
+                                                <a href="{{ url('appointments/'.$appointment->id.'/edit') }}"
+                                                   class="btn btn-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-danger"
+                                                        data-action="{{ url('/appointments/'.$appointment->id) }}"
+                                                        data-name="{{ $appointment->name }}"
+                                                        data-toggle="modal"
+                                                        data-target="#confirm-delete{{$appointment->id}}">
+                                                    <i class="fa fa-trash fa-1x"></i>
                                                 </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            <tr>
-                                <td colspan="7" class="text-center">
-                                    {{ $appointments->links() }}
-                                </td>
-                            </tr>
-
-                        </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            {{ $appointments->links() }}
+                        </td>
+                    </tr>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    @foreach($appointments as $appointment)
+        <div class="modal fade" id="confirm-delete{{$appointment->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea eliminar este
+                            registro?</p>
+                        <p class="name">{{ url('/appointments/'.$appointment->name) }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-inline form-delete"
+                              role="form"
+                              method="POST"
+                              action="{{ url('/appointments/'.$appointment->id) }}">
+                            {!! method_field('DELETE') !!}
+                            {!! csrf_field() !!}
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="delete-btn"
+                                    class="btn btn-danger"
+                                    title="Eliminar">Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

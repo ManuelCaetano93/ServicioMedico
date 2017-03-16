@@ -66,7 +66,7 @@ input, button, select, textarea {
 }
 
 img.img-polaroid {
-    margin: 0 0 20px 0;
+    margin: 0 0 20 0;
 }
 
 .img-box {
@@ -1120,6 +1120,11 @@ ul.link-list li {
 
 footer {
     background: #011627;
+    margin-top: 39vh;
+    position: relative;
+    padding: 30px 0 0 0;
+    size: 20px;
+    text-shadow: none;
 }
 
 footer ul.link-list li a {
