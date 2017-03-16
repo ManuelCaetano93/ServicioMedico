@@ -53,7 +53,7 @@ class UsersController extends Controller
         $v = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'identification' => 'required|max:10|unique',
+            'identification' => 'required|unique:users|numeric',
             'birthday' => 'required',
             'sex' => 'required',
             'phone' => 'required|max:10',
@@ -64,10 +64,11 @@ class UsersController extends Controller
         ]);
         if ($v->fails()) {
             return redirect()->back()->withErrors($v)->withInput();
-        }
-        //try {
-        //    \DB::beginTransaction();
-            $user = User::create([
+      }
+
+        try {
+            \DB::beginTransaction();
+           User::create([
                 'name' => $request->input('name'),
                 'surname' => $request->input('surname'),
                 'identification' => $request->input('identification'),
@@ -79,12 +80,12 @@ class UsersController extends Controller
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
             ]);
-            $user->assignRole($request->input('role'));
-       // } catch (\Exception $e) {
-      //      \DB::rollback();
-       // } finally {
-       //     \DB::commit();
-      //  }
+        } catch (\Exception $e) {
+            \DB::rollback();
+        } finally {
+            \DB::commit();
+        }
+
         return redirect('/users')->with('mensaje', 'Usuario creado satisfactoriamente');
     }
 

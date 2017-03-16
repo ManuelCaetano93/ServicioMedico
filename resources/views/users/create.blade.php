@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 @section('content')
     <div class="container">
         <div class="row">
@@ -61,7 +61,7 @@
                                 <div class="col-md-6">
 
                                     <input id="birthday" type="text" class="form-control datepicker" name="birthday"
-                                           value="{{ old('age') }}"
+                                           value="{{ old('birthday') }}"
                                            required readonly>
                                     @if ($errors->has('birthday'))
                                         <spam class="help-block">
@@ -87,7 +87,6 @@
                                         <strong>{{ $errors->first('sex') }}</strong>
                                     </spam>
                                     @endif
-
                                 </div>
                             </div>
 

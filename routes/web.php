@@ -19,8 +19,8 @@ Route::get('/home', 'HomeController@index');
 //Route::group(['middleware' => ['roles:Admin']], function () {
 
 // Users Routes
-Route::resource('/users', 'UsersController');
 
+Route::resource('/users', 'UsersController');
 Route::get('/users/{id}/permissions', 'UsersController@permissions');
 Route::put('/users/{id}/permissions', 'UsersController@asignpermissions');
 Route::get('/users/{id}/associate', 'UsersController@associate');
@@ -75,10 +75,6 @@ Route::post('/records/{id}/create', 'RecordsController@store');
 Route::resource('/records', 'RecordsController');
 
 Auth::routes();
-Route::post('/users', 'UsersController@index');
 Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');
 Route::put('/medicines/{id}/asignpermissions', 'MedicinesController@asignpermissions');
 
-
-
-//});

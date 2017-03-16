@@ -27,7 +27,7 @@
                     </div>
                     <div class="panel-body">
                         @foreach( $users as $user)
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="card testimonial-card">
                                     <div class="text-center">
                                         <div class="panel-heading btn-info" style="background-color: #D4F1FC">
