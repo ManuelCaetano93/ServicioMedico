@@ -28,9 +28,7 @@ Route::put('/users/{id}/associatespecialization', 'SpecializationsUserController
 
 
 // Specialization Routes
-Route::resource('/records', 'RecordsController');
 Route::resource('/specializations', 'SpecializationController');
-
 Route::get('/specialization/deleted', 'SpecializationController@deleted');
 Route::post('/specialization/{id}/restore', 'SpecializationController@restore');
 Route::delete('/specialization/{id}/delete', 'SpecializationController@destroy');
@@ -55,7 +53,6 @@ Route::match(array('PUT', 'PATCH'), "/recipes/{id}/receive", array(
     'uses' => 'RecipesController@receive',
     'as' => 'recipes.receive'
 ));
-Route::get('/recipes/received', 'RecipesController@received');
 
 // Roles Routes
 Route::resource('/roles', 'RolesController');
@@ -63,7 +60,9 @@ Route::get('/roles/{id}/assignpermissions', 'RolesController@permissions');
 Route::put('/roles/{id}/assignpermissions', 'RolesController@assignpermissions');
 
 //Medicines Routes
-  
+
+Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');
+Route::put('/medicines/{id}/asignpermissions', 'MedicinesController@asignpermissions');
 Route::get('/medicines/deleted', 'MedicinesController@deleted');
 Route::post('/medicines/{id}/restore', 'MedicinesController@restore');
 Route::resource('/medicines', 'MedicinesController');
@@ -75,6 +74,5 @@ Route::post('/records/{id}/create', 'RecordsController@store');
 Route::resource('/records', 'RecordsController');
 
 Auth::routes();
-Route::get('/medicines/{id}/asignpermissions', 'MedicinesController@permissions');
-Route::put('/medicines/{id}/asignpermissions', 'MedicinesController@asignpermissions');
+
 

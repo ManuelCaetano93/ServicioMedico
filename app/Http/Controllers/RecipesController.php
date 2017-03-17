@@ -131,8 +131,4 @@ class RecipesController extends Controller
         return redirect('/recipes')->with('mensaje', 'Recipe recibido exitosamente');
     }
 
-    public function received(){
-        $recipes = Recipe::paginate();
-        return view('/recipes/received', ['recipes' => $recipes]);
-    }
 }
