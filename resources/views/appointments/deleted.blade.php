@@ -32,8 +32,11 @@
                                 <div class="col-sm-4">
                                     <div class="card">
                                         <div class="card-block">
-                                            <h4 class="card-title">{{ $appointment->name }}</h4>
+                                            <h4 class="card-title text-center">{{ $appointment->date }}</h4>
                                             <hr>
+                                            <h6 class="text-center">Paciente: {{ $appointment->patient->name }}</h6>
+                                            <hr>
+                                            <h6 class="text-center">Doctor: {{ $appointment->doctor->name }}</h6>
                                             <div class="text-center">
                                                 <a href="{{ url('appointments/'.$appointment->id.'/edit') }}"
                                                    class="btn btn-primary">
@@ -60,6 +63,7 @@
                 </div>
             </div>
         </div>
+    </div>
     {{-- @if(Session::has('appointments'))
     <div class="modal fade" id="confirm-restore" tabindex="-1"
          role="dialog" aria-labelledby="myModalLabel"

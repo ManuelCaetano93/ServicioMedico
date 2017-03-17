@@ -34,18 +34,12 @@
                                         <h4 class="card-title">{{ $recipe->description }}</h4>
                                         <hr>
                                         <div class="text-center">
-                                            <a href="{{ url('recipes/'.$recipe->id.'/recipes') }}"
-                                               class="btn btn-warning">
-                                                <i class="fa fa-id-card"></i>
-                                            </a>
-
-
                                             <button class="btn btn-success"
                                                     data-action="{{ url('recipes/'.$recipe->id.'/receive') }}"
                                                     data-name="{{ $recipe->description }}"
                                                     data-toggle="modal"
                                                     data-target="#confirm-receive{{$recipe->id}}">
-                                                <i class="fa fa-edit fa-1x"></i>
+                                                <i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                             <button class="btn btn-danger"
                                                     data-action="{{ url('/recipes/'.$recipe->id) }}"

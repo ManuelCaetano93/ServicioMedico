@@ -175,7 +175,7 @@ class AppointmentsController extends Controller
 	{
         Appointment::withTrashed($id)->where('id', $id)->update(array('status'=>'Active'));
 		Appointment::withTrashed($id)->find($id)->restore();
-		return redirect ('/appointments/deleted')->with('message', 'Cita restaurada exitosamente');
+		return redirect ('/appointment/deleted')->with('message', 'Cita restaurada exitosamente');
 	}
 
     // Get and Post to create appointment for a user
