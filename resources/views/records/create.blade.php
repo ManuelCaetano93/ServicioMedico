@@ -99,8 +99,8 @@
                                 <div class="col-md-6">
                                     <select name="status" id="status" class="form-control">
                                         <option value="">Seleccione</option>
-                                        <option value="activo" @if(old('status')=='activo') selected @endif>Activo</option>
-                                        <option value="inactivo" @if(old('status')=='inactivo') selected @endif>Inactivo</option>
+                                        <option value="Active" @if(old('status')=='Active') selected @endif>Activo</option>
+                                        <option value="Inactive" @if(old('status')=='Inactive') selected @endif>Inactivo</option>
                                     </select>
                                     @if ($errors->has('status'))
                                         <spam class="help-block">
