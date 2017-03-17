@@ -20,8 +20,6 @@
                         <div class="row">
                             <div class="col-xs-4"><h5>Recipe</h5></div>
                             <div class="col-xs-8 text-right">
-                                <a href="{{ url('/recipes/received') }}" class="btn btn-success">Recipes Recibidos
-                                </a>
                                 <a href="{{ url('/recipes/create') }}" class="btn btn-success">Nuevo Recipe
                                 </a>
                             </div>
