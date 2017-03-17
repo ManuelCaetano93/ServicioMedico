@@ -60,13 +60,13 @@
                                 <label for="birthday" class="col-md-4 control-label">Fecha Nacimiento</label>
                                 <div class="col-md-6">
 
-                                    <input id="birthday" type="text" class="form-control" name="birthday"
-                                           value="{{ old('age') }}"
-                                           required>
+                                    <input id="birthday" type="text" class="form-control datepicker" name="birthday"
+                                           value="{{ old('birthday') }}"
+                                           required readonly>
                                     @if ($errors->has('birthday'))
                                         <spam class="help-block">
-                                        <strong>{{ $errors->first('birthday') }}</strong>
-                                    </spam>
+                                            <strong>{{ $errors->first('birthday') }}</strong>
+                                        </spam>
                                     @endif
                                 </div>
                             </div>

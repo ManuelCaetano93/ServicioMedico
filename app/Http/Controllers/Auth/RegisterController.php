@@ -50,7 +50,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'identification' => 'required|max:10',
+            'identification' => 'required|unique:users|numeric',
             'birthday' => 'required',
             'sex' => 'required',
             'phone' => 'required|max:10',
@@ -69,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        var_dump($data);
+
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
@@ -82,6 +82,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->assignRole('Patient');
 
         return $user;
     }
