@@ -85,7 +85,7 @@
 @extends('footer')
 
 <!-- Scripts -->
-<script src="/js/app.js"></script>
+<script src="{{ asset("/js/app.js") }}"></script>
 <script src="{{ asset("js/jquery.js") }}"></script>
 <script src="{{ asset("js/jqueryui/jquery-ui.min.js") }}"></script>
 <script src="{{ asset('js/datetimepicker.js') }}"></script>

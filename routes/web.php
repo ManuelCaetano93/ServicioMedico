@@ -38,8 +38,8 @@ Route::resource('/specializations', 'SpecializationController');
 // Appointments Routes
 Route::resource('/appointments', 'AppointmentsController');
 Route::get('/appointment/deleted', 'AppointmentsController@deleted');
-Route::post('/appointments/{id}/restore', 'AppointmentsController@restore');
-Route::delete('/appointments/{id}/delete', 'AppointmentsController@destroy');
+Route::post('/appointment/{id}/restore', 'AppointmentsController@restore');
+Route::delete('/appointment/{id}/delete', 'AppointmentsController@destroy');
 Route::get('users/{id}/appointment', 'AppointmentsController@createappointment');
 route::post('appointments/{id}/create', 'AppointmentsController@store');
 

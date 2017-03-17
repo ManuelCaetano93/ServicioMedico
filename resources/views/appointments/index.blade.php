@@ -39,10 +39,6 @@
                                             <hr>
                                             <h6 class="text-center">Doctor: {{ $appointment->doctor->name }}</h6>
                                             <div class="text-center">
-                                                <a href="{{ url('appointments/'.$appointment->id.'/edit') }}"
-                                                   class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
                                                 <button class="btn btn-danger"
                                                         data-action="{{ url('/appointments/'.$appointment->id) }}"
                                                         data-name="{{ $appointment->name }}"
